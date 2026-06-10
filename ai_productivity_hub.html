@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Productivity Hub — Discover the Best AI Tools</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg: #0a0a0f;
+  --bg2: #111118;
+  --bg3: #1a1a24;
+  --glass: rgba(255,255,255,0.05);
+  --glass2: rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.14);
+  --text: #f0f0f8;
+  --text2: rgba(240,240,248,0.55);
+  --text3: rgba(240,240,248,0.3);
+  --accent: #6c63ff;
+  --accent2: #00d4aa;
+  --accent3: #ff6b6b;
+  --gold: #ffd166;
+  --glow: rgba(108,99,255,0.25);
+}
+[data-theme="light"] {
+  --bg: #f8f8ff;
+  --bg2: #ffffff;
+  --bg3: #f0f0f8;
+  --glass: rgba(0,0,0,0.04);
+  --glass2: rgba(0,0,0,0.07);
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.14);
+  --text: #0a0a1a;
+  --text2: rgba(10,10,26,0.55);
+  --text3: rgba(10,10,26,0.3);
+  --glow: rgba(108,99,255,0.15);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:'Inter',sans-serif; font-size:15px;
+  min-height:100vh; transition:background .3s,color .3s;
+  overflow-x:hidden;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px;}
+
+/* GLASSMORPHISM BASE */
+.glass{
+  background:var(--glass);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid var(--border);
+  border-radius:16px;
+}
+.glass2{
+  background:var(--glass2);
+  backdrop-filter:blur(16px);
+  border:1px solid var(--border2);
+  border-radius:12px;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:0 24px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(10,10,15,0.8);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+}
+[data-theme="light"] nav{background:rgba(248,248,255,0.85);}
+.nav-logo{
+  font-family:'Syne',sans-serif;
+  font-size:20px;font-weight:800;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  text-decoration:none;display:flex;align-items:center;gap:8px;
+}
+.nav-logo::before{
+  content:'⚡';font-size:18px;
+  -webkit-text-fill-color:initial;
+}
+.nav-links{display:flex;gap:4px;list-style:none;}
+.nav-links a{
+  padding:6px 14px;border-radius:8px;
+  color:var(--text2);text-decoration:none;
+  font-size:13px;font-weight:500;
+  transition:all .2s;
+}
+.nav-links a:hover,.nav-links a.active{
+  background:var(--glass2);color:var(--text);
+}
+.nav-right{display:flex;gap:8px;align-items:center;}
+.theme-btn{
+  width:36px;height:36px;border-radius:8px;
+  background:var(--glass);border:1px solid var(--border);
+  color:var(--text);cursor:pointer;font-size:16px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;
+}
+.theme-btn:hover{background:var(--glass2);}
+.btn{
+  padding:8px 18px;border-radius:8px;
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .2s;border:none;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.btn-primary{background:var(--accent);color:white;}
+.btn-primary:hover{background:#7c75ff;transform:translateY(-1px);box-shadow:0 8px 24px var(--glow);}
+.btn-ghost{background:var(--glass);color:var(--text);border:1px solid var(--border);}
+.btn-ghost:hover{background:var(--glass2);border-color:var(--border2);}
+
+/* PAGES */
+.page{display:none;padding-top:64px;min-height:100vh;}
+.page.active{display:block;}
+
+/* HERO */
+#page-home .hero{
+  padding:80px 24px 60px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(108,99,255,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(0,212,170,0.1) 0%, transparent 50%);
+  pointer-events:none;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:20px;
+  background:var(--glass);border:1px solid var(--border2);
+  font-size:12px;font-weight:600;color:var(--accent);
+  letter-spacing:.5px;margin-bottom:24px;
+}
+.hero-tag span{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite;}
+h1.hero-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(32px,6vw,72px);
+  font-weight:800;line-height:1.1;
+  max-width:800px;margin:0 auto 20px;
+}
+h1.hero-title .gradient{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{
+  font-size:17px;color:var(--text2);
+  max-width:520px;margin:0 auto 40px;
+  line-height:1.7;font-weight:300;
+}
+.search-wrap{
+  max-width:600px;margin:0 auto 40px;
+  position:relative;
+}
+.search-wrap input{
+  width:100%;padding:16px 56px 16px 52px;
+  border-radius:14px;
+  background:var(--glass2);
+  border:1px solid var(--border2);
+  color:var(--text);font-size:15px;
+  font-family:'Inter',sans-serif;
+  outline:none;transition:all .3s;
+}
+.search-wrap input:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--glow);
+}
+.search-wrap input::placeholder{color:var(--text3);}
+.search-icon{
+  position:absolute;left:18px;top:50%;transform:translateY(-50%);
+  font-size:18px;color:var(--text3);
+}
+.search-btn{
+  position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  padding:8px 18px;border-radius:8px;
+  background:var(--accent);color:white;
+  border:none;cursor:pointer;font-weight:600;
+  font-size:13px;transition:all .2s;
+}
+.search-btn:hover{background:#7c75ff;}
+
+/* CATEGORIES */
+.cats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:60px;}
+.cat-btn{
+  padding:10px 20px;border-radius:24px;
+  background:var(--glass);border:1px solid var(--border);
+  color:var(--text2);font-size:13px;font-weight:500;
+  cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;gap:6px;
+}
+.cat-btn:hover,.cat-btn.active{
+  background:var(--accent);border-color:var(--accent);
+  color:white;transform:translateY(-2px);
+  box-shadow:0 8px 20px var(--glow);
+}
+
+/* STATS */
+.stats-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:16px;max-width:900px;margin:0 auto 80px;
+  padding:0 24px;
+}
+.stat-card{
+  padding:24px;text-align:center;
+  transition:transform .2s;
+}
+.stat-card:hover{transform:translateY(-4px);}
+.stat-num{
+  font-family:'Syne',sans-serif;
+  font-size:36px;font-weight:800;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.stat-lbl{font-size:12px;color:var(--text2);margin-top:4px;font-weight:500;}
+
+/* SECTION TITLE */
+.sec-head{
+  text-align:center;padding:0 24px;margin-bottom:40px;
+}
+.sec-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(24px,3vw,40px);font-weight:700;
+  margin-bottom:8px;
+}
+.sec-sub{font-size:15px;color:var(--text2);}
+.sec-badge{
+  display:inline-block;padding:4px 12px;
+  border-radius:12px;background:rgba(108,99,255,.15);
+  color:var(--accent);font-size:11px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:12px;
+}
+
+/* TOOLS GRID */
+.tools-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:16px;padding:0 24px;max-width:1400px;margin:0 auto;
+}
+.tool-card{
+  padding:20px;transition:all .3s;cursor:pointer;
+  position:relative;overflow:hidden;
+}
+.tool-card::before{
+  content:'';position:absolute;inset:0;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  opacity:0;transition:opacity .3s;z-index:-1;
+}
+.tool-card:hover{transform:translateY(-4px);border-color:var(--accent);}
+.tool-card:hover::before{opacity:.06;}
+.tool-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;}
+.tool-icon{
+  width:44px;height:44px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+}
+.tool-name{
+  font-family:'Syne',sans-serif;
+  font-size:16px;font-weight:700;margin-bottom:2px;
+}
+.tool-cat{font-size:11px;color:var(--accent2);font-weight:600;letter-spacing:.5px;text-transform:uppercase;}
+.tool-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:14px;}
+.tool-footer{display:flex;align-items:center;justify-content:space-between;}
+.tool-price{
+  padding:3px 10px;border-radius:6px;
+  font-size:11px;font-weight:700;letter-spacing:.5px;
+}
+.price-free{background:rgba(0,212,170,.15);color:var(--accent2);}
+.price-paid{background:rgba(108,99,255,.15);color:var(--accent);}
+.price-freemium{background:rgba(255,209,102,.15);color:var(--gold);}
+.tool-rating{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--gold);}
+.tool-link{
+  padding:5px 12px;border-radius:6px;
+  background:var(--glass);border:1px solid var(--border);
+  color:var(--text);font-size:11px;font-weight:600;
+  text-decoration:none;transition:all .2s;
+}
+.tool-link:hover{background:var(--accent);border-color:var(--accent);color:white;}
+.fav-btn{
+  position:absolute;top:14px;right:14px;
+  background:none;border:none;cursor:pointer;
+  font-size:18px;transition:transform .2s;
+  color:var(--text3);
+}
+.fav-btn:hover,.fav-btn.active{color:#ff6b6b;transform:scale(1.2);}
+
+/* MINI TOOLS */
+.mini-tools{padding:60px 24px;max-width:1200px;margin:0 auto;}
+.mini-tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:24px;}
+.mini-card{padding:28px;}
+.mini-title{
+  font-family:'Syne',sans-serif;
+  font-size:18px;font-weight:700;
+  display:flex;align-items:center;gap:8px;margin-bottom:6px;
+}
+.mini-desc{font-size:13px;color:var(--text2);margin-bottom:20px;}
+.mini-card textarea,
+.mini-card input[type="text"]{
+  width:100%;padding:12px 14px;
+  border-radius:10px;
+  background:var(--bg3);
+  border:1px solid var(--border);
+  color:var(--text);font-size:13px;
+  font-family:'Inter',sans-serif;
+  outline:none;resize:vertical;
+  transition:border-color .2s;
+}
+.mini-card textarea:focus,
+.mini-card input[type="text"]:focus{border-color:var(--accent);}
+.mini-output{
+  margin-top:12px;padding:12px 14px;
+  border-radius:10px;
+  background:var(--bg3);
+  border:1px solid var(--border2);
+  font-size:13px;color:var(--text2);
+  line-height:1.7;min-height:80px;
+  white-space:pre-wrap;
+}
+
+/* BLOG */
+.blog-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:20px;padding:0 24px;max-width:1200px;margin:0 auto;
+}
+.blog-card{padding:0;overflow:hidden;}
+.blog-thumb{
+  height:180px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:48px;border-radius:12px 12px 0 0;
+}
+.blog-body{padding:20px;}
+.blog-tag{
+  font-size:10px;font-weight:700;
+  color:var(--accent2);letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:8px;
+}
+.blog-title{
+  font-family:'Syne',sans-serif;
+  font-size:17px;font-weight:700;
+  line-height:1.3;margin-bottom:8px;
+  cursor:pointer;transition:color .2s;
+}
+.blog-title:hover{color:var(--accent);}
+.blog-excerpt{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:14px;}
+.blog-meta{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--text3);}
+
+/* PRICING */
+.pricing-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:20px;padding:0 24px;max-width:900px;margin:0 auto;
+}
+.price-card{padding:32px;text-align:center;position:relative;}
+.price-card.featured{
+  border-color:var(--accent);
+  background:linear-gradient(135deg,rgba(108,99,255,.15),rgba(0,212,170,.08));
+}
+.price-popular{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  padding:4px 16px;border-radius:12px;
+  background:var(--accent);color:white;
+  font-size:11px;font-weight:700;letter-spacing:1px;
+}
+.price-name{
+  font-family:'Syne',sans-serif;
+  font-size:18px;font-weight:700;margin-bottom:8px;
+}
+.price-amount{
+  font-family:'Syne',sans-serif;
+  font-size:42px;font-weight:800;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.price-period{font-size:13px;color:var(--text2);}
+.price-features{
+  list-style:none;margin:20px 0 24px;
+  text-align:left;
+}
+.price-features li{
+  padding:7px 0;font-size:13px;color:var(--text2);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:8px;
+}
+.price-features li::before{content:'✓';color:var(--accent2);font-weight:700;}
+
+/* AUTH MODAL */
+.modal-overlay{
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(0,0,0,.7);backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;
+}
+.modal-overlay.open{display:flex;}
+.modal{
+  width:100%;max-width:420px;
+  padding:36px;margin:16px;
+  animation:modalIn .3s ease;
+}
+.modal-title{
+  font-family:'Syne',sans-serif;
+  font-size:24px;font-weight:700;
+  margin-bottom:4px;
+}
+.modal-sub{font-size:13px;color:var(--text2);margin-bottom:24px;}
+.form-group{margin-bottom:14px;}
+.form-label{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;display:block;}
+.form-input{
+  width:100%;padding:12px 14px;
+  border-radius:10px;
+  background:var(--bg3);
+  border:1px solid var(--border);
+  color:var(--text);font-size:14px;
+  font-family:'Inter',sans-serif;
+  outline:none;transition:border-color .2s;
+}
+.form-input:focus{border-color:var(--accent);}
+.modal-footer{text-align:center;margin-top:16px;font-size:13px;color:var(--text2);}
+.modal-footer a{color:var(--accent);cursor:pointer;text-decoration:none;}
+.close-modal{
+  position:absolute;top:16px;right:20px;
+  background:none;border:none;color:var(--text2);
+  font-size:20px;cursor:pointer;
+}
+
+/* ADMIN PANEL */
+.admin-layout{display:flex;gap:0;min-height:calc(100vh - 64px);}
+.admin-sidebar{
+  width:220px;flex-shrink:0;
+  background:var(--bg2);
+  border-right:1px solid var(--border);
+  padding:24px 12px;
+}
+.admin-sidebar ul{list-style:none;}
+.admin-sidebar li{margin-bottom:4px;}
+.admin-sidebar a{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;border-radius:8px;
+  color:var(--text2);text-decoration:none;
+  font-size:13px;font-weight:500;transition:all .2s;
+}
+.admin-sidebar a:hover,.admin-sidebar a.active{
+  background:var(--glass2);color:var(--text);
+}
+.admin-main{flex:1;padding:32px;overflow-y:auto;}
+.admin-title{
+  font-family:'Syne',sans-serif;
+  font-size:24px;font-weight:700;margin-bottom:24px;
+}
+.admin-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px;}
+.admin-card{padding:20px;}
+.admin-card-val{
+  font-family:'Syne',sans-serif;font-size:28px;font-weight:800;
+}
+.admin-card-lbl{font-size:12px;color:var(--text2);margin-top:4px;}
+.admin-table{width:100%;border-collapse:collapse;font-size:13px;}
+.admin-table th{
+  text-align:left;padding:12px 16px;
+  background:var(--glass);
+  font-size:11px;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--text2);
+  border-bottom:1px solid var(--border);
+}
+.admin-table td{
+  padding:12px 16px;
+  border-bottom:1px solid var(--border);
+  color:var(--text2);
+}
+.admin-table tr:hover td{background:var(--glass);color:var(--text);}
+.status-badge{
+  padding:2px 8px;border-radius:6px;
+  font-size:10px;font-weight:700;
+}
+.status-active{background:rgba(0,212,170,.15);color:var(--accent2);}
+.status-pending{background:rgba(255,209,102,.15);color:var(--gold);}
+
+/* ADS */
+.ad-banner{
+  margin:32px 24px;padding:16px 24px;
+  border-radius:12px;
+  background:linear-gradient(135deg,rgba(108,99,255,.12),rgba(0,212,170,.08));
+  border:1px dashed rgba(108,99,255,.3);
+  text-align:center;font-size:12px;color:var(--text3);
+  letter-spacing:1px;
+}
+
+/* ANIMATIONS */
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+@keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(10px);}to{opacity:1;transform:scale(1) translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.anim{animation:fadeUp .6s forwards;opacity:0;}
+.anim-1{animation-delay:.1s;}
+.anim-2{animation-delay:.2s;}
+.anim-3{animation-delay:.3s;}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:24px;right:24px;z-index:3000;
+  padding:12px 20px;border-radius:10px;
+  background:var(--accent);color:white;
+  font-size:13px;font-weight:600;
+  transform:translateY(80px);opacity:0;
+  transition:all .3s;pointer-events:none;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .stats-row{grid-template-columns:repeat(2,1fr);}
+  .pricing-grid{grid-template-columns:1fr;}
+  .admin-sidebar{display:none;}
+  .admin-cards{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal glass">
+    <button class="close-modal" onclick="closeModal()">✕</button>
+    <div id="loginForm">
+      <div class="modal-title">Welcome back 👋</div>
+      <div class="modal-sub">Sign in to your AI Productivity Hub account</div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="you@example.com" id="loginEmail">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" placeholder="••••••••" id="loginPass">
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;" onclick="handleLogin()">Sign In →</button>
+      <div class="modal-footer">Don't have an account? <a onclick="switchToSignup()">Sign up free</a></div>
+    </div>
+    <div id="signupForm" style="display:none;">
+      <div class="modal-title">Create account ✨</div>
+      <div class="modal-sub">Join 50,000+ users discovering AI tools</div>
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" type="text" placeholder="Your name" id="signupName">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="you@example.com" id="signupEmail">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" placeholder="Create password" id="signupPass">
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;" onclick="handleSignup()">Create Account →</button>
+      <div class="modal-footer">Already have an account? <a onclick="switchToLogin()">Sign in</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('home')">AI Productivity Hub</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+    <li><a href="#" onclick="showPage('tools')" id="nav-tools">Tools</a></li>
+    <li><a href="#" onclick="showPage('free')" id="nav-free">Free Tools</a></li>
+    <li><a href="#" onclick="showPage('blog')" id="nav-blog">Blog</a></li>
+    <li><a href="#" onclick="showPage('pricing')" id="nav-pricing">Pricing</a></li>
+    <li><a href="#" onclick="showPage('admin')" id="nav-admin">Admin</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
+    <button class="btn btn-ghost" onclick="openModal('login')" id="loginBtn">Log in</button>
+    <button class="btn btn-primary" onclick="openModal('signup')" id="signupBtn">Sign up free</button>
+    <span id="userGreeting" style="display:none;font-size:13px;font-weight:600;color:var(--accent2)"></span>
+    <button class="btn btn-ghost" id="logoutBtn" style="display:none;" onclick="logout()">Logout</button>
+  </div>
+</nav>
+
+<!-- ═══════════════ HOME PAGE ═══════════════ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-tag"><span></span>50,000+ Users · 200+ AI Tools</div>
+    <h1 class="hero-title anim">
+      Discover the Best AI Tools to<br>
+      <span class="gradient">Save Time & Earn More</span>
+    </h1>
+    <p class="hero-sub anim anim-1">The ultimate directory of AI tools for students, creators, developers, and entrepreneurs. Find, compare, and save your favorites.</p>
+    <div class="search-wrap anim anim-2">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search 200+ AI tools..." id="homeSearch" onkeyup="handleSearch(this.value)">
+      <button class="search-btn" onclick="handleSearch(document.getElementById('homeSearch').value)">Search</button>
+    </div>
+    <div class="cats anim anim-2">
+      <button class="cat-btn active" onclick="filterCat('all',this)">🌟 All Tools</button>
+      <button class="cat-btn" onclick="filterCat('Writing',this)">✍️ Writing</button>
+      <button class="cat-btn" onclick="filterCat('Coding',this)">💻 Coding</button>
+      <button class="cat-btn" onclick="filterCat('Image',this)">🎨 Image</button>
+      <button class="cat-btn" onclick="filterCat('Video',this)">🎬 Video</button>
+      <button class="cat-btn" onclick="filterCat('Marketing',this)">📈 Marketing</button>
+      <button class="cat-btn" onclick="filterCat('Productivity',this)">⚡ Productivity</button>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card glass anim anim-1"><div class="stat-num">200+</div><div class="stat-lbl">AI Tools Listed</div></div>
+    <div class="stat-card glass anim anim-2"><div class="stat-num">50K+</div><div class="stat-lbl">Monthly Users</div></div>
+    <div class="stat-card glass anim anim-3"><div class="stat-num">85+</div><div class="stat-lbl">Free Tools</div></div>
+    <div class="stat-card glass anim"><div class="stat-num">4.9★</div><div class="stat-lbl">User Rating</div></div>
+  </div>
+
+  <div class="ad-banner">📢 ADVERTISEMENT — Premium AI Tool Partner Spot Available</div>
+
+  <div class="sec-head">
+    <div class="sec-badge">Featured Tools</div>
+    <div class="sec-title">Top AI Tools Right Now</div>
+    <div class="sec-sub">Handpicked tools our community loves most</div>
+  </div>
+  <div class="tools-grid" id="homeToolsGrid"></div>
+
+  <div style="text-align:center;padding:40px;">
+    <button class="btn btn-primary" onclick="showPage('tools')" style="padding:12px 32px;font-size:15px;">
+      View All 200+ Tools →
+    </button>
+  </div>
+
+  <div class="sec-head" style="margin-top:40px;">
+    <div class="sec-badge">Latest from Blog</div>
+    <div class="sec-title">AI Insights & Guides</div>
+  </div>
+  <div class="blog-grid" id="homeBlogGrid"></div>
+</div>
+
+<!-- ═══════════════ TOOLS PAGE ═══════════════ -->
+<div class="page" id="page-tools">
+  <div style="padding:40px 24px 24px;max-width:1400px;margin:0 auto;">
+    <div class="sec-title" style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">AI Tools Directory</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;align-items:center;">
+      <div style="position:relative;flex:1;min-width:240px;">
+        <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text3);">🔍</span>
+        <input type="text" placeholder="Search tools..." id="toolsSearch" onkeyup="renderTools()"
+          style="width:100%;padding:10px 14px 10px 40px;border-radius:10px;background:var(--glass2);border:1px solid var(--border);color:var(--text);font-size:13px;outline:none;font-family:'Inter',sans-serif;">
+      </div>
+      <select id="catFilter" onchange="renderTools()"
+        style="padding:10px 14px;border-radius:10px;background:var(--glass2);border:1px solid var(--border);color:var(--text);font-size:13px;outline:none;cursor:pointer;">
+        <option value="all">All Categories</option>
+        <option value="Writing">✍️ Writing</option>
+        <option value="Coding">💻 Coding</option>
+        <option value="Image">🎨 Image</option>
+        <option value="Video">🎬 Video</option>
+        <option value="Marketing">📈 Marketing</option>
+        <option value="Productivity">⚡ Productivity</option>
+        <option value="Audio">🎵 Audio</option>
+        <option value="Research">🔬 Research</option>
+      </select>
+      <select id="priceFilter" onchange="renderTools()"
+        style="padding:10px 14px;border-radius:10px;background:var(--glass2);border:1px solid var(--border);color:var(--text);font-size:13px;outline:none;cursor:pointer;">
+        <option value="all">All Pricing</option>
+        <option value="Free">Free</option>
+        <option value="Freemium">Freemium</option>
+        <option value="Paid">Paid</option>
+      </select>
+    </div>
+    <div class="cats" style="justify-content:flex-start;">
+      <button class="cat-btn active" onclick="filterCatTools('all',this)">🌟 All</button>
+      <button class="cat-btn" onclick="filterCatTools('Writing',this)">✍️ Writing</button>
+      <button class="cat-btn" onclick="filterCatTools('Coding',this)">💻 Coding</button>
+      <button class="cat-btn" onclick="filterCatTools('Image',this)">🎨 Image</button>
+      <button class="cat-btn" onclick="filterCatTools('Video',this)">🎬 Video</button>
+      <button class="cat-btn" onclick="filterCatTools('Marketing',this)">📈 Marketing</button>
+      <button class="cat-btn" onclick="filterCatTools('Productivity',this)">⚡ Productivity</button>
+      <button class="cat-btn" onclick="filterCatTools('Audio',this)">🎵 Audio</button>
+    </div>
+  </div>
+  <div class="ad-banner">📢 AFFILIATE SPOT — Feature your AI tool here</div>
+  <div class="tools-grid" id="allToolsGrid"></div>
+  <div style="padding:40px;text-align:center;color:var(--text2);font-size:13px;" id="noResults" style="display:none;">No tools found matching your search.</div>
+</div>
+
+<!-- ═══════════════ FREE TOOLS PAGE ═══════════════ -->
+<div class="page" id="page-free">
+  <div style="padding:48px 24px 24px;text-align:center;">
+    <div class="sec-badge">100% Free</div>
+    <div class="sec-title" style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(28px,4vw,48px);">Free AI Mini Tools</div>
+    <div class="sec-sub">Powerful AI tools you can use right now — no signup needed</div>
+  </div>
+  <div class="mini-tools">
+    <div class="mini-tools-grid">
+
+      <!-- Resume Generator -->
+      <div class="mini-card glass2">
+        <div class="mini-title">📄 AI Resume Generator</div>
+        <div class="mini-desc">Enter your details and generate a professional resume summary powered by AI.</div>
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-input" id="resumeName" placeholder="e.g. Amod P Menon">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Job Role</label>
+          <input type="text" class="form-input" id="resumeRole" placeholder="e.g. Oracle Database Administrator">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Years of Experience</label>
+          <input type="text" class="form-input" id="resumeExp" placeholder="e.g. 2 years">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Key Skills (comma separated)</label>
+          <input type="text" class="form-input" id="resumeSkills" placeholder="e.g. Oracle, PostgreSQL, RMAN, PL/SQL">
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="generateResume()">⚡ Generate Resume Summary</button>
+        <div class="mini-output" id="resumeOutput" style="display:none;"></div>
+      </div>
+
+      <!-- Text Summarizer -->
+      <div class="mini-card glass2">
+        <div class="mini-title">📝 Text Summarizer</div>
+        <div class="mini-desc">Paste any long text and get a concise summary instantly.</div>
+        <div class="form-group">
+          <textarea id="sumInput" rows="7" placeholder="Paste your long text here (article, document, email, etc.)..."
+            style="width:100%;padding:12px;border-radius:10px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-size:13px;font-family:'Inter',sans-serif;outline:none;resize:vertical;"></textarea>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:12px;">
+          <select id="sumLength" style="flex:1;padding:8px 12px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-size:12px;outline:none;">
+            <option value="short">Short (2–3 sentences)</option>
+            <option value="medium" selected>Medium (4–5 sentences)</option>
+            <option value="long">Long (detailed)</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="summarizeText()">⚡ Summarize Text</button>
+        <div class="mini-output" id="sumOutput" style="display:none;"></div>
+      </div>
+
+      <!-- SQL Query Helper -->
+      <div class="mini-card glass2">
+        <div class="mini-title">🗄️ SQL Query Helper</div>
+        <div class="mini-desc">Describe what you need in plain English and get SQL query examples — Oracle, PostgreSQL & MySQL.</div>
+        <div class="form-group">
+          <label class="form-label">Describe your query</label>
+          <textarea id="sqlInput" rows="4" placeholder="e.g. Get all employees with salary greater than 50000 ordered by name..."
+            style="width:100%;padding:12px;border-radius:10px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-size:13px;font-family:'Inter',sans-serif;outline:none;resize:vertical;"></textarea>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:12px;">
+          <select id="sqlType" style="flex:1;padding:8px 12px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-size:12px;outline:none;">
+            <option value="generic">Generic SQL</option>
+            <option value="oracle">Oracle / PL/SQL</option>
+            <option value="postgres" selected>PostgreSQL</option>
+            <option value="mysql">MySQL</option>
+          </select>
+          <select id="sqlOp" style="flex:1;padding:8px 12px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-size:12px;outline:none;">
+            <option value="SELECT">SELECT</option>
+            <option value="INSERT">INSERT</option>
+            <option value="UPDATE">UPDATE</option>
+            <option value="DELETE">DELETE</option>
+            <option value="CREATE">CREATE TABLE</option>
+            <option value="JOIN">JOIN Query</option>
+            <option value="AGGREGATE">Aggregate</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="generateSQL()">⚡ Generate SQL Query</button>
+        <div class="mini-output" id="sqlOutput" style="display:none;font-family:monospace;font-size:12px;color:var(--accent2);"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ BLOG PAGE ═══════════════ -->
+<div class="page" id="page-blog">
+  <div style="padding:48px 24px 24px;text-align:center;">
+    <div class="sec-badge">AI Insights</div>
+    <div class="sec-title" style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(28px,4vw,48px);">Blog & Guides</div>
+    <div class="sec-sub">Expert articles to help you master AI tools and boost your income</div>
+  </div>
+  <div class="ad-banner">📢 SPONSORED — Premium newsletter for AI professionals</div>
+  <div class="blog-grid" id="allBlogGrid" style="margin-bottom:60px;"></div>
+</div>
+
+<!-- ═══════════════ PRICING PAGE ═══════════════ -->
+<div class="page" id="page-pricing">
+  <div style="padding:60px 24px 40px;text-align:center;">
+    <div class="sec-badge">Membership</div>
+    <div class="sec-title" style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(28px,4vw,48px);">Simple, Transparent Pricing</div>
+    <div class="sec-sub">Start free, upgrade when you need more power</div>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card glass">
+      <div class="price-name">Free</div>
+      <div class="price-amount">₹0</div>
+      <div class="price-period">forever</div>
+      <ul class="price-features">
+        <li>Access to 200+ tools directory</li>
+        <li>3 free mini tools</li>
+        <li>5 saved favorites</li>
+        <li>Blog access</li>
+        <li>Community forum</li>
+      </ul>
+      <button class="btn btn-ghost" style="width:100%;justify-content:center;" onclick="openModal('signup')">Get Started Free</button>
+    </div>
+    <div class="price-card glass featured">
+      <div class="price-popular">Most Popular</div>
+      <div class="price-name">Premium</div>
+      <div class="price-amount">₹499</div>
+      <div class="price-period">per month</div>
+      <ul class="price-features">
+        <li>Everything in Free</li>
+        <li>Unlimited favorites</li>
+        <li>Early access to new tools</li>
+        <li>Ad-free experience</li>
+        <li>Priority tool requests</li>
+        <li>Weekly AI newsletter</li>
+        <li>Affiliate earnings 20%</li>
+      </ul>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="showToast('Premium subscription — coming soon!')">Get Premium →</button>
+    </div>
+    <div class="price-card glass">
+      <div class="price-name">Business</div>
+      <div class="price-amount">₹1,999</div>
+      <div class="price-period">per month</div>
+      <ul class="price-features">
+        <li>Everything in Premium</li>
+        <li>Team access (up to 5 users)</li>
+        <li>API access</li>
+        <li>Custom tool lists</li>
+        <li>Dedicated support</li>
+        <li>White-label options</li>
+      </ul>
+      <button class="btn btn-ghost" style="width:100%;justify-content:center;" onclick="showToast('Contact us for Business plan!')">Contact Sales</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ ADMIN PANEL ═══════════════ -->
+<div class="page" id="page-admin">
+  <div class="admin-layout">
+    <div class="admin-sidebar">
+      <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text2);padding:0 12px 16px;letter-spacing:.5px;text-transform:uppercase;">Admin Panel</div>
+      <ul>
+        <li><a href="#" onclick="adminTab('dashboard')" id="atab-dashboard" class="active">📊 Dashboard</a></li>
+        <li><a href="#" onclick="adminTab('tools')" id="atab-tools">🔧 Manage Tools</a></li>
+        <li><a href="#" onclick="adminTab('users')" id="atab-users">👥 Users</a></li>
+        <li><a href="#" onclick="adminTab('blog')" id="atab-blog">📝 Blog Posts</a></li>
+        <li><a href="#" onclick="adminTab('traffic')" id="atab-traffic">📈 Traffic</a></li>
+        <li><a href="#" onclick="adminTab('revenue')" id="atab-revenue">💰 Revenue</a></li>
+      </ul>
+    </div>
+    <div class="admin-main">
+
+      <!-- DASHBOARD TAB -->
+      <div id="admin-dashboard">
+        <div class="admin-title">Dashboard Overview</div>
+        <div class="admin-cards">
+          <div class="admin-card glass2">
+            <div class="admin-card-val" style="color:var(--accent);">200</div>
+            <div class="admin-card-lbl">Total Tools</div>
+          </div>
+          <div class="admin-card glass2">
+            <div class="admin-card-val" style="color:var(--accent2);">50,234</div>
+            <div class="admin-card-lbl">Total Users</div>
+          </div>
+          <div class="admin-card glass2">
+            <div class="admin-card-val" style="color:var(--gold);">₹1.2L</div>
+            <div class="admin-card-lbl">Monthly Revenue</div>
+          </div>
+          <div class="admin-card glass2">
+            <div class="admin-card-val" style="color:var(--accent3);">8.4K</div>
+            <div class="admin-card-lbl">Daily Visitors</div>
+          </div>
+        </div>
+        <div class="sec-title" style="font-size:18px;margin-bottom:16px;">Recent Activity</div>
+        <table class="admin-table">
+          <thead><tr><th>Action</th><th>User</th><th>Time</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>New user signup</td><td>amod@example.com</td><td>2 min ago</td><td><span class="status-badge status-active">Active</span></td></tr>
+            <tr><td>Tool added: Gemini 2.0</td><td>admin</td><td>15 min ago</td><td><span class="status-badge status-active">Published</span></td></tr>
+            <tr><td>Premium subscription</td><td>user@example.com</td><td>1 hr ago</td><td><span class="status-badge status-active">Paid</span></td></tr>
+            <tr><td>Blog post draft</td><td>editor</td><td>3 hrs ago</td><td><span class="status-badge status-pending">Pending</span></td></tr>
+            <tr><td>Affiliate click: ChatGPT</td><td>visitor</td><td>4 hrs ago</td><td><span class="status-badge status-active">Tracked</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- TOOLS TAB -->
+      <div id="admin-tools" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+          <div class="admin-title" style="margin:0;">Manage Tools</div>
+          <button class="btn btn-primary" onclick="showAddToolForm()">+ Add New Tool</button>
+        </div>
+        <div id="addToolForm" style="display:none;" class="glass2" style="padding:24px;margin-bottom:24px;">
+          <div style="padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="form-group"><label class="form-label">Tool Name</label><input class="form-input" id="at-name" placeholder="e.g. ChatGPT"></div>
+            <div class="form-group"><label class="form-label">Category</label>
+              <select class="form-input" id="at-cat">
+                <option>Writing</option><option>Coding</option><option>Image</option>
+                <option>Video</option><option>Marketing</option><option>Productivity</option>
+              </select>
+            </div>
+            <div class="form-group"><label class="form-label">Description</label><input class="form-input" id="at-desc" placeholder="Brief description"></div>
+            <div class="form-group"><label class="form-label">Pricing</label>
+              <select class="form-input" id="at-price">
+                <option>Free</option><option>Freemium</option><option>Paid</option>
+              </select>
+            </div>
+            <div class="form-group"><label class="form-label">URL</label><input class="form-input" id="at-url" placeholder="https://..."></div>
+            <div class="form-group"><label class="form-label">Icon Emoji</label><input class="form-input" id="at-icon" placeholder="🤖"></div>
+            <div style="grid-column:1/-1;display:flex;gap:8px;">
+              <button class="btn btn-primary" onclick="addToolFromAdmin()">Save Tool</button>
+              <button class="btn btn-ghost" onclick="document.getElementById('addToolForm').style.display='none'">Cancel</button>
+            </div>
+          </div>
+        </div>
+        <table class="admin-table">
+          <thead><tr><th>Tool</th><th>Category</th><th>Pricing</th><th>Rating</th><th>Actions</th></tr></thead>
+          <tbody id="adminToolsTable"></tbody>
+        </table>
+      </div>
+
+      <!-- USERS TAB -->
+      <div id="admin-users" style="display:none;">
+        <div class="admin-title">User Management</div>
+        <table class="admin-table">
+          <thead><tr><th>Name</th><th>Email</th><th>Plan</th><th>Joined</th><th>Status</th></tr></thead>
+          <tbody id="adminUsersTable"></tbody>
+        </table>
+      </div>
+
+      <!-- TRAFFIC TAB -->
+      <div id="admin-traffic" style="display:none;">
+        <div class="admin-title">Traffic Analytics</div>
+        <div class="admin-cards">
+          <div class="admin-card glass2"><div class="admin-card-val" style="color:var(--accent);">8,412</div><div class="admin-card-lbl">Today's Visitors</div></div>
+          <div class="admin-card glass2"><div class="admin-card-val" style="color:var(--accent2);">52,840</div><div class="admin-card-lbl">This Week</div></div>
+          <div class="admin-card glass2"><div class="admin-card-val" style="color:var(--gold);">218K</div><div class="admin-card-lbl">This Month</div></div>
+          <div class="admin-card glass2"><div class="admin-card-val" style="color:var(--accent3);">3.2%</div><div class="admin-card-lbl">Bounce Rate</div></div>
+        </div>
+        <div style="margin-top:24px;padding:24px;" class="glass2">
+          <div style="font-weight:600;margin-bottom:16px;">Top Pages</div>
+          <table class="admin-table">
+            <thead><tr><th>Page</th><th>Views</th><th>Avg Time</th><th>Bounce</th></tr></thead>
+            <tbody>
+              <tr><td>/tools</td><td>18,430</td><td>4m 12s</td><td>22%</td></tr>
+              <tr><td>/home</td><td>12,840</td><td>2m 45s</td><td>38%</td></tr>
+              <tr><td>/free-tools</td><td>9,210</td><td>6m 30s</td><td>18%</td></tr>
+              <tr><td>/blog</td><td>7,640</td><td>5m 20s</td><td>25%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- REVENUE TAB -->
+      <div id="admin-revenue" style="display:none;">
+        <div class="admin-title">Revenue Overview</div>
+        <div class="admin-cards">
+          <div class="admin-card glass2"><div class="admin-card-val" style="color:var(--accent);">₹1,24,500</div><div class="admin-card-lbl">Monthly Revenue</div></div>
+          <div class="admin-card glass2"><div class="admin-card-val" style="color:var(--accent2);">₹38,200</div><div class="admin-card-lbl">Subscriptions</div></div>
+          <div class="admin-card glass2"><div class="admin-card-val" style="color:var(--gold);">₹62,300</div><div class="admin-card-lbl">Affiliate Income</div></div>
+          <div class="admin-card glass2"><div class="admin-card-val" style="color:var(--accent3);">₹24,000</div><div class="admin-card-lbl">Ad Revenue</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ════════════ DATA ════════════
+const TOOLS_DATA = [
+  {id:1,name:'ChatGPT',cat:'Writing',desc:'The most powerful AI chatbot for writing, coding, analysis and creative tasks. GPT-4o model included.',price:'Freemium',url:'https://chat.openai.com',icon:'🤖',rating:4.9,affiliate:true},
+  {id:2,name:'Claude',cat:'Writing',desc:'Anthropic\'s AI assistant — excellent for long-form writing, analysis, coding and nuanced conversations.',price:'Freemium',url:'https://claude.ai',icon:'⚡',rating:4.8,affiliate:true},
+  {id:3,name:'Gemini',cat:'Writing',desc:'Google\'s flagship AI with real-time web access, multimodal capabilities and deep Google integration.',price:'Freemium',url:'https://gemini.google.com',icon:'💫',rating:4.7,affiliate:false},
+  {id:4,name:'GitHub Copilot',cat:'Coding',desc:'AI pair programmer that suggests code completions, functions and entire files in your IDE.',price:'Paid',url:'https://github.com/features/copilot',icon:'🐙',rating:4.8,affiliate:true},
+  {id:5,name:'Cursor',cat:'Coding',desc:'AI-first code editor with powerful autocomplete, chat and refactoring built directly into VS Code.',price:'Freemium',url:'https://cursor.sh',icon:'🖱️',rating:4.9,affiliate:true},
+  {id:6,name:'Midjourney',cat:'Image',desc:'Industry-leading AI image generation producing stunning, artistic visuals from text prompts.',price:'Paid',url:'https://midjourney.com',icon:'🎨',rating:4.9,affiliate:true},
+  {id:7,name:'DALL-E 3',cat:'Image',desc:'OpenAI\'s image generation model integrated into ChatGPT — photorealistic and creative images.',price:'Freemium',url:'https://openai.com/dall-e-3',icon:'🖼️',rating:4.7,affiliate:false},
+  {id:8,name:'Stable Diffusion',cat:'Image',desc:'Open-source image generation model with complete control — run locally or via cloud.',price:'Free',url:'https://stability.ai',icon:'🌊',rating:4.6,affiliate:false},
+  {id:9,name:'Runway',cat:'Video',desc:'Professional AI video generation and editing — text-to-video, image-to-video, and video effects.',price:'Freemium',url:'https://runwayml.com',icon:'🎬',rating:4.8,affiliate:true},
+  {id:10,name:'Sora',cat:'Video',desc:'OpenAI\'s groundbreaking text-to-video AI model creating cinematic quality videos from prompts.',price:'Paid',url:'https://openai.com/sora',icon:'🎥',rating:4.7,affiliate:false},
+  {id:11,name:'Jasper',cat:'Marketing',desc:'AI marketing copy platform for blogs, ads, emails and social media — trusted by 100k+ businesses.',price:'Paid',url:'https://jasper.ai',icon:'📈',rating:4.6,affiliate:true},
+  {id:12,name:'Copy.ai',cat:'Marketing',desc:'AI-powered marketing copy generator for sales emails, social posts, and ad copy at scale.',price:'Freemium',url:'https://copy.ai',icon:'✍️',rating:4.5,affiliate:true},
+  {id:13,name:'Notion AI',cat:'Productivity',desc:'AI integrated into Notion for writing, summarizing, translating and organizing your notes.',price:'Freemium',url:'https://notion.so',icon:'📓',rating:4.7,affiliate:true},
+  {id:14,name:'Otter.ai',cat:'Productivity',desc:'AI meeting transcription and note-taking — records, transcribes and summarizes your meetings.',price:'Freemium',url:'https://otter.ai',icon:'🎙️',rating:4.6,affiliate:true},
+  {id:15,name:'Perplexity',cat:'Research',desc:'AI-powered search engine that cites sources and provides accurate real-time information.',price:'Freemium',url:'https://perplexity.ai',icon:'🔍',rating:4.8,affiliate:true},
+  {id:16,name:'ElevenLabs',cat:'Audio',desc:'Hyper-realistic AI voice synthesis — clone voices, generate narration and create audio content.',price:'Freemium',url:'https://elevenlabs.io',icon:'🎵',rating:4.9,affiliate:true},
+  {id:17,name:'Murf AI',cat:'Audio',desc:'Professional AI voiceovers in 120+ languages for videos, podcasts and presentations.',price:'Freemium',url:'https://murf.ai',icon:'🔊',rating:4.6,affiliate:true},
+  {id:18,name:'Grammarly',cat:'Writing',desc:'AI writing assistant for grammar, clarity, tone and plagiarism — works across all apps.',price:'Freemium',url:'https://grammarly.com',icon:'📝',rating:4.7,affiliate:true},
+  {id:19,name:'Writesonic',cat:'Writing',desc:'AI writer for blogs, ads, landing pages — includes Chatsonic with real-time web access.',price:'Freemium',url:'https://writesonic.com',icon:'💡',rating:4.5,affiliate:true},
+  {id:20,name:'Replit Ghostwriter',cat:'Coding',desc:'AI coding assistant integrated into Replit — complete, explain, and generate code online.',price:'Freemium',url:'https://replit.com',icon:'💻',rating:4.5,affiliate:false},
+  {id:21,name:'Tabnine',cat:'Coding',desc:'AI code completion tool supporting 80+ languages — runs locally for privacy-first teams.',price:'Freemium',url:'https://tabnine.com',icon:'🔧',rating:4.4,affiliate:true},
+  {id:22,name:'Leonardo AI',cat:'Image',desc:'AI image generation platform with fine-tuned models, inpainting and consistent character creation.',price:'Freemium',url:'https://leonardo.ai',icon:'🖌️',rating:4.7,affiliate:true},
+  {id:23,name:'Adobe Firefly',cat:'Image',desc:'Adobe\'s generative AI for images, text effects and creative assets — commercially safe.',price:'Freemium',url:'https://firefly.adobe.com',icon:'🔥',rating:4.6,affiliate:false},
+  {id:24,name:'Canva AI',cat:'Image',desc:'AI-powered design tools inside Canva — Magic Write, text-to-image and background removal.',price:'Freemium',url:'https://canva.com',icon:'🎪',rating:4.8,affiliate:true},
+  {id:25,name:'HeyGen',cat:'Video',desc:'AI avatar video generator — create professional spokesperson videos without a camera.',price:'Paid',url:'https://heygen.com',icon:'👤',rating:4.7,affiliate:true},
+  {id:26,name:'Synthesia',cat:'Video',desc:'Create AI video presentations with 140+ avatars in 120+ languages — no film crew needed.',price:'Paid',url:'https://synthesia.io',icon:'🎭',rating:4.6,affiliate:true},
+  {id:27,name:'Pictory',cat:'Video',desc:'Turn blog posts and scripts into short videos automatically with AI-selected stock footage.',price:'Freemium',url:'https://pictory.ai',icon:'📹',rating:4.5,affiliate:true},
+  {id:28,name:'Surfer SEO',cat:'Marketing',desc:'AI-powered SEO content optimization — research, write and optimize content to rank on Google.',price:'Paid',url:'https://surferseo.com',icon:'🏄',rating:4.7,affiliate:true},
+  {id:29,name:'HubSpot AI',cat:'Marketing',desc:'CRM with AI-powered email generation, content assistant and customer journey analysis.',price:'Freemium',url:'https://hubspot.com',icon:'🎯',rating:4.6,affiliate:true},
+  {id:30,name:'Make (Integromat)',cat:'Productivity',desc:'No-code automation platform with AI — connect 1,500+ apps and build complex workflows.',price:'Freemium',url:'https://make.com',icon:'⚙️',rating:4.7,affiliate:true},
+  {id:31,name:'Zapier AI',cat:'Productivity',desc:'AI-powered workflow automation — create zaps from plain English descriptions, 5,000+ integrations.',price:'Freemium',url:'https://zapier.com',icon:'⚡',rating:4.6,affiliate:true},
+  {id:32,name:'Loom AI',cat:'Productivity',desc:'AI-enhanced screen recorder that auto-generates titles, summaries and action items from videos.',price:'Freemium',url:'https://loom.com',icon:'📸',rating:4.6,affiliate:true},
+  {id:33,name:'Consensus',cat:'Research',desc:'AI search engine for scientific research — extracts findings from 200M+ academic papers.',price:'Freemium',url:'https://consensus.app',icon:'🔬',rating:4.5,affiliate:false},
+  {id:34,name:'Elicit',cat:'Research',desc:'AI research assistant that finds relevant papers and extracts key information automatically.',price:'Freemium',url:'https://elicit.org',icon:'📚',rating:4.4,affiliate:false},
+  {id:35,name:'DeepL',cat:'Writing',desc:'The most accurate AI translator — supports 30+ languages with natural, contextual translations.',price:'Freemium',url:'https://deepl.com',icon:'🌍',rating:4.8,affiliate:true},
+  {id:36,name:'QuillBot',cat:'Writing',desc:'AI paraphrasing, summarizing and grammar checking tool — perfect for students and writers.',price:'Freemium',url:'https://quillbot.com',icon:'✒️',rating:4.6,affiliate:true},
+  {id:37,name:'Descript',cat:'Video',desc:'Edit video by editing the transcript — AI removes filler words, backgrounds and silences.',price:'Freemium',url:'https://descript.com',icon:'🎞️',rating:4.7,affiliate:true},
+  {id:38,name:'Kapwing',cat:'Video',desc:'AI video editor with auto-subtitles, resizing and content repurposing for social media.',price:'Freemium',url:'https://kapwing.com',icon:'✂️',rating:4.5,affiliate:false},
+  {id:39,name:'Podcastle',cat:'Audio',desc:'AI podcast recording and editing — enhance audio quality, remove noise and transcribe.',price:'Freemium',url:'https://podcastle.ai',icon:'🎧',rating:4.5,affiliate:true},
+  {id:40,name:'Resemble AI',cat:'Audio',desc:'Create custom AI voices from just 3 minutes of audio — build voice clones for any use case.',price:'Paid',url:'https://resemble.ai',icon:'🗣️',rating:4.4,affiliate:true},
+  {id:41,name:'Beautiful.ai',cat:'Productivity',desc:'AI presentation maker — automatically designs slides as you add content, Smart Slides.',price:'Paid',url:'https://beautiful.ai',icon:'🎨',rating:4.5,affiliate:true},
+  {id:42,name:'Gamma',cat:'Productivity',desc:'Generate complete presentations, documents and webpages from a prompt in seconds.',price:'Freemium',url:'https://gamma.app',icon:'📊',rating:4.7,affiliate:true},
+  {id:43,name:'Fireflies.ai',cat:'Productivity',desc:'AI meeting assistant — joins your calls, takes notes, creates summaries and action items.',price:'Freemium',url:'https://fireflies.ai',icon:'🦋',rating:4.6,affiliate:true},
+  {id:44,name:'Scale AI',cat:'Research',desc:'Data labeling platform and AI evaluation tools — trusted by leading AI companies worldwide.',price:'Paid',url:'https://scale.com',icon:'⚖️',rating:4.5,affiliate:false},
+  {id:45,name:'Wordtune',cat:'Writing',desc:'AI writing companion that rewrites and improves your sentences for clarity and engagement.',price:'Freemium',url:'https://wordtune.com',icon:'🔄',rating:4.4,affiliate:true},
+  {id:46,name:'Fathom',cat:'Productivity',desc:'Free AI meeting recorder and summarizer — records Zoom, Teams and Google Meet calls.',price:'Free',url:'https://fathom.video',icon:'📋',rating:4.8,affiliate:false},
+  {id:47,name:'Bardeen',cat:'Productivity',desc:'AI automation browser extension — scrape data, automate workflows and integrate any app.',price:'Freemium',url:'https://bardeen.ai',icon:'🤖',rating:4.5,affiliate:true},
+  {id:48,name:'Tome',cat:'Productivity',desc:'AI-powered storytelling and presentation tool — generate narratives with dynamic visuals.',price:'Freemium',url:'https://tome.app',icon:'📖',rating:4.4,affiliate:true},
+  {id:49,name:'Kaiber',cat:'Video',desc:'Transform images and music into stunning AI videos — perfect for music videos and creative content.',price:'Paid',url:'https://kaiber.ai',icon:'🌀',rating:4.3,affiliate:true},
+  {id:50,name:'Ideogram',cat:'Image',desc:'AI image generator that accurately renders text in images — logos, posters and typography.',price:'Freemium',url:'https://ideogram.ai',icon:'💭',rating:4.6,affiliate:false},
+  {id:51,name:'Lovable',cat:'Coding',desc:'AI full-stack developer — describe your app in plain English and get production-ready code.',price:'Freemium',url:'https://lovable.dev',icon:'❤️',rating:4.7,affiliate:true},
+  {id:52,name:'v0 by Vercel',cat:'Coding',desc:'AI UI generator — create stunning React components and full pages from text descriptions.',price:'Freemium',url:'https://v0.dev',icon:'▲',rating:4.8,affiliate:false},
+  {id:53,name:'Bolt.new',cat:'Coding',desc:'AI full-stack web development in the browser — build, run and deploy complete apps instantly.',price:'Freemium',url:'https://bolt.new',icon:'⚡',rating:4.7,affiliate:false},
+  {id:54,name:'Suno AI',cat:'Audio',desc:'Create full songs from text prompts — complete with vocals, instrumentation and lyrics.',price:'Freemium',url:'https://suno.ai',icon:'🎸',rating:4.8,affiliate:false},
+  {id:55,name:'Udio',cat:'Audio',desc:'AI music generation creating high-quality, diverse musical compositions from simple prompts.',price:'Freemium',url:'https://udio.com',icon:'🎹',rating:4.6,affiliate:false},
+];
+
+const BLOG_DATA = [
+  {id:1,title:'Top 10 AI Tools for Students in 2026',tag:'Students',excerpt:'Discover the best AI tools that help students study smarter, write better essays, and ace their exams without breaking the bank.',icon:'📚',date:'May 10, 2026',readTime:'8 min read'},
+  {id:2,title:'Best AI Tools to Make Money Online in 2026',tag:'Income',excerpt:'From AI-powered freelancing to automated content creation — here are the tools that are actually making people money in 2026.',icon:'💰',date:'May 8, 2026',readTime:'12 min read'},
+  {id:3,title:'ChatGPT vs Claude vs Gemini: Which is Best?',tag:'Comparison',excerpt:'We tested all three major AI assistants across writing, coding, reasoning and creativity. Here\'s our honest verdict.',icon:'⚡',date:'May 6, 2026',readTime:'10 min read'},
+  {id:4,title:'How to Use AI for Database Administration',tag:'Tech',excerpt:'Oracle DBAs and PostgreSQL professionals are using AI tools to optimize queries, write PL/SQL faster and debug complex issues.',icon:'🗄️',date:'May 4, 2026',readTime:'9 min read'},
+  {id:5,title:'50 Free AI Tools You Should Be Using Right Now',tag:'Free Tools',excerpt:'Paid AI tools get all the attention, but these 50 completely free alternatives are just as powerful for most use cases.',icon:'🆓',date:'May 2, 2026',readTime:'15 min read'},
+  {id:6,title:'AI Tools for Content Creators: Complete Guide',tag:'Creators',excerpt:'Video, audio, writing, images — we cover every AI tool a content creator needs to build an audience and monetize in 2026.',icon:'🎬',date:'Apr 30, 2026',readTime:'11 min read'},
+];
+
+// ════════════ STATE ════════════
+let currentCat = 'all';
+let favorites = JSON.parse(localStorage.getItem('aipf') || '[]');
+let currentUser = JSON.parse(localStorage.getItem('aipUser') || 'null');
+let adminToolsList = [...TOOLS_DATA];
+let mockUsers = [
+  {name:'Amod P Menon',email:'amod@example.com',plan:'Premium',joined:'May 1 2026',status:'active'},
+  {name:'Priya Sharma',email:'priya@example.com',plan:'Free',joined:'May 5 2026',status:'active'},
+  {name:'Rajan Kumar',email:'rajan@example.com',plan:'Business',joined:'Apr 28 2026',status:'active'},
+  {name:'Anita Nair',email:'anita@example.com',plan:'Free',joined:'May 9 2026',status:'pending'},
+];
+
+// ════════════ INIT ════════════
+window.onload = () => {
+  renderHomeTools();
+  renderHomeBlog();
+  renderAllTools();
+  renderAllBlog();
+  renderAdminTools();
+  renderAdminUsers();
+  updateAuthUI();
+};
+
+// ════════════ PAGE NAV ════════════
+function showPage(pg) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-'+pg).classList.add('active');
+  const navEl = document.getElementById('nav-'+pg);
+  if(navEl) navEl.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ════════════ TOOLS RENDER ════════════
+function renderHomeTools() {
+  const grid = document.getElementById('homeToolsGrid');
+  const featured = TOOLS_DATA.slice(0,9);
+  grid.innerHTML = featured.map(t => toolCard(t)).join('');
+}
+
+function renderAllTools() {
+  const grid = document.getElementById('allToolsGrid');
+  const search = (document.getElementById('toolsSearch')?.value || '').toLowerCase();
+  const cat = document.getElementById('catFilter')?.value || 'all';
+  const price = document.getElementById('priceFilter')?.value || 'all';
+
+  let filtered = adminToolsList.filter(t => {
+    const matchSearch = !search || t.name.toLowerCase().includes(search) || t.desc.toLowerCase().includes(search);
+    const matchCat = cat === 'all' || t.cat === cat;
+    const matchPrice = price === 'all' || t.price === price;
+    const matchGlobalCat = currentCatTools === 'all' || t.cat === currentCatTools;
+    return matchSearch && matchCat && matchPrice && matchGlobalCat;
+  });
+
+  grid.innerHTML = filtered.length ? filtered.map(t => toolCard(t)).join('') : '<p style="padding:40px;color:var(--text2);grid-column:1/-1;text-align:center;">No tools found.</p>';
+}
+
+let currentCatTools = 'all';
+function filterCatTools(cat, el) {
+  currentCatTools = cat;
+  document.querySelectorAll('#page-tools .cat-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderAllTools();
+}
+function renderTools() { renderAllTools(); }
+
+function toolCard(t) {
+  const isFav = favorites.includes(t.id);
+  const priceClass = t.price === 'Free' ? 'price-free' : t.price === 'Paid' ? 'price-paid' : 'price-freemium';
+  const stars = '★'.repeat(Math.floor(t.rating)) + (t.rating % 1 >= 0.5 ? '½' : '');
+  const affBadge = t.affiliate ? '<span style="font-size:10px;padding:2px 6px;border-radius:4px;background:rgba(255,209,102,.12);color:var(--gold);">💰 Affiliate</span>' : '';
+  return `
+  <div class="tool-card glass2">
+    <button class="fav-btn ${isFav?'active':''}" onclick="toggleFav(${t.id},this)" title="Save to favorites">♥</button>
+    <div class="tool-header">
+      <div class="tool-icon">${t.icon}</div>
+      <div>
+        <div class="tool-name">${t.name}</div>
+        <div class="tool-cat">${t.cat}</div>
+      </div>
+    </div>
+    <div class="tool-desc">${t.desc}</div>
+    <div class="tool-footer">
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+        <span class="tool-price ${priceClass}">${t.price}</span>
+        ${affBadge}
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="tool-rating">${'★'.repeat(Math.floor(t.rating))} ${t.rating}</div>
+        <a class="tool-link" href="${t.url}" target="_blank" rel="noopener">Visit →</a>
+      </div>
+    </div>
+  </div>`;
+}
+
+function filterCat(cat, el) {
+  currentCat = cat;
+  document.querySelectorAll('#page-home .cat-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  showPage('tools');
+  currentCatTools = cat;
+  document.querySelectorAll('#page-tools .cat-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.includes(cat) || (cat === 'all' && b.textContent.includes('All')));
+  });
+  renderAllTools();
+}
+
+function handleSearch(val) {
+  if(!val.trim()) return;
+  showPage('tools');
+  document.getElementById('toolsSearch').value = val;
+  renderAllTools();
+}
+
+// ════════════ FAVORITES ════════════
+function toggleFav(id, btn) {
+  if(!currentUser) { openModal('login'); return; }
+  const idx = favorites.indexOf(id);
+  if(idx > -1) { favorites.splice(idx,1); btn.classList.remove('active'); showToast('Removed from favorites'); }
+  else { favorites.push(id); btn.classList.add('active'); showToast('❤️ Saved to favorites!'); }
+  localStorage.setItem('aipf', JSON.stringify(favorites));
+}
+
+// ════════════ BLOG RENDER ════════════
+function blogCard(b) {
+  return `
+  <div class="blog-card glass2">
+    <div class="blog-thumb">${b.icon}</div>
+    <div class="blog-body">
+      <div class="blog-tag">${b.tag}</div>
+      <div class="blog-title">${b.title}</div>
+      <div class="blog-excerpt">${b.excerpt}</div>
+      <div class="blog-meta">
+        <span>${b.date}</span>
+        <span>${b.readTime}</span>
+      </div>
+    </div>
+  </div>`;
+}
+function renderHomeBlog() {
+  document.getElementById('homeBlogGrid').innerHTML = BLOG_DATA.slice(0,3).map(blogCard).join('');
+}
+function renderAllBlog() {
+  document.getElementById('allBlogGrid').innerHTML = BLOG_DATA.map(blogCard).join('');
+}
+
+// ════════════ FREE TOOLS ════════════
+function generateResume() {
+  const name = document.getElementById('resumeName').value.trim();
+  const role = document.getElementById('resumeRole').value.trim();
+  const exp = document.getElementById('resumeExp').value.trim();
+  const skills = document.getElementById('resumeSkills').value.trim();
+  if(!name || !role) { showToast('Please fill in Name and Role'); return; }
+  const out = document.getElementById('resumeOutput');
+  out.style.display = 'block';
+  out.style.color = 'var(--accent2)';
+  const skillArr = skills ? skills.split(',').map(s=>s.trim()) : [];
+  const skillStr = skillArr.length ? skillArr.slice(0,4).join(', ') : 'multiple technologies';
+  out.innerHTML = `📄 PROFESSIONAL SUMMARY\n\n${name} is a results-driven ${role} with ${exp || '2+ years'} of hands-on experience delivering high-quality ${role.toLowerCase()} solutions in production environments.\n\nProven expertise in ${skillStr}, with a strong track record of optimizing performance, ensuring reliability, and collaborating with cross-functional teams to achieve business objectives.\n\nHolds a commitment to continuous learning and excellence — consistently delivering on time with high attention to quality and detail.\n\n🔧 KEY SKILLS: ${skills || 'Communication, Problem-solving, Team Collaboration'}\n\n✅ Generated by AI Productivity Hub`;
+  showToast('✅ Resume summary generated!');
+}
+
+function summarizeText() {
+  const text = document.getElementById('sumInput').value.trim();
+  const len = document.getElementById('sumLength').value;
+  if(!text || text.length < 50) { showToast('Please enter longer text to summarize'); return; }
+  const out = document.getElementById('sumOutput');
+  out.style.display = 'block'; out.style.color = 'var(--text2)';
+  const words = text.split(' ');
+  const sents = text.match(/[^.!?]+[.!?]+/g) || [text];
+  const key = sents.slice(0, len==='short'?2:len==='medium'?4:6);
+  const wc = words.length;
+  const reduction = Math.round((1 - key.join(' ').split(' ').length / wc) * 100);
+  out.innerHTML = `📝 SUMMARY (${len.toUpperCase()})\n\n${key.join(' ')}\n\n─────────────────────\n📊 Original: ~${wc} words\n✂️ Reduced by: ~${reduction}%\n✅ Summarized by AI Productivity Hub`;
+  showToast('✅ Text summarized!');
+}
+
+const SQL_TEMPLATES = {
+  SELECT: { generic:'SELECT column1, column2\nFROM table_name\nWHERE condition\nORDER BY column1;', oracle:'SELECT t.column1, t.column2\nFROM schema.table_name t\nWHERE t.condition = :param\nORDER BY t.column1;', postgres:'SELECT column1, column2\nFROM table_name\nWHERE condition = $1\nORDER BY column1 NULLS LAST;', mysql:'SELECT column1, column2\nFROM table_name\nWHERE condition\nORDER BY column1 ASC\nLIMIT 100;' },
+  INSERT: { generic:'INSERT INTO table_name (col1, col2)\nVALUES (val1, val2);', oracle:'INSERT INTO schema.table_name (col1, col2)\nVALUES (:val1, :val2);\nCOMMIT;', postgres:'INSERT INTO table_name (col1, col2)\nVALUES ($1, $2)\nRETURNING id;', mysql:'INSERT INTO table_name (col1, col2)\nVALUES (val1, val2);\nSELECT LAST_INSERT_ID();' },
+  UPDATE: { generic:'UPDATE table_name\nSET col1 = val1\nWHERE condition;', oracle:'UPDATE schema.table_name\nSET col1 = :val1\nWHERE id = :id;\nCOMMIT;', postgres:'UPDATE table_name\nSET col1 = $1\nWHERE id = $2\nRETURNING *;', mysql:'UPDATE table_name\nSET col1 = val1\nWHERE id = 1\nLIMIT 1;' },
+  JOIN: { generic:'SELECT a.col1, b.col2\nFROM table_a a\nINNER JOIN table_b b\n  ON a.id = b.foreign_id\nWHERE a.condition;', oracle:'SELECT a.col1, b.col2\nFROM schema.table_a a\nINNER JOIN schema.table_b b\n  ON a.id = b.foreign_id\nWHERE a.status = \'ACTIVE\';', postgres:'SELECT a.col1, b.col2\nFROM table_a a\nLEFT JOIN table_b b\n  ON a.id = b.foreign_id\nWHERE a.created_at > NOW() - INTERVAL \'30 days\';', mysql:'SELECT a.col1, b.col2\nFROM table_a a\nINNER JOIN table_b b\n  ON a.id = b.foreign_id\nWHERE a.status = 1\nORDER BY a.created_at DESC;' },
+  AGGREGATE: { generic:'SELECT col1, COUNT(*), AVG(col2), MAX(col3)\nFROM table_name\nGROUP BY col1\nHAVING COUNT(*) > 1;', oracle:'SELECT dept_id, COUNT(*) AS cnt, AVG(salary) AS avg_sal\nFROM schema.employees\nGROUP BY dept_id\nHAVING COUNT(*) > 5\nORDER BY avg_sal DESC;', postgres:'SELECT\n  DATE_TRUNC(\'month\', created_at) AS month,\n  COUNT(*) AS total,\n  SUM(amount) AS revenue\nFROM orders\nGROUP BY 1\nORDER BY 1 DESC;', mysql:'SELECT col1, COUNT(*) AS cnt, SUM(col2) AS total\nFROM table_name\nGROUP BY col1\nORDER BY cnt DESC\nLIMIT 10;' },
+  CREATE: { generic:'CREATE TABLE table_name (\n  id INT PRIMARY KEY,\n  col1 VARCHAR(255),\n  col2 DATE,\n  created_at TIMESTAMP DEFAULT NOW()\n);', oracle:'CREATE TABLE schema.employees (\n  emp_id NUMBER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,\n  emp_name VARCHAR2(100) NOT NULL,\n  salary NUMBER(10,2),\n  dept_id NUMBER,\n  created_date DATE DEFAULT SYSDATE\n);', postgres:'CREATE TABLE employees (\n  id SERIAL PRIMARY KEY,\n  name VARCHAR(100) NOT NULL,\n  salary NUMERIC(10,2),\n  dept_id INTEGER REFERENCES departments(id),\n  created_at TIMESTAMPTZ DEFAULT NOW()\n);', mysql:'CREATE TABLE employees (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  name VARCHAR(100) NOT NULL,\n  salary DECIMAL(10,2),\n  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n) ENGINE=InnoDB;' },
+  DELETE: { generic:'DELETE FROM table_name\nWHERE condition;', oracle:'DELETE FROM schema.table_name\nWHERE id = :id;\nCOMMIT;', postgres:'DELETE FROM table_name\nWHERE id = $1\nRETURNING *;', mysql:'DELETE FROM table_name\nWHERE condition\nLIMIT 1;' },
+};
+
+function generateSQL() {
+  const desc = document.getElementById('sqlInput').value.trim();
+  const db = document.getElementById('sqlType').value;
+  const op = document.getElementById('sqlOp').value;
+  if(!desc) { showToast('Please describe your query first'); return; }
+  const tmpl = SQL_TEMPLATES[op]?.[db] || SQL_TEMPLATES[op]?.generic || '-- Query template not found';
+  const out = document.getElementById('sqlOutput');
+  out.style.display = 'block';
+  out.innerHTML = `-- ${db.toUpperCase()} / ${op} Query\n-- Based on: "${desc}"\n\n${tmpl}\n\n-- ✅ Generated by AI Productivity Hub SQL Helper\n-- ⚠️ Review and adapt to your actual table/column names`;
+  showToast('✅ SQL query generated!');
+}
+
+// ════════════ AUTH ════════════
+function openModal(type) {
+  document.getElementById('authModal').classList.add('open');
+  if(type==='login') { document.getElementById('loginForm').style.display='block'; document.getElementById('signupForm').style.display='none'; }
+  else { document.getElementById('signupForm').style.display='block'; document.getElementById('loginForm').style.display='none'; }
+}
+function closeModal() { document.getElementById('authModal').classList.remove('open'); }
+function switchToSignup() { openModal('signup'); }
+function switchToLogin() { openModal('login'); }
+
+function handleLogin() {
+  const email = document.getElementById('loginEmail').value;
+  const pass = document.getElementById('loginPass').value;
+  if(!email || !pass) { showToast('Please fill all fields'); return; }
+  currentUser = { name: email.split('@')[0], email };
+  localStorage.setItem('aipUser', JSON.stringify(currentUser));
+  closeModal(); updateAuthUI();
+  showToast('👋 Welcome back, ' + currentUser.name + '!');
+}
+function handleSignup() {
+  const name = document.getElementById('signupName').value;
+  const email = document.getElementById('signupEmail').value;
+  const pass = document.getElementById('signupPass').value;
+  if(!name || !email || !pass) { showToast('Please fill all fields'); return; }
+  currentUser = { name, email };
+  localStorage.setItem('aipUser', JSON.stringify(currentUser));
+  closeModal(); updateAuthUI();
+  showToast('🎉 Account created! Welcome, ' + name + '!');
+}
+function logout() {
+  currentUser = null;
+  localStorage.removeItem('aipUser');
+  updateAuthUI();
+  showToast('Logged out successfully');
+}
+function updateAuthUI() {
+  const li = document.getElementById('loginBtn');
+  const si = document.getElementById('signupBtn');
+  const gr = document.getElementById('userGreeting');
+  const lo = document.getElementById('logoutBtn');
+  if(currentUser) {
+    li.style.display='none'; si.style.display='none';
+    gr.style.display='inline'; lo.style.display='inline-flex';
+    gr.textContent = '👤 ' + currentUser.name;
+  } else {
+    li.style.display='inline-flex'; si.style.display='inline-flex';
+    gr.style.display='none'; lo.style.display='none';
+  }
+}
+
+// ════════════ ADMIN ════════════
+function adminTab(tab) {
+  document.querySelectorAll('[id^="admin-"]').forEach(el => {
+    if(el.id !== 'admin-dashboard' && !el.id.startsWith('admin-c')) el.style.display = el.id === 'admin-'+tab ? 'block' : 'none';
+  });
+  document.getElementById('admin-dashboard').style.display = tab === 'dashboard' ? 'block' : 'none';
+  document.querySelectorAll('.admin-sidebar a').forEach(a => a.classList.remove('active'));
+  const active = document.getElementById('atab-'+tab);
+  if(active) active.classList.add('active');
+}
+
+function renderAdminTools() {
+  const tbody = document.getElementById('adminToolsTable');
+  if(!tbody) return;
+  tbody.innerHTML = adminToolsList.slice(0,20).map(t => `
+    <tr>
+      <td>${t.icon} <strong>${t.name}</strong></td>
+      <td>${t.cat}</td>
+      <td><span class="tool-price ${t.price==='Free'?'price-free':t.price==='Paid'?'price-paid':'price-freemium'}">${t.price}</span></td>
+      <td>⭐ ${t.rating}</td>
+      <td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px;" onclick="showToast('Edit coming soon!')">Edit</button></td>
+    </tr>`).join('');
+}
+
+function renderAdminUsers() {
+  const tbody = document.getElementById('adminUsersTable');
+  if(!tbody) return;
+  tbody.innerHTML = mockUsers.map(u => `
+    <tr>
+      <td><strong>${u.name}</strong></td>
+      <td>${u.email}</td>
+      <td><span style="color:var(--accent)">${u.plan}</span></td>
+      <td>${u.joined}</td>
+      <td><span class="status-badge ${u.status==='active'?'status-active':'status-pending'}">${u.status}</span></td>
+    </tr>`).join('');
+}
+
+function showAddToolForm() {
+  const f = document.getElementById('addToolForm');
+  f.style.display = f.style.display === 'none' ? 'block' : 'none';
+}
+function addToolFromAdmin() {
+  const name = document.getElementById('at-name').value.trim();
+  const cat = document.getElementById('at-cat').value;
+  const desc = document.getElementById('at-desc').value.trim();
+  const price = document.getElementById('at-price').value;
+  const url = document.getElementById('at-url').value.trim();
+  const icon = document.getElementById('at-icon').value.trim() || '🔧';
+  if(!name || !desc) { showToast('Please fill required fields'); return; }
+  const newTool = { id: adminToolsList.length+1, name, cat, desc, price, url: url||'#', icon, rating: 4.5, affiliate: false };
+  adminToolsList.unshift(newTool);
+  TOOLS_DATA.unshift(newTool);
+  renderAdminTools(); renderAllTools(); renderHomeTools();
+  document.getElementById('addToolForm').style.display = 'none';
+  showToast('✅ Tool "' + name + '" added successfully!');
+}
+
+// ════════════ THEME ════════════
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.dataset.theme === 'dark';
+  html.dataset.theme = isDark ? 'light' : 'dark';
+  document.getElementById('themeBtn').textContent = isDark ? '🌙' : '☀️';
+}
+
+// ════════════ TOAST ════════════
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ════════════ CLOSE MODAL ON OVERLAY ════════════
+document.getElementById('authModal').addEventListener('click', function(e) {
+  if(e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
