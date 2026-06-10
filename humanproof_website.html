@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUMANPROOF — Verified Human Talent Hub</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@200;300;400;500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  --cream: #F5F0E8;
+  --warm-white: #FDFAF4;
+  --ink: #1A1208;
+  --earth: #8B6F47;
+  --rust: #C4531C;
+  --sage: #4A7C59;
+  --gold: #D4A843;
+  --dust: #E8DDD0;
+  --shadow: rgba(26,18,8,0.12);
+  --glass: rgba(245,240,232,0.85);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  cursor: none;
+  overflow-x: hidden;
+}
+
+/* ── CUSTOM CURSOR ──────────────────────────── */
+#cur {
+  position: fixed; z-index: 9999;
+  width: 10px; height: 10px;
+  background: var(--rust);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%,-50%);
+  transition: width .2s, height .2s, background .3s;
+  mix-blend-mode: multiply;
+}
+#cur-trail {
+  position: fixed; z-index: 9998;
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--earth);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%,-50%);
+  transition: left .12s ease, top .12s ease, width .3s, height .3s;
+  mix-blend-mode: multiply;
+}
+body:hover #cur { width: 10px; }
+a:hover ~ #cur, button:hover ~ #cur { width: 20px; height: 20px; background: var(--gold); }
+
+/* ── THREE.JS CANVAS ────────────────────────── */
+#bg-canvas {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── NAV ────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(245,240,232,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(139,111,71,0.15);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 900;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+}
+.nav-logo span { color: var(--rust); font-style: italic; }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a {
+  font-size: 13px; font-weight: 400;
+  color: var(--earth); text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  padding: 10px 24px;
+  background: var(--ink);
+  color: var(--cream) !important;
+  border-radius: 2px;
+  font-weight: 500 !important;
+  transition: background .2s !important;
+}
+.nav-cta:hover { background: var(--rust) !important; color: white !important; }
+
+/* ── HERO ────────────────────────────────────── */
+#hero {
+  position: relative; z-index: 10;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 120px 48px 80px;
+  max-width: 1400px; margin: 0 auto;
+}
+.hero-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px; letter-spacing: 3px;
+  color: var(--rust); text-transform: uppercase;
+  margin-bottom: 28px;
+  opacity: 0; animation: riseUp .8s forwards .2s;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-eyebrow::before {
+  content: ''; display: block;
+  width: 40px; height: 1px; background: var(--rust);
+}
+.hero-h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(56px, 7vw, 110px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -3px;
+  max-width: 900px;
+  opacity: 0; animation: riseUp .9s forwards .4s;
+}
+.hero-h1 em {
+  font-style: italic; color: var(--rust);
+  position: relative;
+}
+.hero-h1 em::after {
+  content: '';
+  position: absolute; bottom: 4px; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  animation: underlineGrow 1s forwards 1.2s;
+}
+.hero-sub {
+  font-size: 18px; font-weight: 300;
+  color: var(--earth); line-height: 1.7;
+  max-width: 520px; margin-top: 28px;
+  opacity: 0; animation: riseUp .8s forwards .6s;
+}
+.hero-actions {
+  display: flex; gap: 16px; margin-top: 48px;
+  opacity: 0; animation: riseUp .8s forwards .8s;
+}
+.btn-ink {
+  padding: 16px 40px;
+  background: var(--ink); color: var(--cream);
+  border: none; border-radius: 2px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 500;
+  letter-spacing: 0.5px; cursor: none;
+  transition: transform .2s, box-shadow .2s, background .2s;
+  box-shadow: 4px 4px 0 var(--earth);
+}
+.btn-ink:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--rust); background: var(--rust); }
+.btn-ghost {
+  padding: 16px 40px;
+  background: transparent; color: var(--ink);
+  border: 1.5px solid var(--ink); border-radius: 2px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 500;
+  letter-spacing: 0.5px; cursor: none;
+  transition: all .2s;
+}
+.btn-ghost:hover { background: var(--ink); color: var(--cream); }
+
+/* Hero 3D Card floating */
+.hero-float-card {
+  position: absolute; right: 48px; top: 50%;
+  transform: translateY(-50%);
+  width: 320px;
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 20px 20px 60px var(--shadow), 0 0 0 1px rgba(139,111,71,0.1);
+  animation: floatCard 6s ease-in-out infinite, fadeIn 1s forwards .9s;
+  opacity: 0;
+}
+.hfc-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px;
+  background: #E8F5ED; color: var(--sage);
+  border-radius: 20px; font-size: 11px; font-weight: 500;
+  margin-bottom: 16px;
+}
+.hfc-badge::before { content: '●'; font-size: 8px; }
+.hfc-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700;
+  margin-bottom: 4px;
+}
+.hfc-role { font-size: 12px; color: var(--earth); margin-bottom: 16px; }
+.hfc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.hfc-tag {
+  padding: 4px 10px; background: var(--dust);
+  border-radius: 20px; font-size: 11px; color: var(--ink);
+}
+.hfc-stats { display: flex; gap: 16px; }
+.hfc-stat-n { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; }
+.hfc-stat-l { font-size: 10px; color: var(--earth); letter-spacing: 0.5px; }
+.hfc-verify {
+  position: absolute; top: -12px; right: 20px;
+  background: var(--sage); color: white;
+  padding: 4px 12px; border-radius: 12px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ── TRUST BAR ───────────────────────────────── */
+#trust-bar {
+  position: relative; z-index: 10;
+  background: var(--ink); padding: 20px 0;
+  overflow: hidden;
+}
+.trust-scroll {
+  display: flex; gap: 60px; align-items: center;
+  animation: scrollLeft 30s linear infinite;
+  width: max-content;
+}
+.trust-item {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px; letter-spacing: 3px;
+  color: rgba(245,240,232,0.5);
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: flex; align-items: center; gap: 16px;
+}
+.trust-item::before { content: '◆'; color: var(--gold); font-size: 8px; }
+
+/* ── STATS SECTION ───────────────────────────── */
+#stats {
+  position: relative; z-index: 10;
+  padding: 100px 48px;
+  max-width: 1200px; margin: 0 auto;
+}
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 2px; background: var(--dust);
+  border: 1px solid var(--dust);
+}
+.stat-box {
+  background: var(--warm-white);
+  padding: 48px 40px;
+  transition: background .3s;
+}
+.stat-box:hover { background: var(--ink); }
+.stat-box:hover .stat-num { color: var(--gold); }
+.stat-box:hover .stat-lbl { color: rgba(245,240,232,0.5); }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px; font-weight: 900;
+  color: var(--ink); line-height: 1;
+  transition: color .3s;
+}
+.stat-lbl {
+  font-size: 12px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--earth);
+  margin-top: 8px; transition: color .3s;
+}
+
+/* ── WHY SECTION ─────────────────────────────── */
+#why {
+  position: relative; z-index: 10;
+  padding: 100px 48px;
+  background: var(--ink);
+}
+.why-inner { max-width: 1200px; margin: 0 auto; }
+.why-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; margin-bottom: 80px;
+}
+.why-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px,4vw,64px); font-weight: 900;
+  color: var(--cream); line-height: 1.1;
+}
+.why-title em { color: var(--gold); font-style: italic; }
+.why-sub {
+  max-width: 280px; font-size: 14px;
+  color: rgba(245,240,232,0.45); line-height: 1.7;
+}
+.why-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1px;
+  background: rgba(245,240,232,0.1);
+}
+.why-card {
+  background: var(--ink); padding: 48px 36px;
+  border: 1px solid rgba(245,240,232,0.08);
+  transition: border-color .3s, transform .3s;
+  cursor: none;
+  position: relative; overflow: hidden;
+}
+.why-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--rust); transform: scaleX(0); transform-origin: left;
+  transition: transform .4s;
+}
+.why-card:hover { border-color: rgba(196,83,28,0.3); transform: translateY(-4px); }
+.why-card:hover::before { transform: scaleX(1); }
+.why-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px; color: var(--rust);
+  letter-spacing: 2px; margin-bottom: 20px;
+}
+.why-icon { font-size: 32px; margin-bottom: 20px; display: block; }
+.why-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700;
+  color: var(--cream); margin-bottom: 12px;
+}
+.why-desc { font-size: 14px; color: rgba(245,240,232,0.5); line-height: 1.8; }
+
+/* ── FEATURES SECTION ────────────────────────── */
+#features {
+  position: relative; z-index: 10;
+  padding: 120px 48px;
+  max-width: 1200px; margin: 0 auto;
+}
+.sec-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 4px;
+  color: var(--rust); text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sec-tag::before { content: ''; width: 32px; height: 1px; background: var(--rust); }
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px,4vw,60px); font-weight: 900;
+  line-height: 1.1; margin-bottom: 80px;
+}
+.features-list { display: flex; flex-direction: column; gap: 2px; }
+.feat-row {
+  display: grid; grid-template-columns: 80px 1fr 1fr;
+  gap: 0; background: var(--dust);
+  border: 1px solid var(--dust);
+  cursor: none;
+}
+.feat-row:hover .feat-content { background: var(--ink); }
+.feat-row:hover .feat-title { color: var(--cream); }
+.feat-row:hover .feat-desc { color: rgba(245,240,232,0.5); }
+.feat-row:hover .feat-num { color: var(--gold); }
+.feat-num-box {
+  background: var(--warm-white);
+  display: flex; align-items: center; justify-content: center;
+  padding: 32px 16px;
+  transition: background .3s;
+}
+.feat-row:hover .feat-num-box { background: var(--rust); }
+.feat-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px; color: var(--earth); font-weight: 700;
+  transition: color .3s;
+  writing-mode: vertical-rl; letter-spacing: 2px;
+}
+.feat-content {
+  padding: 36px 40px; background: var(--warm-white);
+  transition: background .3s; grid-column: 2 / 4;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center;
+}
+.feat-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700;
+  transition: color .3s;
+}
+.feat-desc { font-size: 14px; color: var(--earth); line-height: 1.7; transition: color .3s; }
+
+/* ── MONETIZATION ────────────────────────────── */
+#monetize {
+  position: relative; z-index: 10;
+  padding: 120px 48px;
+  background: var(--dust);
+}
+.mono-inner { max-width: 1200px; margin: 0 auto; }
+.mono-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 60px; }
+.mono-card {
+  background: var(--warm-white);
+  padding: 48px 36px;
+  border-radius: 4px;
+  position: relative;
+  transition: transform .3s, box-shadow .3s;
+  cursor: none;
+}
+.mono-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px var(--shadow); }
+.mono-card.featured {
+  background: var(--ink); color: var(--cream);
+}
+.mono-badge {
+  position: absolute; top: -10px; left: 36px;
+  background: var(--rust); color: white;
+  padding: 4px 14px; border-radius: 12px;
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.mono-icon { font-size: 36px; margin-bottom: 20px; display: block; }
+.mono-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700; margin-bottom: 4px;
+}
+.mono-price {
+  font-family: 'Space Mono', monospace;
+  font-size: 32px; font-weight: 700; color: var(--rust);
+  margin: 12px 0;
+}
+.mono-card.featured .mono-price { color: var(--gold); }
+.mono-desc { font-size: 14px; color: var(--earth); line-height: 1.7; }
+.mono-card.featured .mono-desc { color: rgba(245,240,232,0.55); }
+.mono-list { list-style: none; margin-top: 20px; }
+.mono-list li {
+  font-size: 13px; color: var(--earth); padding: 6px 0;
+  border-bottom: 1px solid var(--dust);
+  display: flex; align-items: center; gap: 8px;
+}
+.mono-card.featured .mono-list li { color: rgba(245,240,232,0.5); border-color: rgba(245,240,232,0.1); }
+.mono-list li::before { content: '→'; color: var(--rust); font-size: 12px; }
+
+/* ── BADGES SECTION ──────────────────────────── */
+#badges {
+  position: relative; z-index: 10;
+  padding: 80px 48px;
+  max-width: 1200px; margin: 0 auto;
+  text-align: center;
+}
+.badges-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-top: 48px; }
+.badge-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 24px;
+  border: 1.5px solid var(--dust); border-radius: 40px;
+  background: var(--warm-white);
+  font-size: 13px; font-weight: 500;
+  transition: all .3s; cursor: none;
+}
+.badge-item:hover { border-color: var(--sage); background: #E8F5ED; color: var(--sage); }
+.badge-item .badge-emoji { font-size: 18px; }
+
+/* ── JOB BOARDS SECTION ──────────────────────── */
+#boards {
+  position: relative; z-index: 10;
+  padding: 120px 48px;
+  background: var(--ink);
+}
+.boards-inner { max-width: 1200px; margin: 0 auto; }
+.boards-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 16px; margin-top: 60px;
+}
+.board-card {
+  padding: 28px;
+  border: 1px solid rgba(245,240,232,0.1);
+  border-radius: 4px;
+  transition: border-color .3s, background .3s;
+  cursor: none;
+}
+.board-card:hover { border-color: var(--rust); background: rgba(196,83,28,0.06); }
+.board-niche {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 2px; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.board-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; color: var(--cream);
+  margin-bottom: 8px;
+}
+.board-count { font-size: 12px; color: rgba(245,240,232,0.35); }
+.board-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+.board-tag {
+  padding: 3px 8px; border-radius: 12px;
+  background: rgba(245,240,232,0.06);
+  font-size: 10px; color: rgba(245,240,232,0.45);
+}
+
+/* ── CTA SECTION ─────────────────────────────── */
+#cta {
+  position: relative; z-index: 10;
+  padding: 160px 48px;
+  text-align: center;
+  background: var(--cream);
+  overflow: hidden;
+}
+.cta-bg-text {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(80px,12vw,200px); font-weight: 900;
+  color: rgba(26,18,8,0.04);
+  white-space: nowrap; pointer-events: none;
+  letter-spacing: -8px;
+}
+.cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px,5vw,80px); font-weight: 900;
+  line-height: 1.1; margin-bottom: 20px;
+}
+.cta-title em { color: var(--rust); font-style: italic; }
+.cta-sub {
+  font-size: 16px; color: var(--earth); margin-bottom: 48px;
+  max-width: 400px; margin-left: auto; margin-right: auto;
+}
+.cta-form {
+  display: flex; gap: 0; max-width: 440px;
+  margin: 0 auto; border: 1.5px solid var(--ink);
+  border-radius: 2px; overflow: hidden;
+  box-shadow: 6px 6px 0 var(--earth);
+}
+.cta-input {
+  flex: 1; padding: 16px 20px; border: none;
+  background: white; font-family: 'DM Sans', sans-serif;
+  font-size: 14px; outline: none; color: var(--ink);
+}
+.cta-input::placeholder { color: var(--earth); }
+.cta-submit {
+  padding: 16px 28px; background: var(--ink); color: var(--cream);
+  border: none; font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 500; cursor: none;
+  transition: background .2s;
+}
+.cta-submit:hover { background: var(--rust); }
+
+/* ── FOOTER ──────────────────────────────────── */
+footer {
+  position: relative; z-index: 10;
+  background: var(--ink); padding: 60px 48px 40px;
+}
+.footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px; margin-bottom: 60px;
+}
+.footer-brand { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; color: var(--cream); margin-bottom: 12px; }
+.footer-brand span { color: var(--rust); font-style: italic; }
+.footer-tagline { font-size: 13px; color: rgba(245,240,232,0.35); line-height: 1.7; max-width: 260px; }
+.footer-col-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 3px;
+  color: rgba(245,240,232,0.3); text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a {
+  font-size: 13px; color: rgba(245,240,232,0.5);
+  text-decoration: none; transition: color .2s;
+}
+.footer-links a:hover { color: var(--cream); }
+.footer-bottom {
+  padding-top: 24px; border-top: 1px solid rgba(245,240,232,0.08);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-copy { font-size: 12px; color: rgba(245,240,232,0.2); letter-spacing: 1px; }
+.footer-badges { display: flex; gap: 12px; }
+.footer-badge {
+  padding: 4px 10px; border: 1px solid rgba(245,240,232,0.1);
+  border-radius: 12px; font-size: 10px; color: rgba(245,240,232,0.3);
+  letter-spacing: 1px;
+}
+
+/* ── GRAIN OVERLAY ───────────────────────────── */
+.grain {
+  position: fixed; inset: 0; z-index: 500;
+  pointer-events: none; opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ── ANIMATIONS ──────────────────────────────── */
+@keyframes riseUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes floatCard {
+  0%,100% { transform: translateY(-50%) rotate(1deg); }
+  50% { transform: translateY(calc(-50% - 16px)) rotate(-1deg); }
+}
+@keyframes underlineGrow {
+  from { transform: scaleX(0); } to { transform: scaleX(1); }
+}
+@keyframes scrollLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+  #hero { padding: 100px 20px 60px; }
+  .hero-float-card { display: none; }
+  .hero-h1 { letter-spacing: -1px; }
+  .stats-grid { grid-template-columns: repeat(2,1fr); }
+  .why-grid, .features-list .feat-content { grid-template-columns: 1fr; }
+  .mono-grid, .boards-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .feat-row { grid-template-columns: 60px 1fr; }
+  .feat-content { grid-column: 2; grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div id="cur"></div>
+<div id="cur-trail"></div>
+<canvas id="bg-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Human<span>Proof</span></div>
+  <ul class="nav-links">
+    <li><a href="#why">Why Now</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#boards">Job Boards</a></li>
+    <li><a href="#monetize">Pricing</a></li>
+    <li><a href="#cta" class="nav-cta">Get Verified</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">Verified Human Talent Hub — Est. 2026</div>
+  <h1 class="hero-h1">Where <em>real humans</em> do extraordinary work</h1>
+  <p class="hero-sub">In a world drowning in AI-generated noise, HumanProof is the only marketplace that guarantees every deliverable is crafted by a verified, skilled human professional.</p>
+  <div class="hero-actions">
+    <button class="btn-ink">Get Human-Verified</button>
+    <button class="btn-ghost">Hire a Human</button>
+  </div>
+
+  <div class="hero-float-card">
+    <div class="hfc-verify">✓ VERIFIED HUMAN</div>
+    <div class="hfc-badge">Active Now</div>
+    <div class="hfc-name">Maya Krishnan</div>
+    <div class="hfc-role">LinkedIn Content Strategist · Mumbai</div>
+    <div class="hfc-tags">
+      <span class="hfc-tag">B2B SaaS</span>
+      <span class="hfc-tag">Thought Leadership</span>
+      <span class="hfc-tag">Storytelling</span>
+    </div>
+    <div class="hfc-stats">
+      <div>
+        <div class="hfc-stat-n">98%</div>
+        <div class="hfc-stat-l">Human Score</div>
+      </div>
+      <div>
+        <div class="hfc-stat-n">142</div>
+        <div class="hfc-stat-l">Projects Done</div>
+      </div>
+      <div>
+        <div class="hfc-stat-n">4.9★</div>
+        <div class="hfc-stat-l">Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div id="trust-bar">
+  <div class="trust-scroll">
+    <div class="trust-item">Process Trail Verified</div>
+    <div class="trust-item">Zero AI-Generated Content</div>
+    <div class="trust-item">Human Craftsmanship Certified</div>
+    <div class="trust-item">Intent-Based AI Matching</div>
+    <div class="trust-item">Digital Sustainability Badged</div>
+    <div class="trust-item">Sub-200ms INP Performance</div>
+    <div class="trust-item">Hyper-Niche Job Boards</div>
+    <div class="trust-item">Process Trail Verified</div>
+    <div class="trust-item">Zero AI-Generated Content</div>
+    <div class="trust-item">Human Craftsmanship Certified</div>
+    <div class="trust-item">Intent-Based AI Matching</div>
+    <div class="trust-item">Digital Sustainability Badged</div>
+  </div>
+</div>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-box reveal">
+      <div class="stat-num" data-target="12400">0</div>
+      <div class="stat-lbl">Verified Humans</div>
+    </div>
+    <div class="stat-box reveal reveal-delay-1">
+      <div class="stat-num" data-target="98">0</div>
+      <div class="stat-lbl">% Human Score Avg</div>
+    </div>
+    <div class="stat-box reveal reveal-delay-2">
+      <div class="stat-num" data-target="340">0</div>
+      <div class="stat-lbl">Micro-Niche Boards</div>
+    </div>
+    <div class="stat-box reveal reveal-delay-3">
+      <div class="stat-num" data-target="189">0</div>
+      <div class="stat-lbl">ms Avg INP Response</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NOW -->
+<section id="why">
+  <div class="why-inner">
+    <div class="why-header reveal">
+      <h2 class="why-title">Why the world needs<br><em>HumanProof</em> now</h2>
+      <p class="why-sub">Three forces converging in 2026 make this the most critical moment to trust human talent again.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-num">01 / 03</div>
+        <span class="why-icon">⚡</span>
+        <div class="why-name">The Trust Crisis</div>
+        <p class="why-desc">Consumers are fatigued by generic, AI-synthesized content. They're actively seeking "social with substance" — real voices, real process, real accountability. HumanProof is where trust is rebuilt.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-num">02 / 03</div>
+        <span class="why-icon">🎯</span>
+        <div class="why-name">Conversion Focus</div>
+        <p class="why-desc">Businesses are shifting from broad awareness to intent-based results. They need experts who navigate complex platform-stacked journeys — TikTok to Instagram to YouTube — with human intuition.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-num">03 / 03</div>
+        <span class="why-icon">🔍</span>
+        <div class="why-name">Specialized Gaps</div>
+        <p class="why-desc">Traditional job sites fail to capture the short-term, highly specific gig needs of modern creators and early-stage startups. Generic doesn't work anymore. Hyper-niche does.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="sec-tag">Core Platform Features</div>
+  <h2 class="sec-title reveal">Built different,<br>for humans who build different</h2>
+  <div class="features-list">
+    <div class="feat-row reveal">
+      <div class="feat-num-box"><div class="feat-num">01</div></div>
+      <div class="feat-content">
+        <div>
+          <div class="feat-title">Proof of Craftsmanship</div>
+        </div>
+        <div class="feat-desc">Instead of just portfolios, providers upload "Process Trails" — time-lapsed screen recordings or version histories proving work was developed by a person, not generated by a prompt. Authenticity is the product.</div>
+      </div>
+    </div>
+    <div class="feat-row reveal">
+      <div class="feat-num-box"><div class="feat-num">02</div></div>
+      <div class="feat-content">
+        <div>
+          <div class="feat-title">INP Performance &lt;200ms</div>
+        </div>
+        <div class="feat-desc">Built for 2026 standards. Every click responds within 200 milliseconds — the platform feels alive and reliable, mirroring the responsiveness we demand from the humans on it.</div>
+      </div>
+    </div>
+    <div class="feat-row reveal">
+      <div class="feat-num-box"><div class="feat-num">03</div></div>
+      <div class="feat-content">
+        <div>
+          <div class="feat-title">Hyper-Niche Job Boards</div>
+        </div>
+        <div class="feat-desc">Drag-and-drop builder creates micro-boards for ultra-specific tasks — "Discord Community Architects", "LinkedIn Content Strategists", "TikTok-to-YouTube Funnel Builders". No more one-size-fits-all.</div>
+      </div>
+    </div>
+    <div class="feat-row reveal">
+      <div class="feat-num-box"><div class="feat-num">04</div></div>
+      <div class="feat-content">
+        <div>
+          <div class="feat-title">AI-Personalized Curation</div>
+        </div>
+        <div class="feat-desc">While the talent is entirely human, our matching engine uses AI to analyze a client's specific intent and past behavior — surfacing the most compatible human partner for each unique project.</div>
+      </div>
+    </div>
+    <div class="feat-row reveal">
+      <div class="feat-num-box"><div class="feat-num">05</div></div>
+      <div class="feat-content">
+        <div>
+          <div class="feat-title">Sustainability Badging</div>
+        </div>
+        <div class="feat-desc">Providers earn "Digital Sustainability" badges by demonstrating energy-efficient hosting, low-carbon digital practices, and responsible tech choices — making ethics visible and marketable.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MONETIZATION -->
+<section id="monetize">
+  <div class="mono-inner">
+    <div class="sec-tag reveal">Monetization Model</div>
+    <h2 class="sec-title reveal">Three streams,<br>one thriving ecosystem</h2>
+    <div class="mono-grid">
+      <div class="mono-card reveal">
+        <span class="mono-icon">🎖️</span>
+        <div class="mono-name">Talent Subscription</div>
+        <div class="mono-price">₹2,499<span style="font-size:16px;color:var(--earth)">/mo</span></div>
+        <p class="mono-desc">Monthly fee for providers to maintain their Human-Proof certification status, profile visibility, and access to priority matching.</p>
+        <ul class="mono-list">
+          <li>Verified Human Badge</li>
+          <li>Process Trail hosting</li>
+          <li>Priority in AI matching</li>
+          <li>Sustainability badge eligibility</li>
+        </ul>
+      </div>
+      <div class="mono-card featured reveal reveal-delay-1">
+        <div class="mono-badge">Most Revenue</div>
+        <span class="mono-icon">💼</span>
+        <div class="mono-name">Transaction Commission</div>
+        <div class="mono-price">8–12%<span style="font-size:16px;color:var(--earth)">/project</span></div>
+        <p class="mono-desc">A percentage of every successful project completion — aligned incentives mean we only win when humans win.</p>
+        <ul class="mono-list">
+          <li>Secure escrow payments</li>
+          <li>Dispute resolution included</li>
+          <li>Completion verification</li>
+          <li>Instant payout on approval</li>
+        </ul>
+      </div>
+      <div class="mono-card reveal reveal-delay-2">
+        <span class="mono-icon">📊</span>
+        <div class="mono-name">Premium Newsletter</div>
+        <div class="mono-price">₹4,999<span style="font-size:16px;color:var(--earth)">/mo</span></div>
+        <p class="mono-desc">Curated leads and market trend data delivered weekly to top-tier providers — the intelligence layer for serious professionals.</p>
+        <ul class="mono-list">
+          <li>Curated inbound leads</li>
+          <li>Platform trend reports</li>
+          <li>Early access to new boards</li>
+          <li>Client intent data insights</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BADGES -->
+<section id="badges">
+  <div class="sec-tag" style="justify-content:center;">Sustainability & Trust Badges</div>
+  <h2 class="sec-title reveal" style="text-align:center;">Wear your values<br>as credentials</h2>
+  <div class="badges-row reveal">
+    <div class="badge-item"><span class="badge-emoji">🌱</span> Digital Sustainability</div>
+    <div class="badge-item"><span class="badge-emoji">⚡</span> Energy Efficient Host</div>
+    <div class="badge-item"><span class="badge-emoji">🎬</span> Process Trail Verified</div>
+    <div class="badge-item"><span class="badge-emoji">🤝</span> 100% Human-Crafted</div>
+    <div class="badge-item"><span class="badge-emoji">📉</span> Low Carbon Workflow</div>
+    <div class="badge-item"><span class="badge-emoji">🏆</span> Top Human Talent</div>
+    <div class="badge-item"><span class="badge-emoji">🔒</span> Trust Certified 2026</div>
+    <div class="badge-item"><span class="badge-emoji">🌍</span> Responsible Digital</div>
+  </div>
+</section>
+
+<!-- HYPER-NICHE BOARDS -->
+<section id="boards">
+  <div class="boards-inner">
+    <div class="sec-tag" style="color:var(--gold);">Hyper-Niche Job Boards</div>
+    <h2 class="sec-title reveal" style="color:var(--cream);">Find exactly the<br><em style="color:var(--gold)">human</em> you need</h2>
+    <div class="boards-grid">
+      <div class="board-card reveal">
+        <div class="board-niche">Community</div>
+        <div class="board-title">Discord Community Architects</div>
+        <div class="board-count">142 verified humans available</div>
+        <div class="board-tags"><span class="board-tag">Web3</span><span class="board-tag">Gaming</span><span class="board-tag">SaaS</span></div>
+      </div>
+      <div class="board-card reveal reveal-delay-1">
+        <div class="board-niche">Content</div>
+        <div class="board-title">LinkedIn Content Strategists</div>
+        <div class="board-count">289 verified humans available</div>
+        <div class="board-tags"><span class="board-tag">B2B</span><span class="board-tag">Thought Leadership</span><span class="board-tag">GTM</span></div>
+      </div>
+      <div class="board-card reveal reveal-delay-2">
+        <div class="board-niche">Funnel</div>
+        <div class="board-title">TikTok-to-YouTube Builders</div>
+        <div class="board-count">97 verified humans available</div>
+        <div class="board-tags"><span class="board-tag">Short-form</span><span class="board-tag">Repurposing</span><span class="board-tag">SEO</span></div>
+      </div>
+      <div class="board-card reveal reveal-delay-1">
+        <div class="board-niche">Strategy</div>
+        <div class="board-title">Empathetic Customer Architects</div>
+        <div class="board-count">183 verified humans available</div>
+        <div class="board-tags"><span class="board-tag">CX</span><span class="board-tag">Retention</span><span class="board-tag">Startup</span></div>
+      </div>
+      <div class="board-card reveal reveal-delay-2">
+        <div class="board-niche">Artisanal Design</div>
+        <div class="board-title">Hand-Crafted Brand Designers</div>
+        <div class="board-count">214 verified humans available</div>
+        <div class="board-tags"><span class="board-tag">Illustration</span><span class="board-tag">Identity</span><span class="board-tag">Motion</span></div>
+      </div>
+      <div class="board-card reveal reveal-delay-3">
+        <div class="board-niche">Marketing</div>
+        <div class="board-title">Intent-Based Media Buyers</div>
+        <div class="board-count">76 verified humans available</div>
+        <div class="board-tags"><span class="board-tag">Paid Social</span><span class="board-tag">DTC</span><span class="board-tag">ROAS</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-bg-text">HUMAN</div>
+  <h2 class="cta-title reveal">Ready to prove<br>you're <em>real?</em></h2>
+  <p class="cta-sub reveal">Join 12,400+ verified humans already earning more by proving their craft is genuinely theirs.</p>
+  <div class="cta-form reveal">
+    <input class="cta-input" type="email" placeholder="your@email.com">
+    <button class="cta-submit">Get Verified →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Human<span>Proof</span></div>
+      <p class="footer-tagline">The only marketplace where every deliverable is guaranteed to be crafted by a verified, skilled human professional. In 2026, that matters more than ever.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Platform</div>
+      <ul class="footer-links">
+        <li><a href="#">How It Works</a></li>
+        <li><a href="#">Process Trails</a></li>
+        <li><a href="#">AI Matching</a></li>
+        <li><a href="#">Job Boards</a></li>
+        <li><a href="#">Sustainability</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">For Talent</div>
+      <ul class="footer-links">
+        <li><a href="#">Get Verified</a></li>
+        <li><a href="#">Certification</a></li>
+        <li><a href="#">Subscription Plans</a></li>
+        <li><a href="#">Premium Leads</a></li>
+        <li><a href="#">Community</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">For Clients</div>
+      <ul class="footer-links">
+        <li><a href="#">Find Humans</a></li>
+        <li><a href="#">Post a Project</a></li>
+        <li><a href="#">Custom Board</a></li>
+        <li><a href="#">Enterprise</a></li>
+        <li><a href="#">Trust Report</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 HumanProof Inc. All work verified human.</div>
+    <div class="footer-badges">
+      <div class="footer-badge">🌱 CARBON NEUTRAL</div>
+      <div class="footer-badge">✓ HUMAN VERIFIED</div>
+      <div class="footer-badge">⚡ &lt;200ms INP</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ── CURSOR ────────────────────────────────────
+const cur = document.getElementById('cur');
+const trail = document.getElementById('cur-trail');
+let mx=0,my=0,tx=0,ty=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+(function animTrail(){
+  tx+=(mx-tx)*.1; ty+=(my-ty)*.1;
+  trail.style.left=tx+'px'; trail.style.top=ty+'px';
+  requestAnimationFrame(animTrail);
+})();
+document.querySelectorAll('button,a,.feat-row,.why-card,.mono-card,.board-card,.badge-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    cur.style.width='18px'; cur.style.height='18px';
+    cur.style.background='var(--gold)';
+    trail.style.width='54px'; trail.style.height='54px';
+  });
+  el.addEventListener('mouseleave',()=>{
+    cur.style.width='10px'; cur.style.height='10px';
+    cur.style.background='var(--rust)';
+    trail.style.width='36px'; trail.style.height='36px';
+  });
+});
+
+// ── THREE.JS BACKGROUND ───────────────────────
+const canvas = document.getElementById('bg-canvas');
+const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
+camera.position.z = 40;
+
+// Warm tone floating shapes
+const shapes = [];
+const geos = [
+  new THREE.TetrahedronGeometry(1.5,0),
+  new THREE.OctahedronGeometry(1.2,0),
+  new THREE.IcosahedronGeometry(1,0),
+  new THREE.BoxGeometry(1.8,1.8,1.8),
+];
+const mats = [
+  new THREE.MeshBasicMaterial({color:0x8B6F47, wireframe:true, transparent:true, opacity:0.12}),
+  new THREE.MeshBasicMaterial({color:0xC4531C, wireframe:true, transparent:true, opacity:0.1}),
+  new THREE.MeshBasicMaterial({color:0xD4A843, wireframe:true, transparent:true, opacity:0.08}),
+  new THREE.MeshBasicMaterial({color:0x4A7C59, wireframe:true, transparent:true, opacity:0.1}),
+];
+
+for(let i=0;i<50;i++){
+  const g = geos[Math.floor(Math.random()*geos.length)];
+  const m = mats[Math.floor(Math.random()*mats.length)].clone();
+  const mesh = new THREE.Mesh(g, m);
+  mesh.position.set(
+    (Math.random()-.5)*100,
+    (Math.random()-.5)*80,
+    (Math.random()-.5)*30-5
+  );
+  const s = Math.random()*.8+.5;
+  mesh.scale.set(s,s,s);
+  mesh.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, 0);
+  mesh.userData = {
+    rx:(Math.random()-.5)*.006,
+    ry:(Math.random()-.5)*.006,
+    vy:(Math.random()-.5)*.015
+  };
+  scene.add(mesh); shapes.push(mesh);
+}
+
+// Particle field — warm dots
+const pGeo = new THREE.BufferGeometry();
+const pCount = 1500;
+const pPos = new Float32Array(pCount*3);
+for(let i=0;i<pCount*3;i++) pPos[i]=(Math.random()-.5)*200;
+pGeo.setAttribute('position', new THREE.BufferAttribute(pPos,3));
+const pMat = new THREE.PointsMaterial({color:0x8B6F47, size:0.2, transparent:true, opacity:0.4});
+const particles = new THREE.Points(pGeo, pMat);
+scene.add(particles);
+
+let mouseX=0, mouseY=0;
+document.addEventListener('mousemove',e=>{
+  mouseX=(e.clientX/window.innerWidth-.5)*2;
+  mouseY=-(e.clientY/window.innerHeight-.5)*2;
+});
+
+let t=0;
+function animate(){
+  requestAnimationFrame(animate); t+=.004;
+  shapes.forEach(m=>{
+    m.rotation.x+=m.userData.rx;
+    m.rotation.y+=m.userData.ry;
+    m.position.y+=m.userData.vy;
+    if(m.position.y>40) m.position.y=-40;
+    if(m.position.y<-40) m.position.y=40;
+  });
+  particles.rotation.y+=.0003;
+  camera.position.x+=(mouseX*5-camera.position.x)*.025;
+  camera.position.y+=(mouseY*3-camera.position.y)*.025;
+  camera.lookAt(scene.position);
+  renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener('resize',()=>{
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// ── SCROLL REVEAL ─────────────────────────────
+const revealEls = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.15});
+revealEls.forEach(el=>revObs.observe(el));
+
+// ── COUNTER ANIMATION ─────────────────────────
+const counters = document.querySelectorAll('.stat-num[data-target]');
+const cntObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el=e.target, target=+el.dataset.target;
+    let cur=0; const step=target/60;
+    const t=setInterval(()=>{
+      cur+=step;
+      if(cur>=target){
+        el.textContent=target.toLocaleString()+(target<200?'+':'');
+        clearInterval(t);
+      } else el.textContent=Math.floor(cur).toLocaleString();
+    },20);
+    cntObs.unobserve(el);
+  });
+},{threshold:.5});
+counters.forEach(c=>cntObs.observe(c));
+
+// ── 2D PARTICLE CANVAS (neural net on top) ────
+const pc=document.createElement('canvas');
+pc.style.cssText='position:fixed;top:0;left:0;pointer-events:none;z-index:2;';
+document.body.appendChild(pc);
+const ctx=pc.getContext('2d');
+const resizePC=()=>{pc.width=window.innerWidth;pc.height=window.innerHeight;};
+resizePC(); window.addEventListener('resize',resizePC);
+
+const pts=Array.from({length:60},()=>({
+  x:Math.random()*window.innerWidth,
+  y:Math.random()*window.innerHeight,
+  vx:(Math.random()-.5)*.3,
+  vy:(Math.random()-.5)*.3
+}));
+
+function drawPC(){
+  ctx.clearRect(0,0,pc.width,pc.height);
+  pts.forEach((p,i)=>{
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0) p.x=pc.width;
+    if(p.x>pc.width) p.x=0;
+    if(p.y<0) p.y=pc.height;
+    if(p.y>pc.height) p.y=0;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,1.5,0,Math.PI*2);
+    ctx.fillStyle='rgba(139,111,71,0.25)';
+    ctx.fill();
+    pts.slice(i+1).forEach(p2=>{
+      const d=Math.hypot(p.x-p2.x,p.y-p2.y);
+      if(d<100){
+        ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(p2.x,p2.y);
+        ctx.strokeStyle=`rgba(139,111,71,${.06*(1-d/100)})`;
+        ctx.lineWidth=.5; ctx.stroke();
+      }
+    });
+  });
+  requestAnimationFrame(drawPC);
+}
+drawPC();
+</script>
+</body>
+</html>
