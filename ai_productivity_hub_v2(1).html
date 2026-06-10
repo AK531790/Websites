@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AI Productivity Hub - Discover 55+ AI tools to save time and earn more. Free resume generator, text summarizer, SQL helper and more.">
+<title>AI Productivity Hub - Discover the Best AI Tools</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+:root{--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--glass:rgba(255,255,255,.05);--glass2:rgba(255,255,255,.08);--border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);--text:#f0f0f8;--text2:rgba(240,240,248,.55);--text3:rgba(240,240,248,.3);--accent:#6c63ff;--accent2:#00d4aa;--accent3:#ff6b6b;--gold:#ffd166;--glow:rgba(108,99,255,.25);--r:12px}
+[data-theme="light"]{--bg:#f8f8ff;--bg2:#fff;--bg3:#f0f0f8;--glass:rgba(0,0,0,.04);--glass2:rgba(0,0,0,.07);--border:rgba(0,0,0,.08);--border2:rgba(0,0,0,.14);--text:#0a0a1a;--text2:rgba(10,10,26,.55);--text3:rgba(10,10,26,.3);--glow:rgba(108,99,255,.15)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;min-height:100vh;transition:background .3s,color .3s;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+.glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:var(--r)}
+.glass2{background:var(--glass2);backdrop-filter:blur(16px);border:1px solid var(--border2);border-radius:var(--r)}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,15,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+[data-theme="light"] nav{background:rgba(248,248,255,.92)}
+.nav-logo{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;cursor:pointer;display:flex;align-items:center;gap:5px}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{padding:5px 11px;border-radius:7px;color:var(--text2);text-decoration:none;font-size:12px;font-weight:500;transition:all .2s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{background:var(--glass2);color:var(--text)}
+.nav-right{display:flex;gap:7px;align-items:center}
+.icon-btn{width:32px;height:32px;border-radius:7px;background:var(--glass);border:1px solid var(--border);color:var(--text);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.icon-btn:hover{background:var(--glass2)}
+.btn{padding:7px 15px;border-radius:8px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;border:none;display:inline-flex;align-items:center;gap:5px}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 8px 24px var(--glow)}
+.btn-ghost{background:var(--glass);color:var(--text);border:1px solid var(--border)}
+.btn-ghost:hover{background:var(--glass2)}
+.btn-danger{background:rgba(255,107,107,.15);color:var(--accent3);border:1px solid rgba(255,107,107,.3)}
+.btn-sm{padding:4px 9px;font-size:11px}
+.page{display:none;padding-top:60px;min-height:100vh}.page.active{display:block}
+.hero{padding:65px 28px 48px;text-align:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(108,99,255,.2) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 80%,rgba(0,212,170,.1) 0%,transparent 50%);pointer-events:none}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:20px;background:var(--glass);border:1px solid var(--border2);font-size:11px;font-weight:600;color:var(--accent);letter-spacing:.5px;margin-bottom:18px}
+.hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+h1.hero-title{font-family:'Syne',sans-serif;font-size:clamp(26px,5.5vw,62px);font-weight:800;line-height:1.1;max-width:720px;margin:0 auto 14px}
+.grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:15px;color:var(--text2);max-width:480px;margin:0 auto 32px;line-height:1.7}
+.sw{max-width:560px;margin:0 auto 28px;position:relative}
+.sw input{width:100%;padding:13px 110px 13px 44px;border-radius:13px;background:var(--glass2);border:1px solid var(--border2);color:var(--text);font-size:13px;font-family:'Inter',sans-serif;outline:none;transition:all .3s}
+.sw input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow)}
+.sw input::placeholder{color:var(--text3)}
+.si{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--text3)}
+.sb{position:absolute;right:5px;top:50%;transform:translateY(-50%);padding:7px 16px;border-radius:9px;background:var(--accent);color:#fff;border:none;cursor:pointer;font-weight:600;font-size:12px;transition:all .2s}
+.sb:hover{background:#7c75ff}
+.cats{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:44px}
+.cat-btn{padding:7px 16px;border-radius:22px;background:var(--glass);border:1px solid var(--border);color:var(--text2);font-size:11px;font-weight:500;cursor:pointer;transition:all .2s}
+.cat-btn:hover,.cat-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateY(-2px);box-shadow:0 6px 16px var(--glow)}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;max-width:820px;margin:0 auto 60px;padding:0 28px}
+.stat-card{padding:18px;text-align:center;transition:transform .2s}.stat-card:hover{transform:translateY(-3px)}
+.stat-num{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-lbl{font-size:11px;color:var(--text2);margin-top:3px;font-weight:500}
+.sec-head{text-align:center;padding:0 28px;margin-bottom:28px}
+.sec-badge{display:inline-block;padding:3px 11px;border-radius:11px;background:rgba(108,99,255,.15);color:var(--accent);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:9px}
+.sec-title{font-family:'Syne',sans-serif;font-size:clamp(20px,3vw,34px);font-weight:700;margin-bottom:5px}
+.sec-sub{font-size:13px;color:var(--text2)}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(278px,1fr));gap:12px;padding:0 28px;max-width:1400px;margin:0 auto}
+.tc{padding:16px;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
+.tc:hover{transform:translateY(-3px);border-color:rgba(108,99,255,.4)}
+.th{display:flex;align-items:flex-start;gap:9px;margin-bottom:9px}
+.ti-box{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;background:linear-gradient(135deg,rgba(108,99,255,.2),rgba(0,212,170,.2))}
+.tn{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:2px}
+.tc-cat{font-size:10px;color:var(--accent2);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.td{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:11px}
+.tf{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:5px}
+.tp{padding:2px 8px;border-radius:5px;font-size:10px;font-weight:700;letter-spacing:.5px}
+.pf{background:rgba(0,212,170,.15);color:var(--accent2)}.pp{background:rgba(108,99,255,.15);color:var(--accent)}.pfm{background:rgba(255,209,102,.15);color:var(--gold)}
+.tr{font-size:11px;color:var(--gold)}
+.tl{padding:4px 9px;border-radius:5px;background:var(--glass);border:1px solid var(--border);color:var(--text);font-size:10px;font-weight:600;text-decoration:none;transition:all .2s}
+.tl:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.fb{position:absolute;top:11px;right:11px;background:none;border:none;cursor:pointer;font-size:15px;transition:all .2s;color:var(--text3)}
+.fb:hover,.fb.active{color:var(--accent3);transform:scale(1.2)}
+.aff{font-size:9px;padding:2px 5px;border-radius:4px;background:rgba(255,209,102,.12);color:var(--gold)}
+.pagination{display:flex;justify-content:center;align-items:center;gap:5px;padding:28px;flex-wrap:wrap}
+.pg-btn{width:34px;height:34px;border-radius:7px;background:var(--glass);border:1px solid var(--border);color:var(--text2);cursor:pointer;font-size:12px;font-weight:600;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.pg-btn:hover,.pg-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.pg-btn.pn{width:auto;padding:0 13px}
+.pg-info{font-size:11px;color:var(--text2);padding:0 7px}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding:0 28px;max-width:1200px;margin:0 auto}
+.bc{overflow:hidden;transition:all .3s;cursor:pointer}.bc:hover{transform:translateY(-3px)}
+.bt{height:150px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:40px;border-radius:11px 11px 0 0}
+.bb{padding:16px}
+.b-tag{font-size:10px;font-weight:700;color:var(--accent2);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
+.b-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;line-height:1.3;margin-bottom:6px}
+.b-exc{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:11px}
+.b-meta{display:flex;justify-content:space-between;font-size:10px;color:var(--text3)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0 28px;max-width:880px;margin:0 auto}
+.pc{padding:26px;text-align:center;position:relative}
+.pc.feat{border-color:var(--accent);background:linear-gradient(135deg,rgba(108,99,255,.12),rgba(0,212,170,.06))}
+.p-pop{position:absolute;top:-10px;left:50%;transform:translateX(-50%);padding:3px 13px;border-radius:11px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;letter-spacing:1px;white-space:nowrap}
+.p-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:6px}
+.p-amt{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.p-period{font-size:11px;color:var(--text2);margin-bottom:3px}
+.p-feats{list-style:none;margin:14px 0 18px;text-align:left}
+.p-feats li{padding:5px 0;font-size:12px;color:var(--text2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.p-feats li::before{content:"✓";color:var(--accent2);font-weight:700}
+.profile-layout{display:grid;grid-template-columns:240px 1fr;gap:20px;padding:28px;max-width:1060px;margin:0 auto}
+.p-sidebar{position:sticky;top:76px;height:fit-content}
+.p-avatar{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 10px}
+.p-name-d{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;text-align:center;margin-bottom:3px}
+.p-email-d{font-size:11px;color:var(--text2);text-align:center;margin-bottom:13px}
+.p-plan{display:inline-block;padding:3px 11px;border-radius:11px;background:rgba(108,99,255,.15);color:var(--accent);font-size:10px;font-weight:700;margin-bottom:16px}
+.p-nav{display:flex;flex-direction:column;gap:3px}
+.p-nav a{padding:8px 12px;border-radius:7px;color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;transition:all .2s}
+.p-nav a:hover,.p-nav a.active{background:var(--glass2);color:var(--text)}
+.ps{display:none}.ps.active{display:block}
+.ps-title{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;margin-bottom:17px}
+.fav-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;padding:0 28px;max-width:1200px;margin:0 auto}
+.mc{padding:22px}
+.m-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.m-desc{font-size:12px;color:var(--text2);margin-bottom:14px;line-height:1.6}
+.fg{margin-bottom:10px}
+.fl{font-size:11px;font-weight:600;color:var(--text2);margin-bottom:4px;display:block}
+.fi{width:100%;padding:9px 11px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-size:12px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
+.fi:focus{border-color:var(--accent)}
+.fs{width:100%;padding:8px 11px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-size:11px;outline:none;cursor:pointer}
+.mo{margin-top:9px;padding:11px;border-radius:8px;background:var(--bg3);border:1px solid var(--border2);font-size:12px;color:var(--text2);line-height:1.7;min-height:65px;white-space:pre-wrap;display:none}
+.admin-layout{display:flex;min-height:calc(100vh - 60px)}
+.admin-sb{width:200px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--border);padding:18px 9px}
+.admin-sb ul{list-style:none}
+.admin-sb li{margin-bottom:3px}
+.admin-sb a{display:flex;align-items:center;gap:7px;padding:8px 11px;border-radius:7px;color:var(--text2);font-size:11px;font-weight:500;transition:all .2s;cursor:pointer}
+.admin-sb a:hover,.admin-sb a.active{background:var(--glass2);color:var(--text)}
+.admin-main{flex:1;padding:24px;overflow-y:auto}
+.a-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:18px}
+.a-tab{display:none}.a-tab.active{display:block}
+.a-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:24px}
+.a-card{padding:16px}
+.a-val{font-family:'Syne',sans-serif;font-size:24px;font-weight:800}
+.a-lbl{font-size:10px;color:var(--text2);margin-top:3px}
+.a-table{width:100%;border-collapse:collapse;font-size:11px}
+.a-table th{text-align:left;padding:9px 12px;background:var(--glass);font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:var(--text2);border-bottom:1px solid var(--border)}
+.a-table td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text2)}
+.a-table tr:hover td{background:var(--glass);color:var(--text)}
+.sb-a{padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700}
+.s-act{background:rgba(0,212,170,.15);color:var(--accent2)}.s-pend{background:rgba(255,209,102,.15);color:var(--gold)}
+.em-ov{position:fixed;inset:0;z-index:2001;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center}
+.em-ov.open{display:flex}
+.em{width:100%;max-width:540px;padding:28px;margin:14px;max-height:88vh;overflow-y:auto;border-radius:15px;animation:mIn .3s ease}
+.em-title{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;margin-bottom:17px;display:flex;justify-content:space-between;align-items:center}
+.eg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.eg .full{grid-column:1/-1}
+.mo-ov{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center}
+.mo-ov.open{display:flex}
+.modal{width:100%;max-width:380px;padding:28px;margin:14px;border-radius:15px;animation:mIn .3s ease}
+.m-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:4px}
+.m-sub{font-size:12px;color:var(--text2);margin-bottom:18px}
+.m-footer{text-align:center;margin-top:12px;font-size:12px;color:var(--text2)}
+.m-footer a{color:var(--accent);cursor:pointer}
+.ad-banner{margin:20px 28px;padding:12px 20px;border-radius:10px;background:linear-gradient(135deg,rgba(108,99,255,.1),rgba(0,212,170,.06));border:1px dashed rgba(108,99,255,.3);text-align:center;font-size:11px;color:var(--text3);letter-spacing:1px}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 28px 24px;margin-top:50px}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px;max-width:1160px;margin-left:auto;margin-right:auto}
+.ft-brand{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:9px}
+.ft-tag{font-size:11px;color:var(--text3);line-height:1.7;max-width:220px}
+.ft-ct{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-bottom:12px}
+.ft-links{list-style:none}
+.ft-links li{margin-bottom:6px}
+.ft-links a{font-size:11px;color:var(--text2);text-decoration:none;transition:color .2s;cursor:pointer}
+.ft-links a:hover{color:var(--text)}
+.ft-bot{border-top:1px solid var(--border);padding-top:18px;display:flex;justify-content:space-between;align-items:center;max-width:1160px;margin:18px auto 0;flex-wrap:wrap;gap:10px}
+.ft-copy{font-size:11px;color:var(--text3)}
+.ft-badges{display:flex;gap:8px;flex-wrap:wrap}
+.ft-badge{padding:3px 9px;border:1px solid var(--border);border-radius:9px;font-size:10px;color:var(--text3)}
+.nl-form{display:flex;gap:5px;margin-top:10px}
+.nl-in{flex:1;padding:8px 11px;border-radius:7px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-size:11px;font-family:'Inter',sans-serif;outline:none}
+.nl-btn{padding:8px 13px;border-radius:7px;background:var(--accent);color:#fff;border:none;font-size:11px;font-weight:600;cursor:pointer}
+.toast{position:fixed;bottom:18px;right:18px;z-index:3000;padding:9px 16px;border-radius:9px;background:var(--accent);color:#fff;font-size:12px;font-weight:600;transform:translateY(65px);opacity:0;transition:all .3s;pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+.art-wrap{max-width:740px;margin:0 auto;padding:36px 28px 54px}
+.art-back{display:flex;align-items:center;gap:5px;color:var(--accent);font-size:12px;cursor:pointer;margin-bottom:20px;background:none;border:none}
+.art-title{font-family:'Syne',sans-serif;font-size:clamp(22px,4vw,38px);font-weight:800;line-height:1.2;margin-bottom:13px}
+.art-meta{display:flex;gap:14px;font-size:11px;color:var(--text3);margin-bottom:28px;flex-wrap:wrap}
+.art-body{font-size:14px;color:var(--text2);line-height:1.9}
+.art-body h2{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--text);margin:28px 0 10px}
+.art-body p{margin-bottom:14px}
+.art-body ul{padding-left:18px;margin-bottom:14px}
+.art-body li{margin-bottom:5px}
+.art-body strong{color:var(--text);font-weight:600}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes mIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.anim{animation:fadeUp .6s forwards;opacity:0}
+.a1{animation-delay:.1s}.a2{animation-delay:.2s}.a3{animation-delay:.3s}
+@media(max-width:900px){.nav-links{display:none}.stats-row{grid-template-columns:repeat(2,1fr)}.pricing-grid,.a-cards{grid-template-columns:1fr}.profile-layout{grid-template-columns:1fr}.ft-top{grid-template-columns:1fr 1fr}.eg{grid-template-columns:1fr}.admin-sb{display:none}}
+@media(max-width:580px){nav{padding:0 14px}.hero{padding:46px 14px 32px}.tools-grid,.mini-grid,.blog-grid{padding:0 14px}.stats-row{padding:0 14px}.ft-top{grid-template-columns:1fr}}
+</style></head><body>
+<div class="toast" id="toast"></div>
+<div class="mo-ov" id="authModal">
+  <div class="modal glass" style="animation:mIn .3s ease;">
+    <button style="position:absolute;top:12px;right:16px;background:none;border:none;color:var(--text2);font-size:17px;cursor:pointer;" onclick="closeModal()">✕</button>
+    <div id="lF">
+      <div class="m-title">Welcome back 👋</div><div class="m-sub">Sign in to your account</div>
+      <div class="fg"><label class="fl">Email</label><input class="fi" type="email" placeholder="you@example.com" id="lE"></div>
+      <div class="fg"><label class="fl">Password</label><input class="fi" type="password" placeholder="••••••••" id="lP"></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:11px;" onclick="handleLogin()">Sign In →</button>
+      <div class="m-footer">No account? <a onclick="switchSU()">Sign up free</a></div>
+    </div>
+    <div id="sF" style="display:none;">
+      <div class="m-title">Create account ✨</div><div class="m-sub">Join 50,000+ AI enthusiasts</div>
+      <div class="fg"><label class="fl">Full Name</label><input class="fi" type="text" placeholder="Your name" id="sN"></div>
+      <div class="fg"><label class="fl">Email</label><input class="fi" type="email" placeholder="you@example.com" id="sE"></div>
+      <div class="fg"><label class="fl">Password (min 6)</label><input class="fi" type="password" placeholder="Min 6 characters" id="sP"></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:11px;" onclick="handleSignup()">Create Account →</button>
+      <div class="m-footer">Have account? <a onclick="switchSI()">Sign in</a></div>
+    </div>
+  </div>
+</div>
+<div class="em-ov" id="editModal">
+  <div class="em glass" style="animation:mIn .3s ease;">
+    <div class="em-title"><span id="emT">Edit Tool</span><button style="background:none;border:none;color:var(--text2);font-size:17px;cursor:pointer;" onclick="closeEM()">✕</button></div>
+    <div class="eg">
+      <div class="fg"><label class="fl">Tool Name *</label><input class="fi" id="et-n" placeholder="e.g. ChatGPT"></div>
+      <div class="fg"><label class="fl">Category *</label><select class="fs" id="et-c"><option>Writing</option><option>Coding</option><option>Image</option><option>Video</option><option>Marketing</option><option>Productivity</option><option>Audio</option><option>Research</option></select></div>
+      <div class="fg full"><label class="fl">Description *</label><textarea class="fi" id="et-d" rows="3" style="resize:vertical;"></textarea></div>
+      <div class="fg"><label class="fl">Pricing</label><select class="fs" id="et-p"><option>Free</option><option>Freemium</option><option>Paid</option></select></div>
+      <div class="fg"><label class="fl">Rating (0–5)</label><input class="fi" id="et-r" type="number" min="0" max="5" step="0.1" placeholder="4.5"></div>
+      <div class="fg"><label class="fl">Website URL</label><input class="fi" id="et-u" placeholder="https://..."></div>
+      <div class="fg"><label class="fl">Icon Emoji</label><input class="fi" id="et-i" placeholder="🔧"></div>
+      <div class="fg"><label class="fl">Affiliate?</label><select class="fs" id="et-a"><option value="false">No</option><option value="true">Yes</option></select></div>
+    </div>
+    <input type="hidden" id="et-id">
+    <div style="display:flex;gap:9px;margin-top:18px;">
+      <button class="btn btn-primary" style="flex:1;justify-content:center;" onclick="saveTool()">💾 Save Changes</button>
+      <button class="btn btn-ghost" onclick="closeEM()">Cancel</button>
+    </div>
+  </div>
+</div>
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">⚡ AI Productivity Hub</div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+    <li><a onclick="showPage('tools')" id="nav-tools">Tools</a></li>
+    <li><a onclick="showPage('free')" id="nav-free">🆓 Free Tools</a></li>
+    <li><a onclick="showPage('blog')" id="nav-blog">Blog</a></li>
+    <li><a onclick="showPage('pricing')" id="nav-pricing">Pricing</a></li>
+    <li><a onclick="showPage('admin')" id="nav-admin">⚙️ Admin</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+    <button class="btn btn-ghost" onclick="openModal('login')" id="loginBtn">Log in</button>
+    <button class="btn btn-primary" onclick="openModal('signup')" id="signupBtn">Sign up free</button>
+    <span id="uG" style="display:none;font-size:12px;font-weight:600;color:var(--accent2);cursor:pointer;" onclick="showPage('profile')"></span>
+    <button class="btn btn-ghost btn-sm" id="logoutBtn" style="display:none;" onclick="logout()">Logout</button>
+  </div>
+</nav>
+
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-tag anim"><span class="dot"></span>55+ AI Tools · 50K+ Users · Updated Daily</div>
+    <h1 class="hero-title anim a1">Discover the Best AI Tools to<br><span class="grad">Save Time & Earn More</span></h1>
+    <p class="hero-sub anim a2">The ultimate directory of AI tools for students, creators, developers, and entrepreneurs. Find, compare, and save your favorites.</p>
+    <div class="sw anim a2">
+      <span class="si">🔍</span>
+      <input type="text" placeholder="Search 55+ AI tools..." id="hSearch" onkeydown="if(event.key==='Enter')goSearch()">
+      <button class="sb" onclick="goSearch()">Search</button>
+    </div>
+    <div class="cats anim a3">
+      <button class="cat-btn active" onclick="fHome('all',this)">🌟 All</button>
+      <button class="cat-btn" onclick="fHome('Writing',this)">✍️ Writing</button>
+      <button class="cat-btn" onclick="fHome('Coding',this)">💻 Coding</button>
+      <button class="cat-btn" onclick="fHome('Image',this)">🎨 Image</button>
+      <button class="cat-btn" onclick="fHome('Video',this)">🎬 Video</button>
+      <button class="cat-btn" onclick="fHome('Marketing',this)">📈 Marketing</button>
+      <button class="cat-btn" onclick="fHome('Productivity',this)">⚡ Productivity</button>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-card glass anim"><div class="stat-num">55+</div><div class="stat-lbl">AI Tools Listed</div></div>
+    <div class="stat-card glass anim a1"><div class="stat-num">50K+</div><div class="stat-lbl">Monthly Users</div></div>
+    <div class="stat-card glass anim a2"><div class="stat-num">Free</div><div class="stat-lbl">Mini Tools</div></div>
+    <div class="stat-card glass anim a3"><div class="stat-num">4.9★</div><div class="stat-lbl">User Rating</div></div>
+  </div>
+  <div class="ad-banner">📢 ADVERTISEMENT — Promote your AI tool here · <strong>ads@aiproductivityhub.com</strong></div>
+  <div class="sec-head"><div class="sec-badge">Featured</div><div class="sec-title">Top AI Tools Right Now</div><div class="sec-sub">Handpicked tools our community loves most</div></div>
+  <div class="tools-grid" id="hGrid"></div>
+  <div style="text-align:center;padding:28px;"><button class="btn btn-primary" onclick="showPage('tools')" style="padding:10px 26px;font-size:13px;">View All 55+ Tools →</button></div>
+  <div class="sec-head" style="margin-top:36px;"><div class="sec-badge">Latest</div><div class="sec-title">AI Insights & Guides</div><div class="sec-sub">Expert articles to master AI tools</div></div>
+  <div class="blog-grid" id="hBlog" style="margin-bottom:18px;"></div>
+  <div style="text-align:center;padding:16px 0 36px;"><button class="btn btn-ghost" onclick="showPage('blog')">View All Articles →</button></div>
+</div>
+
+<div class="page" id="page-tools">
+  <div style="padding:28px 28px 14px;max-width:1400px;margin:0 auto;">
+    <div class="sec-title" style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:13px;">AI Tools Directory <span style="font-size:13px;color:var(--text2);font-weight:400;" id="tCount"></span></div>
+    <div style="display:flex;gap:9px;flex-wrap:wrap;margin-bottom:13px;align-items:center;">
+      <div style="position:relative;flex:1;min-width:180px;">
+        <span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text3);">🔍</span>
+        <input type="text" placeholder="Search tools..." id="tSearch" oninput="renderTools()" style="width:100%;padding:8px 11px 8px 33px;border-radius:8px;background:var(--glass2);border:1px solid var(--border);color:var(--text);font-size:12px;outline:none;font-family:'Inter',sans-serif;">
+      </div>
+      <select class="fs" id="cF" onchange="renderTools()" style="width:auto;min-width:120px;padding:8px 11px;">
+        <option value="all">All Categories</option>
+        <option value="Writing">✍️ Writing</option><option value="Coding">💻 Coding</option>
+        <option value="Image">🎨 Image</option><option value="Video">🎬 Video</option>
+        <option value="Marketing">📈 Marketing</option><option value="Productivity">⚡ Productivity</option>
+        <option value="Audio">🎵 Audio</option><option value="Research">🔬 Research</option>
+      </select>
+      <select class="fs" id="pF" onchange="renderTools()" style="width:auto;min-width:100px;padding:8px 11px;">
+        <option value="all">All Pricing</option><option value="Free">Free</option>
+        <option value="Freemium">Freemium</option><option value="Paid">Paid</option>
+      </select>
+      <select class="fs" id="sF" onchange="renderTools()" style="width:auto;min-width:110px;padding:8px 11px;">
+        <option value="def">Sort: Default</option><option value="rat">Highest Rated</option>
+        <option value="az">A–Z Name</option><option value="free">Free First</option>
+      </select>
+    </div>
+    <div class="cats" style="justify-content:flex-start;">
+      <button class="cat-btn active" onclick="fCatT('all',this)">🌟 All</button>
+      <button class="cat-btn" onclick="fCatT('Writing',this)">✍️ Writing</button>
+      <button class="cat-btn" onclick="fCatT('Coding',this)">💻 Coding</button>
+      <button class="cat-btn" onclick="fCatT('Image',this)">🎨 Image</button>
+      <button class="cat-btn" onclick="fCatT('Video',this)">🎬 Video</button>
+      <button class="cat-btn" onclick="fCatT('Marketing',this)">📈 Marketing</button>
+      <button class="cat-btn" onclick="fCatT('Productivity',this)">⚡ Productivity</button>
+      <button class="cat-btn" onclick="fCatT('Audio',this)">🎵 Audio</button>
+      <button class="cat-btn" onclick="fCatT('Research',this)">🔬 Research</button>
+    </div>
+  </div>
+  <div class="ad-banner">💰 Tools marked with 💰 are affiliate links — we earn a small commission at no extra cost to you</div>
+  <div class="tools-grid" id="tGrid"></div>
+  <div id="noRes" style="display:none;text-align:center;padding:36px;color:var(--text2);">No tools found. Try a different search.</div>
+  <div class="pagination" id="pgn"></div>
+</div>
+
+<div class="page" id="page-free">
+  <div style="padding:36px 28px 18px;text-align:center;">
+    <div class="sec-badge">100% Free</div>
+    <div class="sec-title" style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(22px,4vw,42px);">Free AI Mini Tools</div>
+    <div class="sec-sub">Powerful AI tools — no signup required</div>
+  </div>
+  <div class="ad-banner">📢 ADVERTISEMENT SPACE — Contact ads@aiproductivityhub.com</div>
+  <div class="mini-grid" style="padding-bottom:36px;">
+    <div class="mc glass2">
+      <div class="m-title">📄 AI Resume Generator</div>
+      <div class="m-desc">Generate a professional resume summary instantly. Perfect for job applications and LinkedIn profiles.</div>
+      <div class="fg"><label class="fl">Full Name *</label><input type="text" class="fi" id="rN" placeholder="e.g. Amod P Menon"></div>
+      <div class="fg"><label class="fl">Job Role *</label><input type="text" class="fi" id="rR" placeholder="e.g. Oracle Database Administrator"></div>
+      <div class="fg"><label class="fl">Years of Experience</label><input type="text" class="fi" id="rX" placeholder="e.g. 2 years"></div>
+      <div class="fg"><label class="fl">Key Skills (comma separated)</label><input type="text" class="fi" id="rS" placeholder="e.g. Oracle, PostgreSQL, RMAN, PL/SQL"></div>
+      <div class="fg"><label class="fl">Education</label><input type="text" class="fi" id="rE" placeholder="e.g. MCA, Calicut University"></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="genResume()">⚡ Generate Resume Summary</button>
+      <div class="mo" id="rO"></div>
+      <div style="display:none;margin-top:7px;" id="rC"><button class="btn btn-ghost btn-sm" onclick="copyOut('rO')">📋 Copy</button></div>
+    </div>
+    <div class="mc glass2">
+      <div class="m-title">📝 Text Summarizer</div>
+      <div class="m-desc">Paste any long text — article, email, or document — and get a crisp, accurate summary instantly.</div>
+      <div class="fg"><label class="fl">Paste Your Text *</label><textarea class="fi" id="sI" rows="7" placeholder="Paste your long text here..."></textarea></div>
+      <div style="display:flex;gap:7px;margin-bottom:11px;">
+        <select class="fs" id="sL"><option value="short">Short (2–3 sentences)</option><option value="med" selected>Medium (4–5 sentences)</option><option value="long">Detailed</option></select>
+        <select class="fs" id="sSt"><option value="plain">Plain</option><option value="bullets">Bullet Points</option><option value="formal">Formal</option></select>
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="genSum()">⚡ Summarize Text</button>
+      <div class="mo" id="sO"></div>
+      <div style="display:none;margin-top:7px;" id="sC"><button class="btn btn-ghost btn-sm" onclick="copyOut('sO')">📋 Copy</button></div>
+    </div>
+    <div class="mc glass2">
+      <div class="m-title">🗄️ SQL Query Helper</div>
+      <div class="m-desc">Describe your need in plain English and get production-ready SQL — Oracle, PostgreSQL & MySQL supported.</div>
+      <div class="fg"><label class="fl">Describe Your Query *</label><textarea class="fi" id="qI" rows="4" placeholder="e.g. Get top 10 employees by salary in dept 20..."></textarea></div>
+      <div style="display:flex;gap:7px;margin-bottom:9px;">
+        <select class="fs" id="qDB"><option value="gen">Generic SQL</option><option value="ora">Oracle/PL/SQL</option><option value="pg" selected>PostgreSQL</option><option value="my">MySQL</option></select>
+        <select class="fs" id="qOP"><option value="SEL">SELECT</option><option value="INS">INSERT</option><option value="UPD">UPDATE</option><option value="DEL">DELETE</option><option value="CRE">CREATE TABLE</option><option value="JOI">JOIN Query</option><option value="AGG">Aggregate</option><option value="IDX">Create Index</option><option value="PRO">Stored Procedure</option></select>
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="genSQL()">⚡ Generate SQL</button>
+      <div class="mo" id="qO" style="font-family:monospace;font-size:11px;color:var(--accent2);"></div>
+      <div style="display:none;margin-top:7px;" id="qC"><button class="btn btn-ghost btn-sm" onclick="copyOut('qO')">📋 Copy SQL</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="page-blog">
+  <div id="bList">
+    <div style="padding:36px 28px 18px;text-align:center;">
+      <div class="sec-badge">AI Insights</div>
+      <div class="sec-title" style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(22px,4vw,42px);">Blog & Guides</div>
+      <div class="sec-sub">Expert articles to master AI and boost productivity</div>
+    </div>
+    <div class="ad-banner">📢 SPONSORED SLOT — Contact us to feature your brand</div>
+    <div class="blog-grid" id="aBlogs" style="margin-bottom:44px;"></div>
+  </div>
+  <div id="bArt" style="display:none;"></div>
+</div>
+
+<div class="page" id="page-pricing">
+  <div style="padding:48px 28px 34px;text-align:center;">
+    <div class="sec-badge">Membership</div>
+    <div class="sec-title" style="font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(22px,4vw,42px);">Simple, Transparent Pricing</div>
+    <div class="sec-sub">Start free. Upgrade when you need more power.</div>
+  </div>
+  <div class="pricing-grid">
+    <div class="pc glass">
+      <div class="p-name">Free</div><div class="p-amt">₹0</div><div class="p-period">forever · no credit card</div>
+      <ul class="p-feats"><li>Browse 55+ AI tools</li><li>3 free mini tools (unlimited)</li><li>10 saved favorites</li><li>Full blog access</li><li>Email newsletter</li></ul>
+      <button class="btn btn-ghost" style="width:100%;justify-content:center;" onclick="openModal('signup')">Get Started Free</button>
+    </div>
+    <div class="pc glass feat">
+      <div class="p-pop">Most Popular</div>
+      <div class="p-name">Premium</div><div class="p-amt">₹499</div><div class="p-period">per month · billed monthly</div>
+      <ul class="p-feats"><li>Everything in Free</li><li>Unlimited favorites</li><li>Early access to new tools</li><li>Ad-free experience</li><li>Weekly AI newsletter</li><li>20% affiliate commission</li><li>Priority tool submission</li></ul>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="showToast('🚀 Premium launching soon!')">Get Premium →</button>
+    </div>
+    <div class="pc glass">
+      <div class="p-name">Business</div><div class="p-amt">₹1,999</div><div class="p-period">per month · up to 5 users</div>
+      <ul class="p-feats"><li>Everything in Premium</li><li>Team access (5 users)</li><li>API access</li><li>Custom tool collections</li><li>Priority support</li><li>White-label option</li><li>Monthly analytics report</li></ul>
+      <button class="btn btn-ghost" style="width:100%;justify-content:center;" onclick="showToast('📩 Contact: admin@aiproductivityhub.com')">Contact Sales</button>
+    </div>
+  </div>
+  <div style="text-align:center;padding:28px;font-size:11px;color:var(--text3);">SSL secured · 30-day money back guarantee · Cancel anytime</div>
+</div>
+
+<div class="page" id="page-profile">
+  <div class="profile-layout">
+    <div class="p-sidebar">
+      <div class="glass2" style="padding:20px;text-align:center;">
+        <div class="p-avatar" id="pAv">👤</div>
+        <div class="p-name-d" id="pNm">—</div>
+        <div class="p-email-d" id="pEm">—</div>
+        <div><span class="p-plan">Free Plan</span></div>
+        <button class="btn btn-primary btn-sm" style="margin-top:10px;width:100%;justify-content:center;" onclick="showPage('pricing')">Upgrade to Premium</button>
+      </div>
+      <div class="p-nav glass2" style="margin-top:10px;padding:10px;">
+        <a class="active" onclick="pTab('favs',this)">❤️ Saved Favorites</a>
+        <a onclick="pTab('settings',this)">⚙️ Account Settings</a>
+        <a onclick="pTab('activity',this)">📊 Activity</a>
+      </div>
+    </div>
+    <div>
+      <div class="ps active" id="ps-favs">
+        <div class="ps-title">❤️ Saved Favorites</div>
+        <div class="fav-grid" id="fG"></div>
+        <div id="nF" style="display:none;padding:28px;text-align:center;color:var(--text2);">No favorites yet. Browse tools and click ♥ to save!</div>
+      </div>
+      <div class="ps" id="ps-settings">
+        <div class="ps-title">⚙️ Account Settings</div>
+        <div class="glass2" style="padding:20px;max-width:480px;">
+          <div class="fg"><label class="fl">Display Name</label><input class="fi" id="set-n" placeholder="Your name"></div>
+          <div class="fg"><label class="fl">Email (read-only)</label><input class="fi" id="set-e" disabled style="opacity:.6;"></div>
+          <div class="fg"><label class="fl">New Password</label><input class="fi" type="password" placeholder="Leave blank to keep current"></div>
+          <button class="btn btn-primary" onclick="showToast('✅ Settings saved!')">Save Changes</button>
+        </div>
+      </div>
+      <div class="ps" id="ps-activity">
+        <div class="ps-title">📊 Activity</div>
+        <div class="glass2" style="padding:20px;">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;">
+            <div style="text-align:center;"><div class="stat-num" id="actFavs">0</div><div class="stat-lbl">Favorites</div></div>
+            <div style="text-align:center;"><div class="stat-num">3</div><div class="stat-lbl">Tools Used</div></div>
+            <div style="text-align:center;"><div class="stat-num">Free</div><div class="stat-lbl">Plan</div></div>
+          </div>
+          <div style="font-size:11px;color:var(--text2);">Member since today · Last active just now</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="page-admin">
+  <div class="admin-layout">
+    <div class="admin-sb">
+      <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--text3);padding:0 11px 12px;letter-spacing:1px;text-transform:uppercase;">⚙️ Admin</div>
+      <ul>
+        <li><a onclick="aTab('dash')" id="at-dash" class="active">📊 Dashboard</a></li>
+        <li><a onclick="aTab('tools')" id="at-tools">🔧 Manage Tools</a></li>
+        <li><a onclick="aTab('users')" id="at-users">👥 Users</a></li>
+        <li><a onclick="aTab('blog')" id="at-blog">📝 Blog Posts</a></li>
+        <li><a onclick="aTab('traffic')" id="at-traffic">📈 Traffic</a></li>
+        <li><a onclick="aTab('revenue')" id="at-revenue">💰 Revenue</a></li>
+      </ul>
+    </div>
+    <div class="admin-main">
+      <div class="a-tab active" id="tab-dash">
+        <div class="a-title">📊 Dashboard</div>
+        <div class="a-cards">
+          <div class="a-card glass2"><div class="a-val" style="color:var(--accent);" id="dTools">55</div><div class="a-lbl">Total Tools</div></div>
+          <div class="a-card glass2"><div class="a-val" style="color:var(--accent2);">50,234</div><div class="a-lbl">Total Users</div></div>
+          <div class="a-card glass2"><div class="a-val" style="color:var(--gold);">₹1.24L</div><div class="a-lbl">Monthly Revenue</div></div>
+          <div class="a-card glass2"><div class="a-val" style="color:var(--accent3);">8,412</div><div class="a-lbl">Today Visitors</div></div>
+        </div>
+        <div class="a-title" style="font-size:15px;">Recent Activity</div>
+        <table class="a-table"><thead><tr><th>Action</th><th>Details</th><th>Time</th><th>Status</th></tr></thead><tbody>
+          <tr><td>New signup</td><td>user@example.com</td><td>2 min ago</td><td><span class="sb-a s-act">Active</span></td></tr>
+          <tr><td>Tool added</td><td>Gemini 2.0 Flash</td><td>12 min ago</td><td><span class="sb-a s-act">Live</span></td></tr>
+          <tr><td>Premium sub</td><td>admin@example.com</td><td>1 hr ago</td><td><span class="sb-a s-act">Paid</span></td></tr>
+          <tr><td>Blog draft</td><td>Top AI Tools 2026</td><td>2 hrs ago</td><td><span class="sb-a s-pend">Draft</span></td></tr>
+          <tr><td>Affiliate click</td><td>ChatGPT → $2.40</td><td>3 hrs ago</td><td><span class="sb-a s-act">Tracked</span></td></tr>
+        </tbody></table>
+      </div>
+      <div class="a-tab" id="tab-tools">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:9px;">
+          <div class="a-title" style="margin:0;">🔧 Manage Tools</div>
+          <div style="display:flex;gap:7px;">
+            <button class="btn btn-primary" onclick="openEM(null)">+ Add New Tool</button>
+            <button class="btn btn-ghost btn-sm" onclick="resetTools()" title="Reset to original 55 tools">↺ Reset Defaults</button>
+          </div>
+        </div>
+        <div style="margin-bottom:13px;">
+          <input type="text" placeholder="🔍 Search tools..." id="aSearch" oninput="renderAdminTools()" style="padding:7px 11px;border-radius:7px;background:var(--glass2);border:1px solid var(--border);color:var(--text);font-size:11px;outline:none;width:100%;max-width:280px;font-family:'Inter',sans-serif;">
+        </div>
+        <table class="a-table"><thead><tr><th>Tool</th><th>Cat</th><th>Price</th><th>Rating</th><th>Aff</th><th>Actions</th></tr></thead><tbody id="aToolsT"></tbody></table>
+      </div>
+      <div class="a-tab" id="tab-users">
+        <div class="a-title">👥 User Management</div>
+        <div style="margin-bottom:13px;display:flex;gap:7px;flex-wrap:wrap;">
+          <input type="text" placeholder="🔍 Search users..." oninput="filterUsers(this.value)" style="padding:7px 11px;border-radius:7px;background:var(--glass2);border:1px solid var(--border);color:var(--text);font-size:11px;outline:none;max-width:240px;font-family:'Inter',sans-serif;">
+          <button class="btn btn-ghost btn-sm" onclick="showToast('📧 Email blast sent!')">📧 Email All</button>
+        </div>
+        <table class="a-table"><thead><tr><th>Name</th><th>Email</th><th>Plan</th><th>Joined</th><th>Status</th><th>Action</th></tr></thead><tbody id="aUsersT"></tbody></table>
+      </div>
+      <div class="a-tab" id="tab-blog">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:9px;">
+          <div class="a-title" style="margin:0;">📝 Blog Management</div>
+          <button class="btn btn-primary" onclick="openBE(null)">+ New Post</button>
+        </div>
+        <div id="bEdWrap" style="display:none;margin-bottom:20px;" class="glass2">
+          <div style="padding:20px;">
+            <div class="fg"><label class="fl">Post Title *</label><input class="fi" id="bTI" placeholder="Enter blog post title..."></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:10px;">
+              <div class="fg"><label class="fl">Category</label><input class="fi" id="bTgI" placeholder="e.g. Students"></div>
+              <div class="fg"><label class="fl">Icon Emoji</label><input class="fi" id="bIcI" placeholder="📚"></div>
+              <div class="fg"><label class="fl">Read Time</label><input class="fi" id="bTmI" placeholder="5 min read"></div>
+            </div>
+            <div class="fg"><label class="fl">Excerpt</label><textarea class="fi" id="bExI" rows="2" placeholder="Brief description..."></textarea></div>
+            <div class="fg"><label class="fl">Full Content</label><textarea class="fi" id="bCtI" rows="8" placeholder="Write your full blog post here..."></textarea></div>
+            <input type="hidden" id="bEId">
+            <div style="display:flex;gap:7px;">
+              <button class="btn btn-primary" onclick="saveBlog()">💾 Save Post</button>
+              <button class="btn btn-ghost" onclick="document.getElementById('bEdWrap').style.display='none'">Cancel</button>
+            </div>
+          </div>
+        </div>
+        <table class="a-table"><thead><tr><th>Title</th><th>Category</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody id="aBlogsT"></tbody></table>
+      </div>
+      <div class="a-tab" id="tab-traffic">
+        <div class="a-title">📈 Traffic Analytics</div>
+        <div class="a-cards">
+          <div class="a-card glass2"><div class="a-val" style="color:var(--accent);">8,412</div><div class="a-lbl">Today</div></div>
+          <div class="a-card glass2"><div class="a-val" style="color:var(--accent2);">52,840</div><div class="a-lbl">This Week</div></div>
+          <div class="a-card glass2"><div class="a-val" style="color:var(--gold);">218K</div><div class="a-lbl">This Month</div></div>
+          <div class="a-card glass2"><div class="a-val" style="color:var(--accent3);">3.2%</div><div class="a-lbl">Bounce Rate</div></div>
+        </div>
+        <table class="a-table"><thead><tr><th>Page</th><th>Views</th><th>Avg Time</th><th>Bounce</th><th>Conv.</th></tr></thead><tbody>
+          <tr><td>/tools</td><td>18,430</td><td>4m 12s</td><td>22%</td><td>340</td></tr>
+          <tr><td>/home</td><td>12,840</td><td>2m 45s</td><td>38%</td><td>218</td></tr>
+          <tr><td>/free-tools</td><td>9,210</td><td>6m 30s</td><td>18%</td><td>892</td></tr>
+          <tr><td>/blog</td><td>7,640</td><td>5m 20s</td><td>25%</td><td>124</td></tr>
+          <tr><td>/pricing</td><td>4,320</td><td>3m 10s</td><td>44%</td><td>76</td></tr>
+        </tbody></table>
+      </div>
+      <div class="a-tab" id="tab-revenue">
+        <div class="a-title">💰 Revenue Overview</div>
+        <div class="a-cards">
+          <div class="a-card glass2"><div class="a-val" style="color:var(--accent);">₹1,24,500</div><div class="a-lbl">Monthly Total</div></div>
+          <div class="a-card glass2"><div class="a-val" style="color:var(--accent2);">₹38,200</div><div class="a-lbl">Subscriptions</div></div>
+          <div class="a-card glass2"><div class="a-val" style="color:var(--gold);">₹62,300</div><div class="a-lbl">Affiliate</div></div>
+          <div class="a-card glass2"><div class="a-val" style="color:var(--accent3);">₹24,000</div><div class="a-lbl">Ads</div></div>
+        </div>
+        <table class="a-table"><thead><tr><th>Source</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Growth</th></tr></thead><tbody>
+          <tr><td>Subscriptions</td><td>₹22K</td><td>₹26K</td><td>₹31K</td><td>₹35K</td><td>₹38.2K</td><td style="color:var(--accent2);">+73%</td></tr>
+          <tr><td>Affiliate</td><td>₹28K</td><td>₹34K</td><td>₹44K</td><td>₹54K</td><td>₹62.3K</td><td style="color:var(--accent2);">+122%</td></tr>
+          <tr><td>Ads</td><td>₹12K</td><td>₹14K</td><td>₹17K</td><td>₹21K</td><td>₹24K</td><td style="color:var(--accent2);">+100%</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-top">
+    <div>
+      <div class="ft-brand">⚡ AI Productivity Hub</div>
+      <div class="ft-tag">The ultimate AI tools directory helping 50,000+ users save time, boost productivity and earn more in 2026.</div>
+      <div style="margin-top:13px;font-size:10px;color:var(--text3);font-weight:600;margin-bottom:6px;">📧 NEWSLETTER</div>
+      <div class="nl-form"><input class="nl-in" placeholder="your@email.com" id="nlE"><button class="nl-btn" onclick="subNL()">Subscribe</button></div>
+    </div>
+    <div>
+      <div class="ft-ct">Platform</div>
+      <ul class="ft-links">
+        <li><a onclick="showPage('tools')">AI Tools Directory</a></li>
+        <li><a onclick="showPage('free')">Free Mini Tools</a></li>
+        <li><a onclick="showPage('blog')">Blog & Guides</a></li>
+        <li><a onclick="showPage('pricing')">Pricing Plans</a></li>
+        <li><a onclick="showToast('🔜 Submit a tool: tools@aiproductivityhub.com')">Submit a Tool</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">For Users</div>
+      <ul class="ft-links">
+        <li><a onclick="openModal('signup')">Create Account</a></li>
+        <li><a onclick="showPage('profile')">My Profile</a></li>
+        <li><a onclick="showPage('pricing')">Upgrade Plan</a></li>
+        <li><a onclick="showToast('📩 support@aiproductivityhub.com')">Support</a></li>
+        <li><a onclick="showToast('💰 Affiliate program coming soon!')">Affiliate Program</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Company</div>
+      <ul class="ft-links">
+        <li><a onclick="showToast('About page coming soon!')">About Us</a></li>
+        <li><a onclick="showToast('Advertise: ads@aiproductivityhub.com')">Advertise</a></li>
+        <li><a onclick="showToast('Privacy Policy coming soon!')">Privacy Policy</a></li>
+        <li><a onclick="showToast('Terms of Service coming soon!')">Terms of Service</a></li>
+        <li><a onclick="showToast('hello@aiproductivityhub.com')">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">© 2026 AI Productivity Hub. All rights reserved. Built with ❤️ in India.</div>
+    <div class="ft-badges">
+      <div class="ft-badge">🇮🇳 Made in India</div>
+      <div class="ft-badge">🔒 SSL Secured</div>
+      <div class="ft-badge">⚡ Fast Loading</div>
+    </div>
+  </div>
+</footer>
+<script>
+const TOOLS=[
+{id:1,name:'ChatGPT',cat:'Writing',desc:'Most powerful AI chatbot for writing, coding, analysis with GPT-4o model.',price:'Freemium',url:'https://chat.openai.com',icon:'🤖',rating:4.9,affiliate:true},
+{id:2,name:'Claude',cat:'Writing',desc:'Anthropic AI — excellent for long-form writing, analysis and nuanced reasoning.',price:'Freemium',url:'https://claude.ai',icon:'⚡',rating:4.8,affiliate:true},
+{id:3,name:'Gemini',cat:'Writing',desc:'Google flagship AI with real-time web access and deep Google integration.',price:'Freemium',url:'https://gemini.google.com',icon:'💫',rating:4.7,affiliate:false},
+{id:4,name:'GitHub Copilot',cat:'Coding',desc:'AI pair programmer suggesting code completions and functions in your IDE.',price:'Paid',url:'https://github.com/features/copilot',icon:'🐙',rating:4.8,affiliate:true},
+{id:5,name:'Cursor',cat:'Coding',desc:'AI-first code editor with autocomplete, chat and refactoring built in.',price:'Freemium',url:'https://cursor.sh',icon:'🖱️',rating:4.9,affiliate:true},
+{id:6,name:'Midjourney',cat:'Image',desc:'Industry-leading AI image generation producing stunning artistic visuals.',price:'Paid',url:'https://midjourney.com',icon:'🎨',rating:4.9,affiliate:true},
+{id:7,name:'DALL-E 3',cat:'Image',desc:'OpenAI image generation integrated into ChatGPT — photorealistic results.',price:'Freemium',url:'https://openai.com/dall-e-3',icon:'🖼️',rating:4.7,affiliate:false},
+{id:8,name:'Stable Diffusion',cat:'Image',desc:'Open-source image generation — run locally or via cloud, free.',price:'Free',url:'https://stability.ai',icon:'🌊',rating:4.6,affiliate:false},
+{id:9,name:'Runway',cat:'Video',desc:'Professional AI video generation — text-to-video and image-to-video.',price:'Freemium',url:'https://runwayml.com',icon:'🎬',rating:4.8,affiliate:true},
+{id:10,name:'Sora',cat:'Video',desc:'OpenAI text-to-video AI creating cinematic quality videos from prompts.',price:'Paid',url:'https://openai.com/sora',icon:'🎥',rating:4.7,affiliate:false},
+{id:11,name:'Jasper',cat:'Marketing',desc:'AI marketing copy platform for blogs, ads and emails at scale.',price:'Paid',url:'https://jasper.ai',icon:'📈',rating:4.6,affiliate:true},
+{id:12,name:'Copy.ai',cat:'Marketing',desc:'AI marketing copy generator for sales emails and social posts.',price:'Freemium',url:'https://copy.ai',icon:'✍️',rating:4.5,affiliate:true},
+{id:13,name:'Notion AI',cat:'Productivity',desc:'AI integrated into Notion for writing, summarizing and organizing.',price:'Freemium',url:'https://notion.so',icon:'📓',rating:4.7,affiliate:true},
+{id:14,name:'Otter.ai',cat:'Productivity',desc:'AI meeting transcription — records, transcribes and summarizes calls.',price:'Freemium',url:'https://otter.ai',icon:'🎙️',rating:4.6,affiliate:true},
+{id:15,name:'Perplexity',cat:'Research',desc:'AI search engine citing sources with accurate real-time information.',price:'Freemium',url:'https://perplexity.ai',icon:'🔍',rating:4.8,affiliate:true},
+{id:16,name:'ElevenLabs',cat:'Audio',desc:'Hyper-realistic AI voice synthesis — clone voices and generate audio.',price:'Freemium',url:'https://elevenlabs.io',icon:'🎵',rating:4.9,affiliate:true},
+{id:17,name:'Murf AI',cat:'Audio',desc:'Professional AI voiceovers in 120+ languages for videos and podcasts.',price:'Freemium',url:'https://murf.ai',icon:'🔊',rating:4.6,affiliate:true},
+{id:18,name:'Grammarly',cat:'Writing',desc:'AI writing assistant for grammar, clarity and tone across all apps.',price:'Freemium',url:'https://grammarly.com',icon:'📝',rating:4.7,affiliate:true},
+{id:19,name:'Writesonic',cat:'Writing',desc:'AI writer for blogs and ads with real-time web access via Chatsonic.',price:'Freemium',url:'https://writesonic.com',icon:'💡',rating:4.5,affiliate:true},
+{id:20,name:'Replit',cat:'Coding',desc:'Browser-based AI coding IDE — complete and generate code online.',price:'Freemium',url:'https://replit.com',icon:'💻',rating:4.5,affiliate:false},
+{id:21,name:'Tabnine',cat:'Coding',desc:'AI code completion for 80+ languages — privacy-first local option.',price:'Freemium',url:'https://tabnine.com',icon:'🔧',rating:4.4,affiliate:true},
+{id:22,name:'Leonardo AI',cat:'Image',desc:'AI image generation with fine-tuned models and character consistency.',price:'Freemium',url:'https://leonardo.ai',icon:'🖌️',rating:4.7,affiliate:true},
+{id:23,name:'Adobe Firefly',cat:'Image',desc:'Adobe generative AI for images and text effects — commercially safe.',price:'Freemium',url:'https://firefly.adobe.com',icon:'🔥',rating:4.6,affiliate:false},
+{id:24,name:'Canva AI',cat:'Image',desc:'AI design inside Canva — Magic Write, text-to-image, background removal.',price:'Freemium',url:'https://canva.com',icon:'🎪',rating:4.8,affiliate:true},
+{id:25,name:'HeyGen',cat:'Video',desc:'AI avatar video generator — spokesperson videos without a camera.',price:'Paid',url:'https://heygen.com',icon:'👤',rating:4.7,affiliate:true},
+{id:26,name:'Synthesia',cat:'Video',desc:'AI video presentations with 140+ avatars in 120+ languages.',price:'Paid',url:'https://synthesia.io',icon:'🎭',rating:4.6,affiliate:true},
+{id:27,name:'Pictory',cat:'Video',desc:'Turn blog posts and scripts into videos with AI-selected footage.',price:'Freemium',url:'https://pictory.ai',icon:'📹',rating:4.5,affiliate:true},
+{id:28,name:'Surfer SEO',cat:'Marketing',desc:'AI SEO content optimizer — research, write and rank on Google.',price:'Paid',url:'https://surferseo.com',icon:'🏄',rating:4.7,affiliate:true},
+{id:29,name:'HubSpot AI',cat:'Marketing',desc:'CRM with AI email generation and customer journey analysis.',price:'Freemium',url:'https://hubspot.com',icon:'🎯',rating:4.6,affiliate:true},
+{id:30,name:'Make.com',cat:'Productivity',desc:'No-code automation with AI — connect 1,500+ apps and build workflows.',price:'Freemium',url:'https://make.com',icon:'⚙️',rating:4.7,affiliate:true},
+{id:31,name:'Zapier AI',cat:'Productivity',desc:'AI workflow automation — create zaps from plain English descriptions.',price:'Freemium',url:'https://zapier.com',icon:'⚡',rating:4.6,affiliate:true},
+{id:32,name:'Loom AI',cat:'Productivity',desc:'AI screen recorder generating titles, summaries from videos.',price:'Freemium',url:'https://loom.com',icon:'📸',rating:4.6,affiliate:true},
+{id:33,name:'Consensus',cat:'Research',desc:'AI search for 200M+ academic papers — extracts findings instantly.',price:'Freemium',url:'https://consensus.app',icon:'🔬',rating:4.5,affiliate:false},
+{id:34,name:'Elicit',cat:'Research',desc:'AI research assistant finding relevant papers and extracting info.',price:'Freemium',url:'https://elicit.org',icon:'📚',rating:4.4,affiliate:false},
+{id:35,name:'DeepL',cat:'Writing',desc:'Most accurate AI translator — 30+ languages with natural translation.',price:'Freemium',url:'https://deepl.com',icon:'🌍',rating:4.8,affiliate:true},
+{id:36,name:'QuillBot',cat:'Writing',desc:'AI paraphrasing, summarizing and grammar checking for students.',price:'Freemium',url:'https://quillbot.com',icon:'✒️',rating:4.6,affiliate:true},
+{id:37,name:'Descript',cat:'Video',desc:'Edit video by editing the transcript — removes filler words.',price:'Freemium',url:'https://descript.com',icon:'🎞️',rating:4.7,affiliate:true},
+{id:38,name:'Kapwing',cat:'Video',desc:'AI video editor with auto-subtitles and social media repurposing.',price:'Freemium',url:'https://kapwing.com',icon:'✂️',rating:4.5,affiliate:false},
+{id:39,name:'Podcastle',cat:'Audio',desc:'AI podcast recording — enhance audio quality and transcribe.',price:'Freemium',url:'https://podcastle.ai',icon:'🎧',rating:4.5,affiliate:true},
+{id:40,name:'Resemble AI',cat:'Audio',desc:'Create custom AI voices from 3 minutes of audio — voice cloning.',price:'Paid',url:'https://resemble.ai',icon:'🗣️',rating:4.4,affiliate:true},
+{id:41,name:'Beautiful.ai',cat:'Productivity',desc:'AI presentation maker — auto-designs slides as you add content.',price:'Paid',url:'https://beautiful.ai',icon:'🎨',rating:4.5,affiliate:true},
+{id:42,name:'Gamma',cat:'Productivity',desc:'Generate complete presentations and documents from a prompt.',price:'Freemium',url:'https://gamma.app',icon:'📊',rating:4.7,affiliate:true},
+{id:43,name:'Fireflies.ai',cat:'Productivity',desc:'AI meeting assistant — joins calls, takes notes, creates summaries.',price:'Freemium',url:'https://fireflies.ai',icon:'🦋',rating:4.6,affiliate:true},
+{id:44,name:'Wordtune',cat:'Writing',desc:'AI writing companion that rewrites sentences for clarity.',price:'Freemium',url:'https://wordtune.com',icon:'🔄',rating:4.4,affiliate:true},
+{id:45,name:'Fathom',cat:'Productivity',desc:'Free AI meeting recorder and summarizer for Zoom and Teams.',price:'Free',url:'https://fathom.video',icon:'📋',rating:4.8,affiliate:false},
+{id:46,name:'Lovable',cat:'Coding',desc:'AI full-stack developer — describe your app, get production code.',price:'Freemium',url:'https://lovable.dev',icon:'❤️',rating:4.7,affiliate:true},
+{id:47,name:'v0 by Vercel',cat:'Coding',desc:'AI UI generator — create React components from text descriptions.',price:'Freemium',url:'https://v0.dev',icon:'▲',rating:4.8,affiliate:false},
+{id:48,name:'Bolt.new',cat:'Coding',desc:'AI full-stack development in browser — build and deploy apps.',price:'Freemium',url:'https://bolt.new',icon:'⚡',rating:4.7,affiliate:false},
+{id:49,name:'Suno AI',cat:'Audio',desc:'Create full songs from text prompts with vocals and instruments.',price:'Freemium',url:'https://suno.ai',icon:'🎸',rating:4.8,affiliate:false},
+{id:50,name:'Udio',cat:'Audio',desc:'AI music generation creating diverse compositions from prompts.',price:'Freemium',url:'https://udio.com',icon:'🎹',rating:4.6,affiliate:false},
+{id:51,name:'Bardeen',cat:'Productivity',desc:'AI automation browser extension — scrape data and automate.',price:'Freemium',url:'https://bardeen.ai',icon:'🤖',rating:4.5,affiliate:true},
+{id:52,name:'Ideogram',cat:'Image',desc:'AI image generator accurately rendering text — logos, posters.',price:'Freemium',url:'https://ideogram.ai',icon:'💭',rating:4.6,affiliate:false},
+{id:53,name:'Tome',cat:'Productivity',desc:'AI storytelling tool generating narratives with dynamic visuals.',price:'Freemium',url:'https://tome.app',icon:'📖',rating:4.4,affiliate:true},
+{id:54,name:'Kaiber',cat:'Video',desc:'Transform images and music into stunning AI creative videos.',price:'Paid',url:'https://kaiber.ai',icon:'🌀',rating:4.3,affiliate:true},
+{id:55,name:'Perplexity Pro',cat:'Research',desc:'Advanced AI research with deeper citations and faster results.',price:'Paid',url:'https://perplexity.ai',icon:'🧬',rating:4.7,affiliate:true}];
+
+const BLOGS=[
+{id:1,title:'Top 10 AI Tools for Students in 2026',tag:'Students',exc:'The best AI tools helping students study smarter and write better essays.',icon:'📚',date:'May 10, 2026',rt:'8 min read',body:'<h2>Introduction</h2><p>In 2026, AI tools have become essential for students. Whether writing essays, solving math, or preparing for exams, the right AI tool makes all the difference.</p><h2>1. ChatGPT — Your Study Companion</h2><p>ChatGPT remains the gold standard. Use it to explain complex concepts, generate practice questions, proofread essays, and get instant feedback on your writing.</p><h2>2. Perplexity — Research Made Easy</h2><p>Unlike regular search engines, Perplexity cites its sources and provides accurate, up-to-date information. Perfect for research papers and fact-checking.</p><h2>3. Grammarly — Perfect Your Writing</h2><p>Grammarly's AI goes beyond spell-check — it analyzes tone, clarity, and style to help students communicate more effectively.</p><h2>4. QuillBot — Paraphrase and Summarize</h2><p>QuillBot helps students paraphrase text to avoid plagiarism and summarizes long academic papers into digestible summaries.</p><h2>5. Notion AI — Organize Everything</h2><p>Take smarter notes, create study plans, and organize your academic life with Notion's built-in AI assistant.</p><h2>Conclusion</h2><p>These AI tools, used responsibly, can dramatically improve academic performance. The key is using them to enhance your understanding, not replace it.</p>'},
+{id:2,title:'Best AI Tools to Make Money Online in 2026',tag:'Income',exc:'From AI freelancing to automated content creation — tools making people real money.',icon:'💰',date:'May 8, 2026',rt:'12 min read',body:'<h2>The AI Income Revolution</h2><p>In 2026, AI has created entirely new income streams. Here's how real people are earning real money using AI tools.</p><h2>1. Freelance Writing with AI</h2><p>Use Claude or ChatGPT to draft content, then add your unique insights. Skilled AI-assisted writers on Upwork earn $50–150/hour by being 5x more productive.</p><h2>2. AI Video Creation</h2><p>Tools like Runway and HeyGen let you create professional videos for clients. Sell video services on Fiverr for $100–500 per video.</p><h2>3. AI Image Generation Business</h2><p>Midjourney users are selling AI-generated artwork on Etsy, creating print-on-demand products, and offering logo design services.</p><h2>4. Build and Sell AI Tools</h2><p>Using Lovable or Bolt.new, even non-developers can build simple web apps. Sell them on Gumroad for passive income.</p><h2>5. AI Prompt Engineering</h2><p>Skilled prompt engineers sell prompt libraries and templates. Top earners make $5,000–20,000/month.</p>'},
+{id:3,title:'ChatGPT vs Claude vs Gemini: 2026 Comparison',tag:'Comparison',exc:'We tested all three major AI assistants. Here's our honest, detailed verdict.',icon:'⚡',date:'May 6, 2026',rt:'10 min read',body:'<h2>The AI Arms Race</h2><p>2026 has seen explosive improvements across all major AI assistants. But which one should you actually use?</p><h2>ChatGPT (GPT-4o)</h2><p><strong>Best for:</strong> Creative writing, coding, versatility. GPT-4o's multimodal capabilities and massive plugin ecosystem make it the most flexible choice.</p><h2>Claude (Sonnet 4.6)</h2><p><strong>Best for:</strong> Long documents, nuanced reasoning, following complex instructions. Claude excels at tasks requiring careful thought and produces fewer hallucinations.</p><h2>Gemini</h2><p><strong>Best for:</strong> Real-time information, Google Workspace integration. Gemini's web access makes it ideal for current events research.</p><h2>Our Verdict</h2><p>Students: Claude or Perplexity. Developers: ChatGPT or Cursor. Marketers: ChatGPT + Jasper. Researchers: Perplexity or Elicit.</p>'},
+{id:4,title:'How Database Pros Use AI in 2026',tag:'Tech',exc:'Oracle DBAs and PostgreSQL pros using AI to optimize queries and debug faster.',icon:'🗄️',date:'May 4, 2026',rt:'9 min read',body:'<h2>AI for Database Administrators</h2><p>Database administration has been transformed by AI tools. Tasks that took hours now take minutes.</p><h2>Query Optimization with AI</h2><p>Paste a slow SQL query into ChatGPT or Claude and ask "How can I optimize this?" The AI analyzes the query structure, suggests indexes, and rewrites it for better performance.</p><h2>Debugging Complex Errors</h2><p>ORA-00942, PG-ERROR-42P01 — AI can diagnose Oracle and PostgreSQL errors instantly and provide step-by-step fixes.</p><h2>Writing PL/SQL and PL/pgSQL</h2><p>Describe what you need: "Write a stored procedure that archives orders older than 2 years." The AI generates production-ready code in seconds.</p>'},
+{id:5,title:'50 Completely Free AI Tools to Use Now',tag:'Free Tools',exc:'These completely free alternatives are just as powerful for most everyday use cases.',icon:'🆓',date:'May 2, 2026',rt:'15 min read',body:'<h2>Free AI Tools That Actually Work</h2><p>You don't need to spend money to access powerful AI in 2026. Here are the genuinely free tools worth your time.</p><h2>Free Writing Tools</h2><p>Claude.ai, ChatGPT (free tier), Gemini, QuillBot — all offer robust free tiers that handle most everyday writing tasks.</p><h2>Free Image Tools</h2><p>Stable Diffusion is completely free and open-source. Ideogram and Canva AI both have generous free tiers.</p><h2>Free Productivity Tools</h2><p>Fathom is 100% free for meeting recording. Notion AI has a limited free tier. Our own tools — Resume Generator, Text Summarizer, SQL Helper — are completely free right here.</p>'},
+{id:6,title:'AI Tools for Content Creators: 2026 Guide',tag:'Creators',exc:'Video, audio, writing — every AI tool a creator needs to build and monetize.',icon:'🎬',date:'Apr 30, 2026',rt:'11 min read',body:'<h2>Content Creation in the AI Era</h2><p>In 2026, solo creators with AI tools can compete with entire production studios.</p><h2>For YouTubers</h2><p>Runway for AI video effects, ElevenLabs for AI voiceovers, Descript to edit by transcript, Kapwing for auto-subtitles and repurposing.</p><h2>For Writers and Bloggers</h2><p>Jasper for long-form content at scale, Surfer SEO for search-optimized content, Grammarly for polish and professionalism.</p><h2>For Podcasters</h2><p>Podcastle for recording and enhancement, Otter.ai for auto-transcription, ElevenLabs for voice cloning.</p><h2>The Creator Stack</h2><p>The most successful creators use AI for repetitive work and focus human creativity on storytelling, strategy, and authentic connection.</p>'}];
+
+// Load persisted tools & blogs from localStorage, fall back to defaults
+let tools=(()=>{try{const s=localStorage.getItem('aiphub_tools');return s?JSON.parse(s):[...TOOLS];}catch(e){return[...TOOLS];}})();
+let blogs=(()=>{try{const s=localStorage.getItem('aiphub_blogs');return s?JSON.parse(s):[...BLOGS];}catch(e){return[...BLOGS];}})();
+let favs=JSON.parse(localStorage.getItem('aiphub_f')||'[]');
+let user=JSON.parse(localStorage.getItem('aiphub_u')||'null');
+let catT='all';
+const PP=12;
+let curPg=1;
+let mockUsers=[
+{id:1,name:'Amod P Menon',email:'amod@ex.com',plan:'Premium',joined:'May 1 2026',status:'active'},
+{id:2,name:'Priya Sharma',email:'priya@ex.com',plan:'Free',joined:'May 5 2026',status:'active'},
+{id:3,name:'Rajan Kumar',email:'rajan@ex.com',plan:'Business',joined:'Apr 28 2026',status:'active'},
+{id:4,name:'Anita Nair',email:'anita@ex.com',plan:'Free',joined:'May 9 2026',status:'pending'},
+{id:5,name:'Suresh Menon',email:'suresh@ex.com',plan:'Premium',joined:'May 11 2026',status:'active'}];
+
+// Persist tools & blogs to localStorage
+function saveTools(){try{localStorage.setItem('aiphub_tools',JSON.stringify(tools));}catch(e){}}
+function saveBlogs(){try{localStorage.setItem('aiphub_blogs',JSON.stringify(blogs));}catch(e){}}
+
+window.onload=()=>{rHTools();rHBlog();renderTools();rAllBlog();rATools();rAUsers();rABlog();updateAuthUI();};
+
+function showPage(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  const n=document.getElementById('nav-'+p);if(n)n.classList.add('active');
+  window.scrollTo(0,0);
+  if(p==='profile')updateProfile();
+}
+
+function TC(t){
+  const iF=favs.includes(t.id);
+  const pC=t.price==='Free'?'pf':t.price==='Paid'?'pp':'pfm';
+  return`<div class="tc glass2">
+    <button class="fb${iF?' active':''}" onclick="tFav(${t.id},this)" title="Save">♥</button>
+    <div class="th"><div class="ti-box">${t.icon}</div><div><div class="tn">${t.name}</div><div class="tc-cat">${t.cat}</div></div></div>
+    <div class="td">${t.desc}</div>
+    <div class="tf">
+      <div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;"><span class="tp ${pC}">${t.price}</span>${t.affiliate?'<span class="aff">💰 Aff</span>':''}</div>
+      <div style="display:flex;align-items:center;gap:5px;"><div class="tr">★ ${t.rating}</div><a class="tl" href="${t.url}" target="_blank" rel="noopener">Visit →</a></div>
+    </div></div>`;
+}
+
+function rHTools(){const g=document.getElementById('hGrid');if(g)g.innerHTML=tools.slice(0,9).map(TC).join('');}
+function fHome(c,el){document.querySelectorAll('#page-home .cat-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');showPage('tools');catT=c;document.getElementById('cF').value=c==='all'?'all':c;curPg=1;renderTools();}
+function goSearch(){const v=document.getElementById('hSearch').value.trim();if(!v)return;showPage('tools');document.getElementById('tSearch').value=v;curPg=1;renderTools();}
+
+function getFT(){
+  const s=(document.getElementById('tSearch')?.value||'').toLowerCase();
+  const c=document.getElementById('cF')?.value||'all';
+  const p=document.getElementById('pF')?.value||'all';
+  const so=document.getElementById('sF')?.value||'def';
+  let f=tools.filter(t=>{
+    const ms=!s||t.name.toLowerCase().includes(s)||t.desc.toLowerCase().includes(s)||t.cat.toLowerCase().includes(s);
+    const mc=c==='all'||t.cat===c;const mp=p==='all'||t.price===p;const mc2=catT==='all'||t.cat===catT;
+    return ms&&mc&&mp&&mc2;
+  });
+  if(so==='rat')f.sort((a,b)=>b.rating-a.rating);
+  else if(so==='az')f.sort((a,b)=>a.name.localeCompare(b.name));
+  else if(so==='free')f.sort((a,b)=>a.price==='Free'?-1:1);
+  return f;
+}
+
+function renderTools(){
+  const f=getFT();const tot=f.length;const tp=Math.ceil(tot/PP);
+  if(curPg>tp)curPg=1;const st=(curPg-1)*PP;const pg=f.slice(st,st+PP);
+  const g=document.getElementById('tGrid');const nr=document.getElementById('noRes');const cnt=document.getElementById('tCount');
+  if(cnt)cnt.textContent=`(${tot} tools)`;
+  if(!pg.length){g.innerHTML='';if(nr)nr.style.display='block';}
+  else{if(nr)nr.style.display='none';g.innerHTML=pg.map(TC).join('');}
+  renderPgn(tp);
+}
+
+function renderPgn(tot){
+  const pg=document.getElementById('pgn');if(!pg||tot<=1){if(pg)pg.innerHTML='';return;}
+  let h=`<button class="pg-btn pn" onclick="goPg(${Math.max(1,curPg-1)})" ${curPg===1?'disabled':''}>← Prev</button>`;
+  for(let i=1;i<=tot;i++){
+    if(i===1||i===tot||Math.abs(i-curPg)<=1)h+=`<button class="pg-btn${i===curPg?' active':''}" onclick="goPg(${i})">${i}</button>`;
+    else if(Math.abs(i-curPg)===2)h+=`<span style="color:var(--text3);padding:0 2px;">…</span>`;
+  }
+  h+=`<button class="pg-btn pn" onclick="goPg(${Math.min(tot,curPg+1)})" ${curPg===tot?'disabled':''}>Next →</button>`;
+  h+=`<span class="pg-info">Page ${curPg} of ${tot}</span>`;
+  pg.innerHTML=h;
+}
+function goPg(p){curPg=p;renderTools();window.scrollTo({top:180,behavior:'smooth'});}
+function fCatT(c,el){catT=c;document.querySelectorAll('#page-tools .cat-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');curPg=1;renderTools();}
+
+function tFav(id,btn){
+  if(!user){openModal('login');showToast('Please log in to save favorites');return;}
+  const i=favs.indexOf(id);
+  if(i>-1){favs.splice(i,1);btn.classList.remove('active');showToast('Removed from favorites');}
+  else{favs.push(id);btn.classList.add('active');showToast('❤️ Saved!');}
+  localStorage.setItem('aiphub_f',JSON.stringify(favs));
+  if(document.getElementById('page-profile').classList.contains('active'))updateProfile();
+}
+function BC(b){return`<div class="bc glass2" onclick="openArt(${b.id})"><div class="bt">${b.icon}</div><div class="bb"><div class="b-tag">${b.tag}</div><div class="b-title">${b.title}</div><div class="b-exc">${b.exc}</div><div class="b-meta"><span>📅 ${b.date}</span><span>⏱ ${b.rt}</span></div></div></div>`;}
+function rHBlog(){const g=document.getElementById('hBlog');if(g)g.innerHTML=blogs.slice(0,3).map(BC).join('');}
+function rAllBlog(){const g=document.getElementById('aBlogs');if(g)g.innerHTML=blogs.map(BC).join('');}
+function openArt(id){
+  const b=blogs.find(x=>x.id===id);if(!b)return;
+  document.getElementById('bList').style.display='none';
+  const a=document.getElementById('bArt');a.style.display='block';
+  a.innerHTML=`<div class="art-wrap"><button class="art-back btn btn-ghost btn-sm" onclick="closeArt()">← Back to Blog</button><div class="b-tag" style="margin-bottom:9px;">${b.tag}</div><div class="art-title">${b.title}</div><div class="art-meta"><span>📅 ${b.date}</span><span>⏱ ${b.rt}</span></div><div class="art-body">${b.body}</div><div style="margin-top:32px;padding:20px;border-radius:11px;background:var(--glass2);border:1px solid var(--border);"><div style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:7px;">⚡ Try AI Tools Now</div><div style="font-size:12px;color:var(--text2);margin-bottom:10px;">Browse our directory of 55+ AI tools.</div><button class="btn btn-primary" onclick="showPage('tools')">Browse All Tools →</button></div></div>`;
+}
+function closeArt(){document.getElementById('bList').style.display='block';document.getElementById('bArt').style.display='none';}
+
+function genResume(){
+  const n=document.getElementById('rN').value.trim(),r=document.getElementById('rR').value.trim();
+  const x=document.getElementById('rX').value.trim()||'2+ years',s=document.getElementById('rS').value.trim(),e=document.getElementById('rE').value.trim();
+  if(!n||!r){showToast('Please fill Name and Role');return;}
+  const sa=s?s.split(',').map(x=>x.trim()):[];
+  const o=document.getElementById('rO');o.style.display='block';o.style.color='var(--accent2)';
+  o.textContent=`PROFESSIONAL SUMMARY
+${'─'.repeat(38)}
+
+${n} is a dedicated ${r} with ${x} of hands-on experience delivering high-quality results in production environments.
+
+Proven expertise in ${sa.length?sa.slice(0,4).join(', '):'multiple technical domains'}, with a demonstrated track record of optimizing performance, ensuring reliability, and collaborating with cross-functional teams.
+
+${e?'EDUCATION: '+e+'
+
+':''}KEY SKILLS:
+${sa.length?sa.map(x=>'• '+x).join('
+'):'• Add your key skills above'}
+
+CORE COMPETENCIES:
+• Strong problem-solving and analytical thinking
+• Excellent communication and cross-team collaboration
+• Commitment to continuous learning and improvement
+
+✅ Generated by AI Productivity Hub`;
+  document.getElementById('rC').style.display='block';showToast('✅ Resume generated!');
+}
+
+function genSum(){
+  const t=document.getElementById('sI').value.trim(),l=document.getElementById('sL').value,st=document.getElementById('sSt').value;
+  if(!t||t.length<50){showToast('Please enter at least 50 characters');return;}
+  const ss=(t.match(/[^.!?]+[.!?]+/g)||[t]).filter(x=>x.trim().length>20);
+  const cnt=l==='short'?2:l==='med'?4:6;
+  const sel=ss.length>=cnt?[ss[0],...ss.slice(Math.floor(ss.length/3),Math.floor(ss.length/3)+cnt-1),ss[ss.length-1]].slice(0,cnt):ss;
+  const wc=t.split(/\s+/).length;const red=Math.round((1-sel.join(' ').split(' ').length/wc)*100);
+  const o=document.getElementById('sO');o.style.display='block';o.style.color='var(--text2)';
+  if(st==='bullets')o.textContent=`📝 SUMMARY
+${'─'.repeat(34)}
+
+${sel.map(x=>'• '+x.trim()).join('
+')}
+
+${'─'.repeat(34)}
+📊 ${wc} words → Reduced by ~${red}%`;
+  else o.textContent=`📝 SUMMARY
+${'─'.repeat(34)}
+
+${sel.join(' ')}
+
+${'─'.repeat(34)}
+📊 ${wc} words → Reduced by ~${red}%`;
+  document.getElementById('sC').style.display='block';showToast('✅ Summarized!');
+}
+
+const SQL={
+  SEL:{gen:'SELECT col1, col2
+FROM table_name
+WHERE condition = value
+ORDER BY col1 ASC
+LIMIT 100;',ora:'SELECT t.col1, t.col2
+FROM schema.table_name t
+WHERE t.status = :status
+ORDER BY t.col1
+FETCH FIRST 100 ROWS ONLY;',pg:'SELECT col1, col2
+FROM table_name
+WHERE condition = $1
+ORDER BY col1 NULLS LAST
+LIMIT 100;',my:'SELECT col1, col2
+FROM table_name
+WHERE condition = ?
+ORDER BY col1 ASC
+LIMIT 100;'},
+  INS:{gen:'INSERT INTO table_name (c1,c2)
+VALUES ('v1','v2');',ora:'INSERT INTO schema.table_name(c1,c2,cdate)
+VALUES(:v1,:v2,SYSDATE);
+COMMIT;',pg:'INSERT INTO table_name(c1,c2,created_at)
+VALUES($1,$2,NOW())
+RETURNING id;',my:'INSERT INTO table_name(c1,c2)
+VALUES(?,?);
+SELECT LAST_INSERT_ID();'},
+  UPD:{gen:'UPDATE table_name SET c1='v1' WHERE id=1;',ora:'UPDATE schema.t SET c1=:v1,upd=SYSDATE WHERE id=:id;
+COMMIT;',pg:'UPDATE table_name SET c1=$1,updated_at=NOW() WHERE id=$2 RETURNING *;',my:'UPDATE table_name SET c1=?,updated_at=NOW() WHERE id=? LIMIT 1;'},
+  DEL:{gen:'DELETE FROM table_name WHERE id=1;',ora:'DELETE FROM schema.t WHERE id=:id;
+COMMIT;',pg:'DELETE FROM table_name WHERE id=$1 RETURNING id;',my:'DELETE FROM table_name WHERE id=? LIMIT 1;'},
+  CRE:{gen:'CREATE TABLE employees(
+  id INT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  salary DECIMAL(10,2),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);',ora:'CREATE TABLE schema.employees(
+  emp_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  emp_name VARCHAR2(100) NOT NULL,
+  salary NUMBER(12,2),
+  hire_date DATE DEFAULT SYSDATE
+);
+CREATE INDEX idx_emp ON schema.employees(emp_name);',pg:'CREATE TABLE employees(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  salary NUMERIC(12,2),
+  dept_id INTEGER REFERENCES departments(id),
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX idx_employees_dept ON employees(dept_id);',my:'CREATE TABLE employees(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  salary DECIMAL(12,2),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;'},
+  JOI:{gen:'SELECT a.id,a.name,b.dept_name
+FROM employees a
+INNER JOIN departments b ON a.dept_id=b.id
+WHERE a.status='active';',ora:'SELECT e.emp_name,d.dept_name,m.emp_name AS mgr
+FROM schema.employees e
+INNER JOIN schema.departments d ON e.dept_id=d.dept_id
+LEFT JOIN schema.employees m ON e.mgr_id=m.emp_id
+WHERE e.status='ACTIVE';',pg:'SELECT e.name,d.name AS dept,COUNT(p.id) AS projects
+FROM employees e
+INNER JOIN departments d ON e.dept_id=d.id
+LEFT JOIN projects p ON e.id=p.emp_id
+GROUP BY e.name,d.name
+ORDER BY e.name;',my:'SELECT e.name,d.dept_name,m.name AS mgr
+FROM employees e
+INNER JOIN departments d ON e.dept_id=d.id
+LEFT JOIN employees m ON e.mgr_id=m.id;'},
+  AGG:{gen:'SELECT dept_id,COUNT(*),AVG(salary),MAX(salary)
+FROM employees
+GROUP BY dept_id
+HAVING COUNT(*)>5
+ORDER BY AVG(salary) DESC;',ora:'SELECT d.dept_name,COUNT(e.emp_id) AS cnt,ROUND(AVG(e.salary),2) AS avg_sal
+FROM schema.employees e
+JOIN schema.departments d ON e.dept_id=d.dept_id
+GROUP BY d.dept_name
+HAVING COUNT(e.emp_id)>=3
+ORDER BY avg_sal DESC;',pg:'SELECT DATE_TRUNC('month',created_at) AS month,COUNT(*),SUM(amount) AS rev
+FROM orders
+WHERE created_at>=NOW()-INTERVAL '12 months'
+GROUP BY 1
+ORDER BY 1 DESC;',my:'SELECT MONTH(created_at) AS m,COUNT(*),SUM(amount)
+FROM orders
+GROUP BY MONTH(created_at)
+ORDER BY m;'},
+  IDX:{gen:'CREATE INDEX idx_t_col ON table_name(column);
+CREATE UNIQUE INDEX idx_t_email ON table_name(email);',ora:'CREATE INDEX schema.idx_emp_dept ON schema.employees(dept_id);
+CREATE INDEX schema.idx_emp_upper ON schema.employees(UPPER(emp_name));
+SELECT index_name FROM user_indexes WHERE table_name='EMPLOYEES';',pg:'CREATE INDEX idx_employees_dept ON employees(dept_id);
+CREATE INDEX idx_active ON employees(name) WHERE status='active';
+EXPLAIN ANALYZE SELECT * FROM employees WHERE dept_id=5;',my:'CREATE INDEX idx_dept ON employees(dept_id);
+CREATE FULLTEXT INDEX idx_name ON employees(name);
+SHOW INDEX FROM employees;'},
+  PRO:{gen:'CREATE PROCEDURE proc_name(p1 INT)
+BEGIN
+  SELECT * FROM table WHERE id=p1;
+END;',ora:'CREATE OR REPLACE PROCEDURE schema.upd_salary(
+  p_id IN NUMBER, p_sal IN NUMBER, p_res OUT VARCHAR2
+) AS
+  v_old NUMBER;
+BEGIN
+  SELECT salary INTO v_old FROM schema.employees WHERE emp_id=p_id;
+  UPDATE schema.employees SET salary=p_sal,updated_date=SYSDATE WHERE emp_id=p_id;
+  COMMIT;
+  p_res:='Updated from '||v_old||' to '||p_sal;
+EXCEPTION WHEN OTHERS THEN ROLLBACK; p_res:='Error: '||SQLERRM;
+END;
+/',pg:'CREATE OR REPLACE FUNCTION upd_salary(p_id INT,p_sal NUMERIC)
+RETURNS TEXT LANGUAGE plpgsql AS $$
+DECLARE v_old NUMERIC; v_name VARCHAR;
+BEGIN
+  SELECT salary,name INTO v_old,v_name FROM employees WHERE id=p_id;
+  IF NOT FOUND THEN RETURN 'Error: Not found'; END IF;
+  UPDATE employees SET salary=p_sal,updated_at=NOW() WHERE id=p_id;
+  RETURN FORMAT('%s: %s → %s',v_name,v_old,p_sal);
+EXCEPTION WHEN OTHERS THEN RETURN 'Error: '||SQLERRM;
+END;$$;
+SELECT upd_salary(1,75000);',my:'DELIMITER //
+CREATE PROCEDURE UpdSalary(IN p_id INT,IN p_sal DECIMAL,OUT p_res VARCHAR(200))
+BEGIN
+  DECLARE v_old DECIMAL;
+  START TRANSACTION;
+  SELECT salary INTO v_old FROM employees WHERE id=p_id;
+  UPDATE employees SET salary=p_sal WHERE id=p_id;
+  COMMIT;
+  SET p_res=CONCAT('Updated: ',v_old,' → ',p_sal);
+END //
+DELIMITER ;
+CALL UpdSalary(1,75000,@r);
+SELECT @r;'}
+};
+
+function genSQL(){
+  const d=document.getElementById('qI').value.trim(),db=document.getElementById('qDB').value,op=document.getElementById('qOP').value;
+  if(!d){showToast('Please describe your query');return;}
+  const dbMap={gen:'gen',ora:'ora',pg:'pg',my:'my'};
+  const t=SQL[op]?.[dbMap[db]]||SQL[op]?.gen||'-- Template not available';
+  const o=document.getElementById('qO');o.style.display='block';
+  o.textContent=`-- ${db.toUpperCase()} ${op} Query
+-- Request: "${d}"
+${'─'.repeat(48)}
+
+${t}
+
+${'─'.repeat(48)}
+-- ✅ AI Productivity Hub SQL Helper
+-- ⚠️ Adapt to your actual schema`;
+  document.getElementById('qC').style.display='block';showToast('✅ SQL generated!');
+}
+
+function copyOut(id){
+  const e=document.getElementById(id);
+  navigator.clipboard?.writeText(e.textContent).then(()=>showToast('📋 Copied!')).catch(()=>{const r=document.createRange();r.selectNode(e);window.getSelection().removeAllRanges();window.getSelection().addRange(r);document.execCommand('copy');showToast('📋 Copied!');});
+}
+
+function openModal(t){document.getElementById('authModal').classList.add('open');document.getElementById('lF').style.display=t==='login'?'block':'none';document.getElementById('sF').style.display=t==='signup'?'block':'none';}
+function closeModal(){document.getElementById('authModal').classList.remove('open');}
+function switchSU(){openModal('signup');}function switchSI(){openModal('login');}
+function handleLogin(){
+  const e=document.getElementById('lE').value.trim(),p=document.getElementById('lP').value;
+  if(!e||!p){showToast('Please fill all fields');return;}
+  user={name:e.split('@')[0].replace(/[^a-zA-Z ]/g,' ').trim()||'User',email:e};
+  localStorage.setItem('aiphub_u',JSON.stringify(user));closeModal();updateAuthUI();showToast('👋 Welcome back, '+user.name+'!');
+}
+function handleSignup(){
+  const n=document.getElementById('sN').value.trim(),e=document.getElementById('sE').value.trim(),p=document.getElementById('sP').value;
+  if(!n||!e||!p){showToast('Fill all fields');return;}
+  if(p.length<6){showToast('Password min 6 chars');return;}
+  if(!e.includes('@')){showToast('Valid email required');return;}
+  user={name:n,email:e};localStorage.setItem('aiphub_u',JSON.stringify(user));closeModal();updateAuthUI();showToast('🎉 Welcome, '+n+'!');
+}
+function logout(){user=null;localStorage.removeItem('aiphub_u');updateAuthUI();showToast('Logged out');showPage('home');}
+function updateAuthUI(){
+  const li=document.getElementById('loginBtn'),si=document.getElementById('signupBtn'),gr=document.getElementById('uG'),lo=document.getElementById('logoutBtn');
+  if(user){li.style.display='none';si.style.display='none';gr.style.display='inline';lo.style.display='inline-flex';gr.textContent='👤 '+user.name;}
+  else{li.style.display='inline-flex';si.style.display='inline-flex';gr.style.display='none';lo.style.display='none';}
+}
+
+function updateProfile(){
+  if(!user){showPage('home');openModal('login');return;}
+  document.getElementById('pNm').textContent=user.name;
+  document.getElementById('pEm').textContent=user.email;
+  document.getElementById('pAv').textContent=user.name[0].toUpperCase();
+  document.getElementById('set-n').value=user.name;
+  document.getElementById('set-e').value=user.email;
+  const ft=tools.filter(t=>favs.includes(t.id));
+  const fg=document.getElementById('fG');
+  document.getElementById('actFavs').textContent=favs.length;
+  if(ft.length){fg.innerHTML=ft.map(TC).join('');document.getElementById('nF').style.display='none';}
+  else{fg.innerHTML='';document.getElementById('nF').style.display='block';}
+}
+function pTab(t,el){
+  document.querySelectorAll('.ps').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.p-nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('ps-'+t).classList.add('active');if(el)el.classList.add('active');
+}
+
+function aTab(t){
+  document.querySelectorAll('.a-tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.admin-sb a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('tab-'+t).classList.add('active');
+  document.getElementById('at-'+t).classList.add('active');
+  if(t==='tools')rATools();if(t==='users')rAUsers();if(t==='blog')rABlog();
+}
+
+function rATools(){
+  const s=(document.getElementById('aSearch')?.value||'').toLowerCase();
+  const f=tools.filter(t=>!s||t.name.toLowerCase().includes(s)||t.cat.toLowerCase().includes(s));
+  const tb=document.getElementById('aToolsT');if(!tb)return;
+  tb.innerHTML=f.map(t=>`<tr><td>${t.icon} <strong>${t.name}</strong></td><td>${t.cat}</td><td><span class="tp ${t.price==='Free'?'pf':t.price==='Paid'?'pp':'pfm'}">${t.price}</span></td><td>⭐${t.rating}</td><td>${t.affiliate?'<span style="color:var(--gold)">Yes</span>':'No'}</td><td style="display:flex;gap:5px;"><button class="btn btn-ghost btn-sm" onclick="openEM(${t.id})">✏️</button><button class="btn btn-danger btn-sm" onclick="delTool(${t.id})">🗑️</button></td></tr>`).join('');
+  const dc=document.getElementById('dTools');if(dc)dc.textContent=tools.length;
+}
+
+function openEM(id){
+  const m=document.getElementById('editModal');
+  if(id===null){
+    document.getElementById('emT').textContent='+ Add New Tool';
+    ['n','c','d','p','r','u','i','id'].forEach(x=>document.getElementById('et-'+x).value='');
+    document.getElementById('et-r').value='4.5';document.getElementById('et-i').value='🔧';document.getElementById('et-a').value='false';
+  } else {
+    const t=tools.find(x=>x.id===id);if(!t)return;
+    document.getElementById('emT').textContent='✏️ Edit: '+t.name;
+    document.getElementById('et-id').value=t.id;document.getElementById('et-n').value=t.name;
+    document.getElementById('et-c').value=t.cat;document.getElementById('et-d').value=t.desc;
+    document.getElementById('et-p').value=t.price;document.getElementById('et-r').value=t.rating;
+    document.getElementById('et-u').value=t.url;document.getElementById('et-i').value=t.icon;
+    document.getElementById('et-a').value=String(t.affiliate);
+  }
+  m.classList.add('open');
+}
+function closeEM(){document.getElementById('editModal').classList.remove('open');}
+function saveTool(){
+  const id=document.getElementById('et-id').value;
+  const n=document.getElementById('et-n').value.trim(),c=document.getElementById('et-c').value;
+  const d=document.getElementById('et-d').value.trim(),p=document.getElementById('et-p').value;
+  const r=parseFloat(document.getElementById('et-r').value)||4.5,u=document.getElementById('et-u').value.trim()||'#';
+  const i=document.getElementById('et-i').value.trim()||'🔧',a=document.getElementById('et-a').value==='true';
+  if(!n||!d){showToast('Name and description required');return;}
+  if(id){const idx=tools.findIndex(t=>t.id===parseInt(id));if(idx>-1)tools[idx]={...tools[idx],name:n,cat:c,desc:d,price:p,rating:r,url:u,icon:i,affiliate:a};showToast('✅ Updated!');}
+  else{tools.unshift({id:Date.now(),name:n,cat:c,desc:d,price:p,rating:r,url:u,icon:i,affiliate:a});showToast('✅ Added!');}
+  saveTools();closeEM();rATools();renderTools();rHTools();curPg=1;
+}
+function delTool(id){if(!confirm('Delete this tool?'))return;tools=tools.filter(t=>t.id!==id);saveTools();rATools();renderTools();rHTools();showToast('🗑️ Deleted');}
+
+function rAUsers(f=''){
+  const tb=document.getElementById('aUsersT');if(!tb)return;
+  const flt=mockUsers.filter(u=>!f||u.name.toLowerCase().includes(f)||u.email.toLowerCase().includes(f));
+  tb.innerHTML=flt.map(u=>`<tr><td><strong>${u.name}</strong></td><td>${u.email}</td><td style="color:var(--accent)">${u.plan}</td><td>${u.joined}</td><td><span class="sb-a ${u.status==='active'?'s-act':'s-pend'}">${u.status}</span></td><td><button class="btn btn-ghost btn-sm" onclick="showToast('📧 Email sent to ${u.name}!')">📧</button></td></tr>`).join('');
+}
+function filterUsers(v){rAUsers(v.toLowerCase());}
+
+function rABlog(){
+  const tb=document.getElementById('aBlogsT');if(!tb)return;
+  tb.innerHTML=blogs.map(b=>`<tr><td>${b.icon} <strong>${b.title.substring(0,38)}${b.title.length>38?'...':''}</strong></td><td>${b.tag}</td><td>${b.date}</td><td><span class="sb-a s-act">Published</span></td><td style="display:flex;gap:5px;"><button class="btn btn-ghost btn-sm" onclick="openBE(${b.id})">✏️</button><button class="btn btn-danger btn-sm" onclick="delBlog(${b.id})">🗑️</button></td></tr>`).join('');
+}
+function openBE(id){
+  document.getElementById('bEdWrap').style.display='block';
+  if(id===null){['TI','TgI','IcI','TmI','ExI','CtI'].forEach(x=>document.getElementById('b'+x).value='');document.getElementById('bEId').value='';}
+  else{
+    const b=blogs.find(x=>x.id===id);if(!b)return;
+    document.getElementById('bEId').value=b.id;document.getElementById('bTI').value=b.title;
+    document.getElementById('bTgI').value=b.tag;document.getElementById('bIcI').value=b.icon;
+    document.getElementById('bTmI').value=b.rt;document.getElementById('bExI').value=b.exc;
+    document.getElementById('bCtI').value=b.body;
+  }
+  document.getElementById('bEdWrap').scrollIntoView({behavior:'smooth'});
+}
+function saveBlog(){
+  const id=document.getElementById('bEId').value;
+  const title=document.getElementById('bTI').value.trim(),tag=document.getElementById('bTgI').value.trim()||'General';
+  const icon=document.getElementById('bIcI').value.trim()||'📝',rt=document.getElementById('bTmI').value.trim()||'5 min read';
+  const exc=document.getElementById('bExI').value.trim(),body=document.getElementById('bCtI').value.trim();
+  if(!title||!exc){showToast('Title and excerpt required');return;}
+  const now=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  if(id){const i=blogs.findIndex(b=>b.id===parseInt(id));if(i>-1)blogs[i]={...blogs[i],title,tag,icon,rt,exc,body};showToast('✅ Post updated!');}
+  else{blogs.unshift({id:Date.now(),title,tag,icon,rt,exc,body,date:now});showToast('✅ Post published!');}
+  saveBlogs();document.getElementById('bEdWrap').style.display='none';rABlog();rAllBlog();rHBlog();
+}
+function delBlog(id){if(!confirm('Delete this post?'))return;blogs=blogs.filter(b=>b.id!==id);saveBlogs();rABlog();rAllBlog();rHBlog();showToast('🗑️ Deleted');}
+
+function toggleTheme(){
+  const h=document.documentElement;const d=h.dataset.theme==='dark';
+  h.dataset.theme=d?'light':'dark';document.getElementById('themeBtn').textContent=d?'🌙':'☀️';
+}
+
+function subNL(){
+  const e=document.getElementById('nlE').value.trim();
+  if(!e||!e.includes('@')){showToast('Valid email required');return;}
+  showToast('📧 Subscribed! Welcome to AI Newsletter');document.getElementById('nlE').value='';
+}
+
+function resetTools(){if(!confirm('Reset all tools to default 55? Any added tools will be removed.'))return;tools=[...TOOLS];saveTools();rATools();renderTools();rHTools();curPg=1;showToast('✅ Tools reset to defaults!');}
+
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+
+document.getElementById('authModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.getElementById('editModal').addEventListener('click',function(e){if(e.target===this)closeEM();});
+</script></body></html>
